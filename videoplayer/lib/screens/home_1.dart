@@ -129,13 +129,11 @@ class _ScreenHome1State extends State<ScreenHome1> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 10,
-            ),
+             
             Container(
               decoration: BoxDecoration(
-                color: Colors.blue[50],
-                 borderRadius: BorderRadius.circular(40),
+                color: Colors.white,
+                 borderRadius: BorderRadius.circular(0),
                  shape: BoxShape.rectangle
                  
               ),
@@ -144,7 +142,7 @@ class _ScreenHome1State extends State<ScreenHome1> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 2, 0, 2),
+                        padding: const EdgeInsets.fromLTRB(10, 10 , 0, 0),
                         child: GradientText(
                           colors: const [
                             Color(0xFF240E8B),
@@ -189,10 +187,10 @@ class _ScreenHome1State extends State<ScreenHome1> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * .15,
+                      height: MediaQuery.of(context).size.height * .18,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: 4,
+                          itemCount: 3,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
@@ -213,8 +211,8 @@ class _ScreenHome1State extends State<ScreenHome1> {
                                             );
                                           }),
                                           child: Container(
-                                            width: 160,
-                                            height: 90,
+                                            width: 200,
+                                            height: 120,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -318,10 +316,10 @@ class _ScreenHome1State extends State<ScreenHome1> {
                     height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 0, 10, 0),
+                    padding: const EdgeInsets.fromLTRB(1, 0, 0, 0),
                     child: Row(
                       children: [
-                        for (int i = 0; i <= 73; i++)
+                        for (int i = 0; i <= 77; i++)
                           Container(
                             width: 5,
                             height: 2,
@@ -339,7 +337,7 @@ class _ScreenHome1State extends State<ScreenHome1> {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 10, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
                   child: Container(
                     width: 150,
                     height: 25,
