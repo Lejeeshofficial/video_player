@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:videoplayer/screens/bottumnavigationpage.dart';
 import 'package:videoplayer/screens/favscreen.dart';
+import 'package:videoplayer/screens/partymixfav.dart';
 import 'package:videoplayer/screens/playlistpage.dart';
 import 'package:videoplayer/screens/settingscreen.dart';
 import 'package:videoplayer/screens/videoplayer1.dart';
@@ -131,154 +132,209 @@ class _ScreenHome1State extends State<ScreenHome1> {
             const SizedBox(
               height: 10,
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 2, 0, 2),
-                  child: GradientText(
-                    colors: const [
-                      Color(0xFF240E8B),
-                      Color(0xFF787FF6),
-                    ],
-                    'Current Watching...',
-                    style: GoogleFonts.podkova(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black87),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 7, 10, 0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 220,
-                decoration: const BoxDecoration(
-                  //   image: DecorationImage( image: AssetImage('lib/assets/image1.png'), ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(80),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  ),
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xFF240E8B),
-                      Color(0xFF787FF6),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.1, 0.9],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(10, 10),
-                      blurRadius: 20,
-                      color: Color(0xa6240E8B),
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Stack(
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blue[50],
+                 borderRadius: BorderRadius.circular(40),
+                 shape: BoxShape.rectangle
+                 
+              ),
+              child: Column(
+                children: [
+                  Row(
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 2, 0, 2),
+                        child: GradientText(
+                          colors: const [
+                            Color(0xFF240E8B),
+                            Color(0xFF787FF6),
+                          ],
+                          'Recently Played...',
+                          style: GoogleFonts.podkova(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black87),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  ///-----------------------Recently viewed_---------------///
+
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * .94,
+                      ),
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (ctx) => AssetPlayerWidget()));
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ScreenPartyMix()),
+                          );
                         },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 220,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('lib/assets/asthetic.jpg'),
-                            ),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(80),
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                            ),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFF240E8B),
-                                Color(0xFF787FF6),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              stops: [0.1, 0.9],
-                            ),
-                          ),
+                        child: Icon(
+                          Icons.arrow_forward_sharp,
+                          size: 20,
+                          color: Colors.purple[900],
                         ),
                       ),
-                      Positioned(
-                        left: 290,
-                        top: 140,
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AssetPlayerWidget(),
-                                    // ScreenVideoPlayer(),//
-                                    ),
-                              );
-                            },
-                            child: const Icon(Icons.play_circle_outline_sharp,
-                                size: 35, color: Colors.black87),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 10,
-                        left: 8,
-                        child: Text(
-                          'Special Agent.OSO',
-                          style: GoogleFonts.podkova(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white),
-                        ),
-                      ),
-                      Positioned(
-                        left: 8,
-                        top: 30,
-                        child: Text(
-                          'John Sam',
-                          style: GoogleFonts.podkova(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
-                        ),
-                      ),
-                      const Positioned(
-                        left: 3,
-                        top: 187,
-                        //bottom: 100,
-                        child: SizedBox(
-                          width: 180,
-                          child: LinearProgressIndicator(
-                            backgroundColor: Colors.grey,
-                            color: Colors.red,
-                            value: 1,
-                          ),
-                        ),
-                      )
                     ],
                   ),
-                ),
-              ), //stack
+                  const SizedBox(
+                    height: 05,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * .15,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                              child: Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      children: [
+                                        InkWell(
+                                          onTap: (() {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    AssetPlayerWidget()),
+                                              ),
+                                            );
+                                          }),
+                                          child: Container(
+                                            width: 160,
+                                            height: 90,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              image: const DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                    'lib/assets/party2.jpeg'),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 120,
+                                          top: 0,
+                                          child: PopupMenuButton(
+                                            icon: const Icon(
+                                              Icons.more_vert_outlined,
+                                              size: 23,
+                                              color: Colors.white,
+                                            ),
+                                            itemBuilder: (context) => [
+                                              PopupMenuItem(
+                                                onTap: () async {
+                                                  await Future.delayed(
+                                                    Duration(seconds: 0),
+                                                  );
+                                                  DialogBoxremove(context);
+                                                },
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      'Remove',
+                                                      style: GoogleFonts.podkova(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 18,
+                                                        color: Colors.purple[900],
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Icon(
+                                                      Icons.delete,
+                                                      size: 20,
+                                                      color: Colors.purple[900],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 55,
+                                          top: 28,
+                                          child: IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      AssetPlayerWidget()),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(Icons.play_circle_outline),
+                                            iconSize: 30,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      'Prince and Queen',
+                                      style: GoogleFonts.podkova(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.blue[900],
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(
+                                      '14:41',
+                                      style: GoogleFonts.podkova(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey[900],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 10, 0),
+                    child: Row(
+                      children: [
+                        for (int i = 0; i <= 73; i++)
+                          Container(
+                            width: 5,
+                            height: 2,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                          )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             Row(
               children: [
@@ -807,5 +863,78 @@ class _ScreenHome1State extends State<ScreenHome1> {
       ),
     );
     snackBarplaylist(context);
+  }
+
+  void DialogBoxremove(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        title: Text(
+          'Remove ?',
+          style: GoogleFonts.podkova(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            color: Colors.purple[900],
+          ),
+        ),
+        content: Text(
+          'Are you sure !!',
+          style: GoogleFonts.podkova(
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+            color: Colors.purple[900],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'No',
+              style: GoogleFonts.podkova(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: Colors.purple[900],
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              snackBarremove(context);
+            },
+            child: Text(
+              'Yes',
+              style: GoogleFonts.podkova(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: Colors.purple[900],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+    // Navigator.pop(context);
+  }
+
+  void snackBarremove(BuildContext context) {
+    final snackbar = SnackBar(
+      backgroundColor: Colors.purple[100],
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        'Item is removed successfully',
+        style: GoogleFonts.podkova(
+          fontSize: 15,
+          fontWeight: FontWeight.w700,
+          color: Colors.purple[900],
+        ),
+      ),
+    );
+    Navigator.pop(context);
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 }
