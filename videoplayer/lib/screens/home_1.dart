@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -126,488 +127,496 @@ class _ScreenHome1State extends State<ScreenHome1> {
           ),
         ],
       ),
-      body: Container(
-        child: Column(
-         // mainAxisSize: MainAxisSize.min,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(0),
-                  shape: BoxShape.rectangle),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                        child: GradientText(
-                          colors: const [
-                            Color(0xFF240E8B),
-                            Color(0xFF787FF6),
-                          ],
-                          'Recently Played...',
-                          style: GoogleFonts.podkova(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black87),
-                        ),
-                      ),
-                    ],
-                  ),
-      
-                  ///-----------------------Recently viewed_---------------///
-      
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .94,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ScreenPartyMix()),
-                          );
-                        },
-                        child: Icon(
-                          Icons.arrow_forward_sharp,
-                          size: 20,
-                          color: Colors.purple[900],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * .21,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
-                              child: Container(
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        InkWell(
-                                          onTap: (() {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: ((context) =>
-                                                    AssetPlayerWidget()),
-                                              ),
-                                            );
-                                          }),
-                                          child: Container(
-                                            width: 300,
-                                            height: 170,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              image: const DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: AssetImage(
-                                                    'lib/assets/party2.jpeg'),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: 10,
-                                          left: 10,
-                                          child: Text(
-                                            'Prince and Queen',
-                                            style: GoogleFonts.podkova(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: 25,
-                                          left: 10,
-                                          child: Text(
-                                            'Sam Joseph',
-                                            style: GoogleFonts.podkova(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          right: 0,
-                                          top: 0,
-                                          child: PopupMenuButton(
-                                            icon: const Icon(
-                                              Icons.more_vert_outlined,
-                                              size: 23,
-                                              color: Colors.white,
-                                            ),
-                                            itemBuilder: (context) => [
-                                              PopupMenuItem(
-                                                onTap: () async {
-                                                  await Future.delayed(
-                                                    Duration(seconds: 0),
-                                                  );
-                                                  DialogBoxremove(context);
-                                                },
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      'Remove',
-                                                      style:
-                                                          GoogleFonts.podkova(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 18,
-                                                        color: Colors
-                                                            .purple[900],
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Icon(
-                                                      Icons.delete,
-                                                      size: 20,
-                                                      color:
-                                                          Colors.purple[900],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Positioned(
-                                            width: 300,
-                                            height: 170,
-                                            // left: 55,
-                                            // top: 28,
-                                            child: Center(
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: ((context) =>
-                                                          AssetPlayerWidget()),
-                                                    ),
-                                                  );
-                                                },
-                                                icon: Icon(Icons
-                                                    .play_circle_outline),
-                                                iconSize: 30,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    // Text(
-                                    //   'Prince and Queen',
-                                    //   style: GoogleFonts.podkova(
-                                    //     fontSize: 14,
-                                    //     fontWeight: FontWeight.w500,
-                                    //     color: Colors.blue[900],
-                                    //   ),
-                                    // ),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                    // Text(
-                                    //   '14:41',
-                                    //   style: GoogleFonts.podkova(
-                                    //     fontSize: 12,
-                                    //     fontWeight: FontWeight.w500,
-                                    //     color: Colors.grey[900],
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(1, 0, 0, 0),
-                    child: Row(
-                      children: [
-                        for (int i = 0; i <= 77; i++)
-                          Container(
-                            width: 5,
-                            height: 2,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(0),
-                            ),
-                          )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
+      body: SafeArea(
+
+        child: CupertinoScrollbar(
+          child: SingleChildScrollView(
+            child: Column(
+             // mainAxisSize: MainAxisSize.min,
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
-                  child: Container(
-                    width: 150,
-                    height: 25,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF787FF6),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Center(
-                      child: Text(
-                        'All Videos',
-                        style: GoogleFonts.podkova(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-      
-            //-----------------------------next-------------------///
-            Container(
-              child: Flexible(
-                fit: FlexFit.loose,
-                child: GridView.builder(
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 4 / 3,
-      
-                    // childAspectRatio: 4 / 3,
-      
-                    // maxCrossAxisExtent: 200,
-                  ),
-                  itemCount: 8,
-                  itemBuilder: ((context, index) {
-                    return GridTile(
-                      child: Column(
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(0),
+                      shape: BoxShape.rectangle),
+                  child: Column(
+                    children: [
+                      Row(
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Stack(
-                                children: [
-                                  GestureDetector(
-                                    onTap: (() {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              AssetPlayerWidget(),
-                                        ),
-                                      );
-                                    }),
-                                    child: Container(
-                                      width: 160,
-                                      height: 110,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10),
-                                        image: const DecorationImage(
-                                            image: AssetImage(
-                                                'lib/assets/image1.png'),
-                                            fit: BoxFit.cover),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 4,
-                                    left: 120,
-                                    child:
-      
-                                        ///------------------pop up menu-------------///
-      
-                                        PopupMenuButton(
-                                      icon: const Icon(
-                                        Icons.more_vert_outlined,
-                                        color: Colors.white,
-                                      ),
-                                      itemBuilder: ((context) => [
-                                                PopupMenuItem(
-                                                  onTap: () async {
-                                                    final navigator =
-                                                        Navigator.of(context);
-                                                    await Future.delayed(
-                                                        Duration(seconds: 0));
-                                                    navigator.push(
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            FavScreen(),
-                                                      ),
-                                                    );
-                                                    favVideoSanckbar(context);
-                                                  },
-                                                  value: 0,
-                                                  child: Row(
-                                                    children: [
-                                                      const Icon(
-                                                        Icons
-                                                            .favorite_border_outlined,
-                                                        size: 18,
-                                                        color:
-                                                            Colors.deepPurple,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 8,
-                                                      ),
-                                                      Text(
-                                                        'Add To Favourites',
-                                                        style: GoogleFonts
-                                                            .podkova(
-                                                                fontSize: 15,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                color: Colors
-                                                                    .deepPurple),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                PopupMenuItem(
-                                                  onTap: (() async {
-                                                    final navigator =
-                                                        Navigator.of(context);
-                                                    await Future.delayed(
-                                                      Duration(seconds: 0),
-                                                    );
-                                                    playlistbottomsheet(
-                                                        context);
-                                                  }),
-                                                  value: 1,
-                                                  child: Row(
-                                                    children: [
-                                                      const Icon(
-                                                        Icons
-                                                            .playlist_add_check_circle_outlined,
-                                                        size: 18,
-                                                        color:
-                                                            Colors.deepPurple,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 8,
-                                                      ),
-                                                      Text(
-                                                        'Add To Playlist',
-                                                        style: GoogleFonts
-                                                            .podkova(
-                                                                fontSize: 15,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                color: Colors
-                                                                    .deepPurple),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                PopupMenuItem(
-                                                  onTap: (() async {
-                                                    await Future.delayed(
-                                                      Duration(seconds: 0),
-                                                    );
-      
-                                                    DialogBox(context);
-                                                  }),
-                                                  value: 2,
-                                                  child: Row(
-                                                    children: [
-                                                      const Icon(
-                                                        Icons.delete,
-                                                        size: 18,
-                                                        color:
-                                                            Colors.deepPurple,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 8,
-                                                      ),
-                                                      Text(
-                                                        'Delete',
-                                                        style: GoogleFonts
-                                                            .podkova(
-                                                                fontSize: 15,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                color: Colors
-                                                                    .deepPurple),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ]
-                                          // ),
-      
-                                          ),
-                                      color: Colors.grey[50],
-                                      offset: Offset(-0, 0),
-                                    ),
-      
-                                    //---------------------------------------------/
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                'Special Agent.OSO',
-                                style: GoogleFonts.podkova(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.blue[900]),
-                              ),
-                              Text(
-                                '18:25',
-                                style: GoogleFonts.podkova(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey),
-                              ),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                            child: GradientText(
+                              colors: const [
+                                Color(0xFF240E8B),
+                                Color(0xFF787FF6),
+                              ],
+                              'Recently Played...',
+                              style: GoogleFonts.podkova(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black87),
+                            ),
                           ),
                         ],
                       ),
-                    );
-                  }),
+          
+                      ///-----------------------Recently viewed_---------------///
+          
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .94,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ScreenPartyMix()),
+                              );
+                            },
+                            child: Icon(
+                              Icons.arrow_forward_sharp,
+                              size: 20,
+                              color: Colors.purple[900],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * .21,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 3,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
+                                  child: Container(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            InkWell(
+                                              onTap: (() {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: ((context) =>
+                                                        AssetPlayerWidget()),
+                                                  ),
+                                                );
+                                              }),
+                                              child: Container(
+                                                width: 300,
+                                                height: 170,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  image: const DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: AssetImage(
+                                                        'lib/assets/party2.jpeg'),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 10,
+                                              left: 10,
+                                              child: Text(
+                                                'Prince and Queen',
+                                                style: GoogleFonts.podkova(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 25,
+                                              left: 10,
+                                              child: Text(
+                                                'Sam Joseph',
+                                                style: GoogleFonts.podkova(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              right: 0,
+                                              top: 0,
+                                              child: PopupMenuButton(
+                                                icon: const Icon(
+                                                  Icons.more_vert_outlined,
+                                                  size: 23,
+                                                  color: Colors.white,
+                                                ),
+                                                itemBuilder: (context) => [
+                                                  PopupMenuItem(
+                                                    onTap: () async {
+                                                      await Future.delayed(
+                                                        Duration(seconds: 0),
+                                                      );
+                                                      DialogBoxremove(context);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                          'Remove',
+                                                          style:
+                                                              GoogleFonts.podkova(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 18,
+                                                            color: Colors
+                                                                .purple[900],
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Icon(
+                                                          Icons.delete,
+                                                          size: 20,
+                                                          color:
+                                                              Colors.purple[900],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              child: Positioned(
+                                                width: 300,
+                                                height: 170,
+                                                // left: 55,
+                                                // top: 28,
+                                                child: Center(
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: ((context) =>
+                                                              AssetPlayerWidget()),
+                                                        ),
+                                                      );
+                                                    },
+                                                    icon: Icon(Icons
+                                                        .play_circle_outline),
+                                                    iconSize: 30,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        // Text(
+                                        //   'Prince and Queen',
+                                        //   style: GoogleFonts.podkova(
+                                        //     fontSize: 14,
+                                        //     fontWeight: FontWeight.w500,
+                                        //     color: Colors.blue[900],
+                                        //   ),
+                                        // ),
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                        // Text(
+                                        //   '14:41',
+                                        //   style: GoogleFonts.podkova(
+                                        //     fontSize: 12,
+                                        //     fontWeight: FontWeight.w500,
+                                        //     color: Colors.grey[900],
+                                        //   ),
+                                        // ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(1, 0, 0, 0),
+                        child: Row(
+                          children: [
+                            for (int i = 0; i <= 77; i++)
+                              Container(
+                                width: 5,
+                                height: 2,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                              )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
+                      child: Container(
+                        width: 150,
+                        height: 25,
+                        decoration: BoxDecoration(
+                            color: Color(0xFF787FF6),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Center(
+                          child: Text(
+                            'All Videos',
+                            style: GoogleFonts.podkova(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+          
+                //-----------------------------next-------------------///
+                Column(
+                  children: [
+                  // child: Flexible(
+                    // fit: FlexFit.loose,
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics( ),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 4 / 3,
+          
+                        // childAspectRatio: 4 / 3,
+          
+                        // maxCrossAxisExtent: 200,
+                      ),
+                      itemCount: 8,
+                      itemBuilder: ((context, index) {
+                        return GridTile(
+                          child: Column(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Stack(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: (() {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AssetPlayerWidget(),
+                                            ),
+                                          );
+                                        }),
+                                        child: Container(
+                                          width: 160,
+                                          height: 110,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: const DecorationImage(
+                                                image: AssetImage(
+                                                    'lib/assets/image1.png'),
+                                                fit: BoxFit.cover),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 4,
+                                        left: 120,
+                                        child:
+          
+                                            ///------------------pop up menu-------------///
+          
+                                            PopupMenuButton(
+                                          icon: const Icon(
+                                            Icons.more_vert_outlined,
+                                            color: Colors.white,
+                                          ),
+                                          itemBuilder: ((context) => [
+                                                    PopupMenuItem(
+                                                      onTap: () async {
+                                                        final navigator =
+                                                            Navigator.of(context);
+                                                        await Future.delayed(
+                                                            Duration(seconds: 0));
+                                                        navigator.push(
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                FavScreen(),
+                                                          ),
+                                                        );
+                                                        favVideoSanckbar(context);
+                                                      },
+                                                      value: 0,
+                                                      child: Row(
+                                                        children: [
+                                                          const Icon(
+                                                            Icons
+                                                                .favorite_border_outlined,
+                                                            size: 18,
+                                                            color:
+                                                                Colors.deepPurple,
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 8,
+                                                          ),
+                                                          Text(
+                                                            'Add To Favourites',
+                                                            style: GoogleFonts
+                                                                .podkova(
+                                                                    fontSize: 15,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    color: Colors
+                                                                        .deepPurple),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    PopupMenuItem(
+                                                      onTap: (() async {
+                                                        final navigator =
+                                                            Navigator.of(context);
+                                                        await Future.delayed(
+                                                          Duration(seconds: 0),
+                                                        );
+                                                        playlistbottomsheet(
+                                                            context);
+                                                      }),
+                                                      value: 1,
+                                                      child: Row(
+                                                        children: [
+                                                          const Icon(
+                                                            Icons
+                                                                .playlist_add_check_circle_outlined,
+                                                            size: 18,
+                                                            color:
+                                                                Colors.deepPurple,
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 8,
+                                                          ),
+                                                          Text(
+                                                            'Add To Playlist',
+                                                            style: GoogleFonts
+                                                                .podkova(
+                                                                    fontSize: 15,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    color: Colors
+                                                                        .deepPurple),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    PopupMenuItem(
+                                                      onTap: (() async {
+                                                        await Future.delayed(
+                                                          Duration(seconds: 0),
+                                                        );
+          
+                                                        DialogBox(context);
+                                                      }),
+                                                      value: 2,
+                                                      child: Row(
+                                                        children: [
+                                                          const Icon(
+                                                            Icons.delete,
+                                                            size: 18,
+                                                            color:
+                                                                Colors.deepPurple,
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 8,
+                                                          ),
+                                                          Text(
+                                                            'Delete',
+                                                            style: GoogleFonts
+                                                                .podkova(
+                                                                    fontSize: 15,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    color: Colors
+                                                                        .deepPurple),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ]
+                                              // ),
+          
+                                              ),
+                                          color: Colors.grey[50],
+                                          offset: Offset(-0, 0),
+                                        ),
+          
+                                        //---------------------------------------------/
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    'Special Agent.OSO',
+                                    style: GoogleFonts.podkova(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.blue[900]),
+                                  ),
+                                  Text(
+                                    '18:25',
+                                    style: GoogleFonts.podkova(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),],
+                  ),
+                // ),
+          
+                ///-------------------////-------------------------------------//
+              ],
             ),
-      
-            ///-------------------////-------------------------------------//
-          ],
+          ),
         ),
       ),
     );
