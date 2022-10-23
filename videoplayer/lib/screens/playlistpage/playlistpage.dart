@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:videoplayer/screens/bottumnavigationpage.dart';
-import 'package:videoplayer/screens/partymixfav.dart';
-import 'package:videoplayer/screens/videoplayer1.dart';
-import 'package:videoplayer/screens/videoscreen.dart';
-import 'package:videoplayer/screens/weekendfav.dart';
+import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
+import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
+import 'package:videoplayer/screens/playlistpage/weekendfav.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
+ 
 
 class ScreenPlaylist extends StatelessWidget {
   const ScreenPlaylist({super.key});

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:videoplayer/screens/videoplayer1.dart';
-import 'package:videoplayer/screens/videoscreen.dart';
-
-class ScreenWeekendFav extends StatelessWidget {
-  const ScreenWeekendFav({super.key});
+import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
+ 
+class FavScreen extends StatelessWidget {
+  const FavScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +25,48 @@ class ScreenWeekendFav extends StatelessWidget {
             ),
           ),
         ),
-        title: Text(
-          'Weekend Fav',
-          style: GoogleFonts.podkova(
-              fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
+        // backgroundColor:const Color(0xFF6E012A),
+        // leading:const Icon(Icons.ondemand_video_outlined,size: 10,),
+        title: Row(
+          children: [
+            // const SizedBox(
+            //   width: 120,
+            // ),
+            Text(
+              'Favourites',
+              style: GoogleFonts.podkova(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            const Icon(
+              Icons.favorite_border_outlined,
+              size: 25,
+              color: Colors.white,
+            )
+          ],
         ),
-        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BottomNavigationScreen(),
+                ),
+              );
+            },
+            iconSize: 30,
+            icon: const Icon(Icons.add_circle_outline_rounded),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
+        // centerTitle: true,
       ),
       body: Container(
         child: Padding(
@@ -40,19 +76,22 @@ class ScreenWeekendFav extends StatelessWidget {
               Row(
                 children: [
                   GradientText(
-                    'All Videos',
+                    'My Favourites..',
+                    style: GoogleFonts.podkova(
+                        fontSize: 20, fontWeight: FontWeight.w700),
                     colors: const [
                       Color(0xFF240E8B),
                       Color(0xFF787FF6),
                     ],
-                    style: GoogleFonts.podkova(
-                        fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
-              SizedBox(height: 10,),
-              ///------------------listview builder----------------//
-               Expanded(
+              const SizedBox(
+                height: 10,
+              ),
+
+              //----------------listview--------------//
+              Expanded(
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
@@ -63,7 +102,7 @@ class ScreenWeekendFav extends StatelessWidget {
                     );
                   },
                   child: ListView.builder(
-                    itemCount: 4,
+                    itemCount: 8,
                     itemBuilder: ((context, index) {
                       return Container(
                         child: Column(
@@ -127,11 +166,11 @@ class ScreenWeekendFav extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 0, 0, 35),
                                   child: PopupMenuButton(
-                                    icon:  Icon(
+                                    icon: const Icon(
                                       Icons.more_vert_outlined,
-                                      size: 23,
-                                      color: Colors.purple[900],
+                                      color: Colors.deepPurple,
                                     ),
+                                    iconSize: 23,
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
                                         onTap: () async {
@@ -139,20 +178,20 @@ class ScreenWeekendFav extends StatelessWidget {
                                             Duration(seconds: 0),
                                           );
                                           DialogBoxremove(context);
+                                          //
                                         },
                                         child: Row(
-
                                           children: [
                                             Text(
                                               'Remove',
                                               style: GoogleFonts.podkova(
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.w700,
                                                 fontSize: 18,
                                                 color: Colors.purple[900],
                                               ),
                                             ),
                                             const SizedBox(
-                                              width: 10,
+                                              width: 20,
                                             ),
                                             Icon(
                                               Icons.delete,
@@ -164,6 +203,12 @@ class ScreenWeekendFav extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                  // child: IconButton(
+                                  //   onPressed: () {},
+                                  //   icon: const Icon(Icons.more_vert_outlined),
+                                  //   iconSize: 23,
+                                  //   color: Colors.deepPurple,
+                                  // ),
                                 ),
                               ],
                             ),
@@ -236,15 +281,14 @@ class ScreenWeekendFav extends StatelessWidget {
                   ),
                 ),
               ),
-
-
             ],
           ),
         ),
       ),
     );
   }
-   void DialogBoxremove(BuildContext context) {
+
+  void DialogBoxremove(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(

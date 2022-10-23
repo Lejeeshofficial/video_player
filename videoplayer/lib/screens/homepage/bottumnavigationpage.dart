@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:videoplayer/screens/favscreen.dart';
-import 'package:videoplayer/screens/home_1.dart';
-import 'package:videoplayer/screens/homescreen.dart';
-import 'package:videoplayer/screens/playlistpage.dart';
-import 'package:videoplayer/screens/searchpage.dart';
-
+import 'package:videoplayer/screens/allvideospage/allvideosscreen.dart';
+import 'package:videoplayer/screens/favpage/favscreen.dart';
+import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
+import 'package:videoplayer/screens/searchpage/searchpage.dart';
+ 
+ 
 class BottomNavigationScreen extends StatefulWidget {
   BottomNavigationScreen({super.key});
 
@@ -15,7 +15,8 @@ class BottomNavigationScreen extends StatefulWidget {
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int currentselectedindex = 0;
 
-  List pages = [ScreenHome1(), FavScreen(), ScreenPlaylist(), ScreenSearch()];
+  List pages = [
+    ScreenAllvideos(), FavScreen(), ScreenPlaylist(), ScreenSearch()];
 
   @override
   Widget build(BuildContext context) {

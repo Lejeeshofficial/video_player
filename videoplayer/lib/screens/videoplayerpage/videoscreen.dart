@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:videoplayer/screens/favscreen.dart';
-import 'package:videoplayer/screens/playlistpage.dart';
+import 'package:videoplayer/screens/favpage/favscreen.dart';
+import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
+ 
 
 class ScreenVideoPlayer extends StatelessWidget {
   const ScreenVideoPlayer({super.key});

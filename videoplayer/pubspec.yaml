@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animator: ^3.2.0
   audio_video_progress_bar: ^0.11.0
   auto_orientation: ^2.2.1
   cupertino_icons: ^1.0.2
@@ -40,6 +41,27 @@ dependencies:
   simple_gradient_text: ^1.2.4
   video_player: ^2.4.7
   wakelock: ^0.6.2
+ 
+  curved_navigation_bar: ^1.0.3
+  flutter_screenutil: ^5.5.3+2
+  flutter_staggered_animations: ^1.0.0
+  flutter_video_info: ^1.2.0
+  introduction_screen: ^3.0.2
+  permission_handler: ^9.2.0
+  shared_preferences: ^2.0.15
+  video_thumbnail: ^0.5.0
+  hive: ^2.2.2
+  hive_flutter: ^1.1.0
+  animated_text_kit: ^4.2.2
+  lottie: ^1.3.0
+  flick_video_player: ^0.5.0
+  provider: ^6.0.3
+  visibility_detector: ^0.3.3
+  animated_button: ^0.2.0
+  fluttertoast: ^8.0.9
+  get: ^4.6.5
+  cached_network_image: ^3.2.1
+  share_plus: ^4.0.10+1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -71,7 +93,7 @@ flutter:
     - lib/assets/party3.jpeg
     - lib/assets/party4.jpeg
     - lib/assets/asthetic.jpg
-    -  
+    - null
     - lib/assets/video1.mp4
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

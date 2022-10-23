@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:videoplayer/screens/videoplayer1.dart';
-import 'package:videoplayer/screens/videoscreen.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
+ 
 
 class ScreenPartyMix extends StatelessWidget {
   const ScreenPartyMix({super.key});

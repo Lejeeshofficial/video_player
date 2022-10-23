@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:video_player/video_player.dart';
-import 'package:videoplayer/screens/favscreen.dart';
-import 'package:videoplayer/screens/playlistpage.dart';
-import 'package:videoplayer/screens/videoplayer1.dart';
+import 'package:videoplayer/screens/favpage/favscreen.dart';
+import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
+ 
 
 class VideoPlayerWidget extends StatelessWidget {
   final VideoPlayerController controller;

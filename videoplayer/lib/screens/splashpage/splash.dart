@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:videoplayer/screens/bottumnavigationpage.dart';
+import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
+ 
 
 class ScreenSplash extends StatefulWidget {
   const ScreenSplash({super.key});

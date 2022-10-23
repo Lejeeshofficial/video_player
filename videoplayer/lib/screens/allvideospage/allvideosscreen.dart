@@ -4,22 +4,21 @@ import 'package:flutter/rendering.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:videoplayer/screens/bottumnavigationpage.dart';
-import 'package:videoplayer/screens/favscreen.dart';
-import 'package:videoplayer/screens/partymixfav.dart';
-import 'package:videoplayer/screens/playlistpage.dart';
-import 'package:videoplayer/screens/settingscreen.dart';
-import 'package:videoplayer/screens/videoplayer1.dart';
-import 'package:videoplayer/screens/videoscreen.dart';
+import 'package:videoplayer/screens/favpage/favscreen.dart';
+import 'package:videoplayer/screens/homepage/settingscreen.dart';
+import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
+import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
+ 
 
-class ScreenHome1 extends StatefulWidget {
-  const ScreenHome1({super.key});
+class ScreenAllvideos extends StatefulWidget {
+  const ScreenAllvideos({super.key});
 
   @override
-  State<ScreenHome1> createState() => _ScreenHome1State();
+  State<ScreenAllvideos> createState() => _ScreenAllvideos();
 }
 
-class _ScreenHome1State extends State<ScreenHome1> {
+class _ScreenAllvideos extends State<ScreenAllvideos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

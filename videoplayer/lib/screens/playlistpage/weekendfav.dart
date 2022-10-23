@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:videoplayer/screens/bottumnavigationpage.dart';
-import 'package:videoplayer/screens/home_1.dart';
-import 'package:videoplayer/screens/videoplayer1.dart';
-import 'package:videoplayer/screens/videoscreen.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
+ 
 
-class FavScreen extends StatelessWidget {
-  const FavScreen({super.key});
+class ScreenWeekendFav extends StatelessWidget {
+  const ScreenWeekendFav({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,48 +25,12 @@ class FavScreen extends StatelessWidget {
             ),
           ),
         ),
-        // backgroundColor:const Color(0xFF6E012A),
-        // leading:const Icon(Icons.ondemand_video_outlined,size: 10,),
-        title: Row(
-          children: [
-            // const SizedBox(
-            //   width: 120,
-            // ),
-            Text(
-              'Favourites',
-              style: GoogleFonts.podkova(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            const Icon(
-              Icons.favorite_border_outlined,
-              size: 25,
-              color: Colors.white,
-            )
-          ],
+        title: Text(
+          'Weekend Fav',
+          style: GoogleFonts.podkova(
+              fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => BottomNavigationScreen(),
-                ),
-              );
-            },
-            iconSize: 30,
-            icon: const Icon(Icons.add_circle_outline_rounded),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-        ],
-        // centerTitle: true,
+        centerTitle: true,
       ),
       body: Container(
         child: Padding(
@@ -78,22 +40,19 @@ class FavScreen extends StatelessWidget {
               Row(
                 children: [
                   GradientText(
-                    'My Favourites..',
-                    style: GoogleFonts.podkova(
-                        fontSize: 20, fontWeight: FontWeight.w700),
+                    'All Videos',
                     colors: const [
                       Color(0xFF240E8B),
                       Color(0xFF787FF6),
                     ],
+                    style: GoogleFonts.podkova(
+                        fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
-
-              //----------------listview--------------//
-              Expanded(
+              SizedBox(height: 10,),
+              ///------------------listview builder----------------//
+               Expanded(
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
@@ -104,7 +63,7 @@ class FavScreen extends StatelessWidget {
                     );
                   },
                   child: ListView.builder(
-                    itemCount: 8,
+                    itemCount: 4,
                     itemBuilder: ((context, index) {
                       return Container(
                         child: Column(
@@ -168,11 +127,11 @@ class FavScreen extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 0, 0, 35),
                                   child: PopupMenuButton(
-                                    icon: const Icon(
+                                    icon:  Icon(
                                       Icons.more_vert_outlined,
-                                      color: Colors.deepPurple,
+                                      size: 23,
+                                      color: Colors.purple[900],
                                     ),
-                                    iconSize: 23,
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
                                         onTap: () async {
@@ -180,20 +139,20 @@ class FavScreen extends StatelessWidget {
                                             Duration(seconds: 0),
                                           );
                                           DialogBoxremove(context);
-                                          //
                                         },
                                         child: Row(
+
                                           children: [
                                             Text(
                                               'Remove',
                                               style: GoogleFonts.podkova(
-                                                fontWeight: FontWeight.w700,
+                                                fontWeight: FontWeight.w500,
                                                 fontSize: 18,
                                                 color: Colors.purple[900],
                                               ),
                                             ),
                                             const SizedBox(
-                                              width: 20,
+                                              width: 10,
                                             ),
                                             Icon(
                                               Icons.delete,
@@ -205,12 +164,6 @@ class FavScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  // child: IconButton(
-                                  //   onPressed: () {},
-                                  //   icon: const Icon(Icons.more_vert_outlined),
-                                  //   iconSize: 23,
-                                  //   color: Colors.deepPurple,
-                                  // ),
                                 ),
                               ],
                             ),
@@ -283,14 +236,15 @@ class FavScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
+
             ],
           ),
         ),
       ),
     );
   }
-
-  void DialogBoxremove(BuildContext context) {
+   void DialogBoxremove(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(

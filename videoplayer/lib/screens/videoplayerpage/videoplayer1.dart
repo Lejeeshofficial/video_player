@@ -3,7 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:video_player/video_player.dart';
-import 'package:videoplayer/screens/videoplayerwidgets.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayerwidgets.dart';
+ 
 
 class AssetPlayerWidget extends StatefulWidget {
   const AssetPlayerWidget({super.key});
