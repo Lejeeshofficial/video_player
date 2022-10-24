@@ -1,10 +1,11 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:videoplayer/screens/allvideospage/allvideosscreen.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
+import 'package:videoplayer/screens/homepage/homescreen.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/searchpage/searchpage.dart';
- 
- 
+
 class BottomNavigationScreen extends StatefulWidget {
   BottomNavigationScreen({super.key});
 
@@ -16,7 +17,12 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int currentselectedindex = 0;
 
   List pages = [
-    ScreenAllvideos(), FavScreen(), ScreenPlaylist(), ScreenSearch()];
+    ScreenHome(),
+    ScreenAllvideos(),
+    FavScreen(),
+    ScreenPlaylist(),
+    ScreenSearch()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             colors: [
               // Color(0xFF3366FF),
               // Color(0xFF00CCFF),
-               Color(0xFF240E8B),
+              Color(0xFF240E8B),
               Color(0xFF787FF6),
             ],
             begin: Alignment.topLeft,
@@ -48,6 +54,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             });
           },
           items: const [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: 'Home'),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.video_library,
