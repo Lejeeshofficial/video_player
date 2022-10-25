@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
- 
 
 class ScreenSplash extends StatefulWidget {
   const ScreenSplash({super.key});
@@ -12,6 +12,7 @@ class ScreenSplash extends StatefulWidget {
 class _ScreenSplashState extends State<ScreenSplash> {
   @override
   void initState() {
+    splashFetch();
     nextpage();
     // TODO: implement initState
     super.initState();
@@ -22,15 +23,14 @@ class _ScreenSplashState extends State<ScreenSplash> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Color(0xFF240E8B),
+            colors: [
+              Color(0xFF240E8B),
               Color(0xFF787FF6),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          stops: [0.1, 0.9],
-          tileMode: TileMode.clamp
-        ),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [0.1, 0.9],
+            tileMode: TileMode.clamp),
       ),
       child: const Scaffold(
         backgroundColor: Colors.transparent,
@@ -47,7 +47,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
 
   nextpage() async {
     await Future.delayed(
-      const Duration(seconds: 5),
+      const Duration(seconds: 10),
     );
     Navigator.pushReplacement(
       context,

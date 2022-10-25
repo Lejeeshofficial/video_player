@@ -1,17 +1,35 @@
+import 'dart:io';
+
+import 'package:file_manager/file_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:videoplayer/Fetchingfies/load_folder_list.dart';
+import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
+
 import 'package:videoplayer/screens/homepage/foldervideos.dart';
 import 'package:videoplayer/screens/homepage/settingscreen.dart';
 
 class ScreenHome extends StatefulWidget {
-  const ScreenHome({super.key});
+  ScreenHome({super.key});
+
+  // var files;
+  // final controller = FileManagerController();
+
+  // void getfiles() async {
+  //   List<StorageInfo> storageInfo = await PathProviderEx.getStorageInfo();
+  //   var root = storageInfo[0].rootDir;
+  //   var fm =await FileManager(root:  root);
+  // }
 
   @override
   State<ScreenHome> createState() => _ScreenHomeState();
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
+  @override
+   
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,61 +158,73 @@ class _ScreenHomeState extends State<ScreenHome> {
                 ],
               ),
             ),
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                // scrollDirection: Axis.vertical,
-                itemCount: 10,
-                itemBuilder: (context, indext) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: ((context) => ScreenFolderVideos()),
-                        ),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(width: 2, color: Colors.deepPurple),
-                          borderRadius: BorderRadius.circular(3),
-                        ),
+            ValueListenableBuilder(
+              valueListenable: fetchedFolders,
+              builder: (context, value, child) {
+                return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    // scrollDirection: Axis.vertical,
+                    itemCount: value.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: ((context) => ScreenFolderVideos(
+                                index:index,
+                                folderPath:value,
+                              )),
+                            ),
+                          );
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.blue[100],
-                                child: const Icon(
-                                  Icons.folder_copy_outlined,
-                                  size: 23,
-                                  color: Colors.deepPurple,
-                                ),
+                          child: Container(
+                            width: double.infinity,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 2, color: Colors.deepPurple),
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                
+                                children: [
+                                  CircleAvatar(
+                                    radius: 30,
+                                    backgroundColor: Colors.blue[100],
+                                    child: const Icon(
+                                      Icons.folder_copy_outlined,
+                                      size: 23,
+                                      color: Colors.deepPurple,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    value[index].split('/').last,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+
+                                    style: GoogleFonts.podkova(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.purple[900],
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Folder ${indext + 1}',
-                                style: GoogleFonts.podkova(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Colors.purple[900],
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  );
-                }),
+                      );
+                    });
+              },
+            ),
           ],
         ),
       ),

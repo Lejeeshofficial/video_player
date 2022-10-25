@@ -2,11 +2,27 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
- 
 
-class ScreenFolderVideos extends StatelessWidget {
-  const ScreenFolderVideos({super.key});
+class ScreenFolderVideos extends StatefulWidget {
+  ScreenFolderVideos({Key? key, required this.index, required this.folderPath})
+      : super(key: key);
+  var folderPath;
+
+  var index;
+
+  @override
+  State<ScreenFolderVideos> createState() => _ScreenFolderVideosState();
+}
+
+class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
+  @override
+  void initState() {
+    getFolderVideos(widget.folderPath);
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,43 +48,50 @@ class ScreenFolderVideos extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  GradientText(
-                    'All Videos',
-                    colors: const [
-                      Color(0xFF240E8B),
-                      Color(0xFF787FF6),
-                    ],
-                    style: GoogleFonts.podkova(
-                        fontSize: 20, fontWeight: FontWeight.w500),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                GradientText(
+                  'All Videos',
+                  colors: const [
+                    Color(0xFF240E8B),
+                    Color(0xFF787FF6),
+                  ],
+                  style: GoogleFonts.podkova(
+                      fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+      
+            ///------------------listview builder----------------//
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => AssetPlayerWidget()),
                   ),
-                ],
-              ),
-              SizedBox(height: 10,),
-              ///------------------listview builder----------------//
-               Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => AssetPlayerWidget()),
-                      ),
-                    );
-                  },
-                  child: ListView.builder(
-                    itemCount: 4,
+                );
+              },
+              child: ValueListenableBuilder(
+                valueListenable: filteredFolderVideos,
+                builder: (context, value, child) {
+                  return value.isEmpty?
+                  Center(child: Text('No videos..'),):
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: value.length,
                     itemBuilder: ((context, index) {
                       return Container(
                         child: Column(
                           children: [
-                            SizedBox(
+                         const   SizedBox(
                               height: 10,
                             ),
                             Row(
@@ -91,7 +114,8 @@ class ScreenFolderVideos extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Special Agent.OSO',
+                                      value[index].toString().split('/').last,
+                                      overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.podkova(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
@@ -101,13 +125,13 @@ class ScreenFolderVideos extends StatelessWidget {
                                     const SizedBox(
                                       height: 2,
                                     ),
-                                    Text(
-                                      'John Sam',
-                                      style: GoogleFonts.podkova(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.blueGrey),
-                                    ),
+                                    // Text(
+                                    //   'John Sam',
+                                    //   style: GoogleFonts.podkova(
+                                    //       fontSize: 13,
+                                    //       fontWeight: FontWeight.w500,
+                                    //       color: Colors.blueGrey),
+                                    // ),
                                     // Text(
                                     //   '22:25',
                                     //   style: GoogleFonts.podkova(
@@ -127,7 +151,7 @@ class ScreenFolderVideos extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 0, 0, 35),
                                   child: PopupMenuButton(
-                                    icon:  Icon(
+                                    icon: Icon(
                                       Icons.more_vert_outlined,
                                       size: 23,
                                       color: Colors.purple[900],
@@ -141,7 +165,6 @@ class ScreenFolderVideos extends StatelessWidget {
                                           DialogBoxremove(context);
                                         },
                                         child: Row(
-
                                           children: [
                                             Text(
                                               'Remove',
@@ -167,13 +190,13 @@ class ScreenFolderVideos extends StatelessWidget {
                                 ),
                               ],
                             ),
-
+      
                             const SizedBox(
                               height: 10,
                             ),
-
+      
                             ///-----------------1st doted line small-----------////
-
+      
                             Row(
                               children: [
                                 Row(
@@ -210,7 +233,7 @@ class ScreenFolderVideos extends StatelessWidget {
                                   ),
                                 ),
                                 ////-----------------Doted LIne---------------------/////
-
+      
                                 Row(
                                   children: [
                                     for (int i = 1; i <= 52; i++)
@@ -233,18 +256,17 @@ class ScreenFolderVideos extends StatelessWidget {
                         ),
                       );
                     }),
-                  ),
-                ),
+                  );
+                },
               ),
-
-
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
-   void DialogBoxremove(BuildContext context) {
+
+  void DialogBoxremove(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
