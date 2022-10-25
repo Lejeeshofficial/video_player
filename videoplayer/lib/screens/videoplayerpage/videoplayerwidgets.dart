@@ -1,315 +1,148 @@
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import 'package:video_player/video_player.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
- 
+import 'package:videoplayer/screens/videoplayerpage/datamanager.dart';
 
 class VideoPlayerWidget extends StatelessWidget {
-  final VideoPlayerController controller;
-  const VideoPlayerWidget({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+  //final VideoPlayerController controller;
+
+  var dataManager;
+
+  double  fontSize;
+
+  double iconSize;
+  VideoPlayerWidget(
+      {Key? key,
+      
+      this.iconSize = 20,
+      this.fontSize = 12,
+      this.dataManager})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Container(
-    decoration: BoxDecoration(
-      border: Border.all(
-        width: 3
-      ),
-    ),
-        child: controller != null && controller.value.isInitialized
-            ? Container(
-                alignment: Alignment.topCenter, child: BuildVideo(context))
-            : Container(
-                height: 200,
-                child: Center(child: CircularProgressIndicator()),
-              ),
-      );
-
-  Widget BuildVideo(BuildContext ctx) => Stack(
-        children: [
-          InkWell(
-              onTap: (() {
-                controller.value.isPlaying
-                    ? controller.pause()
-                    : controller.play();
-              }),
-              child: buildVideoPlayer()),
-          Positioned(
-            bottom: 28,
-            child: Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: Container(
-                  width: MediaQuery.of(ctx).size.width * .990,
-                  child:
-                      VideoProgressIndicator(controller, allowScrubbing: true)),
-            ),
+  
+  Widget build(BuildContext ctx) {
+    FlickVideoManager flickVideoManager = Provider.of<FlickVideoManager>(ctx);
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          child: FlickAutoHideChild(
+            child: Container(color: Colors.black38),
           ),
-          Positioned(
-            top: 80,
-            left: 170,
-            child: controller.value.isPlaying
-                ? Container()
-                : InkWell(
-                    onTap: (() {
-                      controller.play();
-                    }),
-                    child: const Icon(
-                      Icons.play_circle_outline_outlined,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-            child: controller.value.isPlaying
-                ? Container()
-                : Text(
-                    'Special Agent.OSO',
-                    style: GoogleFonts.podkova(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
-                  ),
-          ),
-          Positioned(
-            left: 10,
-            top: 35,
-            child: controller.value.isPlaying
-                ? Container()
-                : Text(
-                    'John Smith',
-                    style: GoogleFonts.podkova(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
-                  ),
-          ),
-          controller.value.isPlaying
-              ? Positioned(
-                  top: 80,
-                  left: 70,
-                  child: Icon(
-                    Icons.forward_10,
-                    size: 40,
-                    color: Colors.white.withOpacity(.5),
-                  ),
-                )
-              : const Positioned(
-                  top: 80,
-                  left: 70,
-                  child: Icon(
-                    Icons.forward_10,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                ),
-          controller.value.isPlaying
-              ? Positioned(
-                  top: 80,
-                  left: 270,
-                  child: Icon(
-                    Icons.replay_10,
-                    size: 40,
-                    color: Colors.white.withOpacity(.5),
-                  ),
-                )
-              : const Positioned(
-                  top: 80,
-                  left: 270,
-                  child: Icon(
-                    Icons.replay_10,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                ),
-
-          Positioned(
-            bottom: 0,
-            left: 180,
-            child: controller.value.isPlaying
-                ? InkWell(
-                    onTap: () {
-                      controller.pause();
-                    },
-                    child: const Icon(
-                      Icons.pause_circle_outline_outlined,
-                      size: 30,
-                      color: Colors.white,
-                    ),
-                  )
-                : InkWell(
-                    onTap: () {
-                      controller.play();
-                    },
-                    child: const Icon(
-                      Icons.play_circle_outline,
-                      size: 30,
-                      color: Colors.white,
-                    ),
-                  ),
-          ),
-          const Positioned(
-            bottom: 0,
-            left: 80,
-            child: Icon(
-              Icons.skip_next_outlined,
-              size: 30,
-              color: Colors.white,
-            ),
-          ),
-          const Positioned(
-            bottom: 0,
-            left: 270,
-            child: Icon(
-              Icons.skip_next_outlined,
-              size: 30,
-              color: Colors.white,
-            ),
-          ),
-          const Positioned(
-            bottom: 0,
-            left: 345,
-            child: Icon(
-              Icons.fullscreen_outlined,
-              size: 30,
-              color: Colors.white,
-            ),
-          ),
-          const Positioned(
-            bottom: 0,
-            left: 10,
-            child: Icon(
-              Icons.repeat_one,
-              size: 30,
-              color: Colors.white,
-            ),
-          ),
-
-          //popupMEnuBottom------------------------------------//
-
-          Positioned(
-            right: 0,
-            child: controller.value.isPlaying
-                ? Container()
-                : PopupMenuButton(
-                    icon: const Icon(
-                      Icons.more_vert_outlined,
-                      color: Colors.white,
-                    ),
-                    itemBuilder: ((context) => [
-                              PopupMenuItem(
-                                onTap: () async {
-                                  final navigator = Navigator.of(context);
-                                  await Future.delayed(Duration(seconds: 0));
-                                  navigator.push(
-                                    MaterialPageRoute(
-                                      builder: (context) => FavScreen(),
-                                    ),
-                                  );
-                                  favVideoSanckbar(context);
-                                },
-                                value: 0,
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.favorite_border_outlined,
-                                      size: 18,
-                                      color: Colors.deepPurple,
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    Text(
-                                      'Add To Favourites',
-                                      style: GoogleFonts.podkova(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.deepPurple),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem(
-                                onTap: (() async {
-                                  final navigator = Navigator.of(context);
-                                  await Future.delayed(
-                                    Duration(seconds: 0),
-                                  );
-                                  playlistbottomsheet(context);
-                                }),
-                                value: 1,
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.playlist_add_check_circle_outlined,
-                                      size: 18,
-                                      color: Colors.deepPurple,
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    Text(
-                                      'Add To Playlist',
-                                      style: GoogleFonts.podkova(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.deepPurple),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem(
-                                onTap: (() async {
-                                  await Future.delayed(
-                                    Duration(seconds: 0),
-                                  );
-
-                                  DialogBox(context);
-                                }),
-                                value: 2,
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.delete,
-                                      size: 18,
-                                      color: Colors.deepPurple,
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    Text(
-                                      'Delete',
-                                      style: GoogleFonts.podkova(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.deepPurple),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ]
-                        // ),
-
+        ),
+        Positioned(
+          child: FlickShowControlsAction(
+            child: FlickSeekVideoAction(
+              child: Center(
+                child: flickVideoManager.nextVideoAutoPlayTimer != null
+                    ? FlickAutoPlayCircularProgress(
+                        colors: FlickAutoPlayTimerProgressColors(
+                          backgroundColor: Colors.white30,
+                          color: Colors.red,
                         ),
-                    color: Colors.grey[50],
-                    offset: Offset(-0, 0),
-                  ),
+                      )
+                    : FlickAutoHideChild(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  dataManager!.skipToNextVideo();
+                                },
+                                child: Icon(
+                                  Icons.skip_previous,
+                                  color: dataManager!.hasPreviousVideo()
+                                      ? Colors.white
+                                      : Colors.white38,
+                                  size: 35,
+                                ),
+                              ),
+                            ),
+                        const    Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FlickPlayToggle(size: 50),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  dataManager!.skipToNextVideo();
+                                },
+                                child: Icon(
+                                  Icons.skip_next,
+                                  color: dataManager!.hasNextVideo()
+                                      ? Colors.white
+                                      : Colors.white38,
+                                  size: 35,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+              ),
+            ),
           ),
+        ),
+        Positioned(
+          child: FlickAutoHideChild(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          FlickCurrentPosition(
+                            fontSize: fontSize,
+                          ),
+                          Text(
+                            ' / ',
+                            style: TextStyle(
+                                color: Colors.white, fontSize: fontSize),
+                          ),
+                          FlickTotalDuration(
+                            fontSize: fontSize,
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Container(),
+                      ),
+                      FlickFullScreenToggle(
+                        size: iconSize,
+                      ),
+                    ],
+                  ),
+                  FlickVideoProgressBar(
+                    flickProgressBarSettings: FlickProgressBarSettings(
+                      height: 5,
+                      handleRadius: 5,
+                      curveRadius: 50,
+                      backgroundColor: Colors.white24,
+                      bufferedColor: Colors.white38,
+                      playedColor: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
-          //--------------------------------------------------//
-        ],
-      );
-
-  Widget buildVideoPlayer() => AspectRatio(
-        aspectRatio: controller.value.aspectRatio,
-        child: VideoPlayer(controller),
-      );
+  
 
   //-----------------------all snack bar and popups---------------------------//
 

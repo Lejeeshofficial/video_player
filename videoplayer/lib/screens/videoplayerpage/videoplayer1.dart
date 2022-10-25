@@ -1,13 +1,17 @@
 import 'dart:io';
 
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 import 'package:video_player/video_player.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
+import 'package:videoplayer/screens/videoplayerpage/datamanager.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayerwidgets.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class AssetPlayerWidget extends StatefulWidget {
   AssetPlayerWidget({Key? key, required this.index, required this.url})
@@ -16,72 +20,103 @@ class AssetPlayerWidget extends StatefulWidget {
 
   String url;
 
-
   @override
   State<AssetPlayerWidget> createState() => _AssetPlayerWidgetState();
 }
 
-
 class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
   VideoPlayerController? controller;
-  
- List<String> url = filteredFolderVideos.value;
+
+  List<String> url = filteredFolderVideos.value;
+  late FlickManager flickManager;
+  late DataManager dataManager;
 
   @override
   void initState() {
-     
     super.initState();
-    controller = VideoPlayerController.file(File(url[widget.index]))
-      ..addListener(() => setState(() {}))
-      ..setLooping(false)
-      ..initialize().then((_) => controller!.play());
+    flickManager = FlickManager(
+        videoPlayerController: VideoPlayerController.file(
+          File(url[widget.index]),
+        ),
+        onVideoEnd: () {
+          dataManager.skipToNextVideo(Duration(seconds: 5));
+        });
+
+    dataManager = DataManager(flickManager: flickManager, url: url);
   }
 
   @override
   void dispose() {
-    controller!.dispose();
+    flickManager.dispose();
 
     super.dispose();
   }
 
+  skipToVideo(String url) {
+    flickManager.handleChangeVideo(VideoPlayerController.file(File(url)));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFF240E8B),
-                Color(0xFF787FF6),
+    return
+        // appBar: AppBar(
+        //   flexibleSpace: Container(
+        //     decoration: const BoxDecoration(
+        //       gradient: LinearGradient(
+        //         colors: [
+        //           Color(0xFF240E8B),
+        //           Color(0xFF787FF6),
+        //         ],
+        //         begin: Alignment.topLeft,
+        //         end: Alignment.topRight,
+        //         stops: [0.1, 1],
+        //       ),
+        //     ),
+        //   ),
+        //   title: Row(
+        //     children: [
+        //       // const SizedBox(
+        //       //   width: 80,
+        //       // ),
+        //       Text(
+        //         'Videos',
+        //         style: GoogleFonts.podkova(
+        //             color: Colors.white,
+        //             fontSize: 20,
+        //             fontWeight: FontWeight.bold),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        VisibilityDetector(
+      key: ObjectKey(flickManager),
+      onVisibilityChanged: (visibility) {
+        if (visibility.visibleFraction == 0 && this.mounted) {
+          flickManager.flickControlManager?.autoPause();
+        } else if (visibility.visibleFraction == 1) {
+          flickManager.flickControlManager?.autoResume();
+        }
+      },
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height,
+            child: FlickVideoPlayer(
+              flickManager: flickManager,
+              preferredDeviceOrientationFullscreen: const [
+                // DeviceOrientation.portraitUp,
+                DeviceOrientation.landscapeLeft,
+                // DeviceOrientation.landscapeRight,
               ],
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-              stops: [0.1, 1],
+              flickVideoWithControls: FlickVideoWithControls(
+                controls: VideoPlayerWidget(dataManager: dataManager),
+              ),
+              flickVideoWithControlsFullscreen: FlickVideoWithControls(
+                videoFit: BoxFit.cover,
+                controls: VideoPlayerWidget(dataManager: dataManager),
+              ),
             ),
           ),
-        ),
-        title: Row(
-          children: [
-            // const SizedBox(
-            //   width: 80,
-            // ),
-            Text(
-              'Videos',
-              style: GoogleFonts.podkova(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 0,
-          ),
-          VideoPlayerWidget(controller: controller!),
         ],
       ),
     );

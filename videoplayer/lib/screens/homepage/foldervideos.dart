@@ -247,8 +247,8 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                         Row(
                                           children: [
                                             for (int i = 1; i <= 52; i++)
-                                              i.isEven
-                                                  ? Container(
+                                              i.isEven?
+                                                  Container(
                                                       width: 5,
                                                       height: 2,
                                                       color: Colors.blue[900],
