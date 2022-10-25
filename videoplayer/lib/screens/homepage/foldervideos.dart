@@ -1,8 +1,12 @@
-import 'package:flutter/material.dart';
+ 
+import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 
@@ -83,8 +87,8 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => AssetPlayerWidget(
-                                      index:index,
-                                      url:value1[index],
+                                      index: index,
+                                      url: value1[index],
                                     ),
                                   ),
                                 );
@@ -103,10 +107,34 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            image: const DecorationImage(
-                                                image: AssetImage(
-                                                    'lib/assets/image1.png'),
-                                                fit: BoxFit.cover),
+                                            // image: const DecorationImage(
+                                            //     image: AssetImage(
+                                            //         'lib/assets/image1.png'),
+                                            //     fit: BoxFit.cover),
+                                          ),
+                                          child: FutureBuilder(
+                                            future:  getThumbnail(value1[index]),
+                                            builder: (context,
+                                                    AsyncSnapshot<String?>
+                                                        snapshot) =>
+                                                snapshot.hasData
+                                                    ? Image.file(File(snapshot.data!)
+                                                         )
+                                                    : Container(
+                                                        width: 100,
+                                                        height: 70,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          image: const DecorationImage(
+                                                              image: AssetImage(
+                                                                  'lib/assets/image1.png'),
+                                                              fit:
+                                                                  BoxFit.cover),
+                                                        ),
+                                                      ),
                                           ),
                                         ),
                                         const SizedBox(
@@ -247,8 +275,8 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                         Row(
                                           children: [
                                             for (int i = 1; i <= 52; i++)
-                                              i.isEven?
-                                                  Container(
+                                              i.isEven
+                                                  ? Container(
                                                       width: 5,
                                                       height: 2,
                                                       color: Colors.blue[900],
@@ -275,6 +303,16 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
         ),
       ),
     );
+  }
+
+  Future<String> getThumbnail(String tumbnail) async {
+    final fileName = await VideoThumbnail.thumbnailFile(
+      video: tumbnail,
+      thumbnailPath: (await getTemporaryDirectory()).path,
+      imageFormat: ImageFormat.PNG,
+      quality: 100,
+    );
+    return fileName!;
   }
 
   void DialogBoxremove(BuildContext context) {
