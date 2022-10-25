@@ -17,7 +17,7 @@ onSuccess(List<String> data) {
   fetchedVideosPath = data;
   // print("------------------------${fetchedVideosPath.length}-----------------------");
   for (int i = 0; i < fetchedVideosPath.length; i++) {
-    if (fetchedVideosPath[i].startsWith('/storage/emulated/0/Android/data')) {
+    if (fetchedVideosPath[i].startsWith('/storage/emulated/1/Android/data')) {
       fetchedVideosPath.remove(fetchedVideosPath[i]);
       i--;
     }

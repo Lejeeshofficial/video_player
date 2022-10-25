@@ -173,7 +173,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                             MaterialPageRoute(
                               builder: ((context) => ScreenFolderVideos(
                                 index:index,
-                                folderPath:value,
+                                folderPath:value[index].toString(),
                               )),
                             ),
                           );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path/path.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
@@ -10,7 +11,7 @@ class ScreenFolderVideos extends StatefulWidget {
       : super(key: key);
   var folderPath;
 
-  var index;
+  int index;
 
   @override
   State<ScreenFolderVideos> createState() => _ScreenFolderVideosState();
@@ -42,7 +43,7 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
           ),
         ),
         title: Text(
-          'Weekend Fav',
+          'All Videos',
           style: GoogleFonts.podkova(
               fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
         ),
@@ -51,214 +52,224 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                GradientText(
-                  'All Videos',
-                  colors: const [
-                    Color(0xFF240E8B),
-                    Color(0xFF787FF6),
-                  ],
-                  style: GoogleFonts.podkova(
-                      fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-      
+            // SizedBox(
+            //   height: 10,
+            // ),
+
             ///------------------listview builder----------------//
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => AssetPlayerWidget()),
-                  ),
-                );
-              },
-              child: ValueListenableBuilder(
-                valueListenable: filteredFolderVideos,
-                builder: (context, value, child) {
-                  return value.isEmpty?
-                  Center(child: Text('No videos..'),):
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: value.length,
-                    itemBuilder: ((context, index) {
-                      return Container(
-                        child: Column(
-                          children: [
-                         const   SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 120,
-                                  height: 70,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: const DecorationImage(
-                                        image:
-                                            AssetImage('lib/assets/image1.png'),
-                                        fit: BoxFit.cover),
+            ValueListenableBuilder(
+              valueListenable: filteredFolderVideos,
+              builder: (context, value1, child) {
+                return value1.isEmpty
+                    ? Center(
+                        child: Text(
+                          'No videos..',
+                          style: GoogleFonts.podkova(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                              fontSize: 22),
+                        ),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: value1.length,
+                        itemBuilder: ((context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AssetPlayerWidget(
+                                      index:index,
+                                      url:value1[index],
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                );
+                              },
+                              child: Container(
+                                child: Column(
                                   children: [
-                                    Text(
-                                      value[index].toString().split('/').last,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.podkova(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.blue[900],
-                                      ),
-                                    ),
                                     const SizedBox(
-                                      height: 2,
+                                      height: 10,
                                     ),
-                                    // Text(
-                                    //   'John Sam',
-                                    //   style: GoogleFonts.podkova(
-                                    //       fontSize: 13,
-                                    //       fontWeight: FontWeight.w500,
-                                    //       color: Colors.blueGrey),
-                                    // ),
-                                    // Text(
-                                    //   '22:25',
-                                    //   style: GoogleFonts.podkova(
-                                    //       fontSize: 13,
-                                    //       fontWeight: FontWeight.w500,
-                                    //       color: Colors.blueGrey),
-                                    // ),
-                                    const SizedBox(
-                                      height: 22,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  width: 47,
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 0, 35),
-                                  child: PopupMenuButton(
-                                    icon: Icon(
-                                      Icons.more_vert_outlined,
-                                      size: 23,
-                                      color: Colors.purple[900],
-                                    ),
-                                    itemBuilder: (context) => [
-                                      PopupMenuItem(
-                                        onTap: () async {
-                                          await Future.delayed(
-                                            Duration(seconds: 0),
-                                          );
-                                          DialogBoxremove(context);
-                                        },
-                                        child: Row(
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 100,
+                                          height: 70,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: const DecorationImage(
+                                                image: AssetImage(
+                                                    'lib/assets/image1.png'),
+                                                fit: BoxFit.cover),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Remove',
+                                              value1[index]
+                                                  .toString()
+                                                  .split('/')
+                                                  .last,
+                                              overflow: TextOverflow.clip,
                                               style: GoogleFonts.podkova(
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 18,
-                                                color: Colors.purple[900],
+                                                color: Colors.blue[900],
                                               ),
                                             ),
+                                            // const SizedBox(
+                                            //   height: 2,
+                                            // ),
+                                            // Text(
+                                            //   'John Sam',
+                                            //   style: GoogleFonts.podkova(
+                                            //       fontSize: 13,
+                                            //       fontWeight: FontWeight.w500,
+                                            //       color: Colors.blueGrey),
+                                            // ),
+                                            // Text(
+                                            //   '22:25',
+                                            //   style: GoogleFonts.podkova(
+                                            //       fontSize: 13,
+                                            //       fontWeight: FontWeight.w500,
+                                            //       color: Colors.blueGrey),
+                                            // ),
                                             const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Icon(
-                                              Icons.delete,
-                                              size: 20,
-                                              color: Colors.purple[900],
+                                              height: 22,
                                             ),
                                           ],
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-      
-                            const SizedBox(
-                              height: 10,
-                            ),
-      
-                            ///-----------------1st doted line small-----------////
-      
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    for (int i = 0; i <= 3; i++)
-                                      i.isEven
-                                          ? Container(
-                                              width: 5,
-                                              height: 2,
-                                              color: Colors.blue[900],
-                                            )
-                                          : Container(
-                                              width: 5,
-                                              height: 2,
-                                              color: Colors.white,
+                                        // const SizedBox(
+                                        //   width: 47,
+                                        // ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 0, 0, 30),
+                                          child: PopupMenuButton(
+                                            icon: Icon(
+                                              Icons.more_vert_outlined,
+                                              size: 23,
+                                              color: Colors.purple[900],
                                             ),
-                                  ],
-                                ),
-                                Container(
-                                  width: 70,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.blue[50],
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '22:45',
-                                      style: GoogleFonts.podkova(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black87),
+                                            itemBuilder: (context) => [
+                                              PopupMenuItem(
+                                                onTap: () async {
+                                                  await Future.delayed(
+                                                    Duration(seconds: 0),
+                                                  );
+                                                  DialogBoxremove(context);
+                                                },
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      'Remove',
+                                                      style:
+                                                          GoogleFonts.podkova(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 18,
+                                                        color:
+                                                            Colors.purple[900],
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Icon(
+                                                      Icons.delete,
+                                                      size: 20,
+                                                      color: Colors.purple[900],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ),
-                                ////-----------------Doted LIne---------------------/////
-      
-                                Row(
-                                  children: [
-                                    for (int i = 1; i <= 52; i++)
-                                      i.isEven
-                                          ? Container(
-                                              width: 5,
-                                              height: 2,
-                                              color: Colors.blue[900],
-                                            )
-                                          : Container(
-                                              width: 5,
-                                              height: 2,
-                                              color: Colors.white,
+
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+
+                                    ///-----------------1st doted line small-----------////
+
+                                    Row(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            for (int i = 0; i <= 3; i++)
+                                              i.isEven
+                                                  ? Container(
+                                                      width: 5,
+                                                      height: 2,
+                                                      color: Colors.blue[900],
+                                                    )
+                                                  : Container(
+                                                      width: 5,
+                                                      height: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                          ],
+                                        ),
+                                        Container(
+                                          width: 70,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: Colors.blue[50],
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '22:45',
+                                              style: GoogleFonts.podkova(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black87),
                                             ),
+                                          ),
+                                        ),
+                                        ////-----------------Doted LIne---------------------/////
+
+                                        Row(
+                                          children: [
+                                            for (int i = 1; i <= 52; i++)
+                                              i.isEven
+                                                  ? Container(
+                                                      width: 5,
+                                                      height: 2,
+                                                      color: Colors.blue[900],
+                                                    )
+                                                  : Container(
+                                                      width: 5,
+                                                      height: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ],
-                        ),
+                          );
+                        }),
                       );
-                    }),
-                  );
-                },
-              ),
+              },
             ),
           ],
         ),

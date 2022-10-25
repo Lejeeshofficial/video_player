@@ -205,13 +205,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                           children: [
                                             InkWell(
                                               onTap: (() {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: ((context) =>
-                                                        AssetPlayerWidget()),
-                                                  ),
-                                                );
+                                               
                                               }),
                                               child: Container(
                                                 width: 300,
@@ -305,13 +299,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                 child: Center(
                                                   child: IconButton(
                                                     onPressed: () {
-                                                      Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: ((context) =>
-                                                              AssetPlayerWidget()),
-                                                        ),
-                                                      );
+                                                      
                                                     },
                                                     icon: Icon(Icons
                                                         .play_circle_outline),
@@ -429,14 +417,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                   Stack(
                                     children: [
                                       GestureDetector(
-                                        onTap: (() {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AssetPlayerWidget(),
-                                            ),
-                                          );
+                                        onTap: (() { 
                                         }),
                                         child: Container(
                                           width: 160,

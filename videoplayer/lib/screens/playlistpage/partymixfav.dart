@@ -58,12 +58,7 @@ class ScreenPartyMix extends StatelessWidget {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => AssetPlayerWidget()),
-                      ),
-                    );
+                     
                   },
                   child: ListView.builder(
                     itemCount: 4,

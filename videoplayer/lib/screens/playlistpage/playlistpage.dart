@@ -250,13 +250,7 @@ class ScreenPlaylist extends StatelessWidget {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: ((context) =>
-                                                AssetPlayerWidget()),
-                                          ),
-                                        );
+                                        
                                       },
                                       child: Container(
                                         width: 160,
@@ -317,13 +311,7 @@ class ScreenPlaylist extends StatelessWidget {
                                       top: 28,
                                       child: IconButton(
                                         onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: ((context) =>
-                                                  AssetPlayerWidget()),
-                                            ),
-                                          );
+                                        
                                         },
                                         icon: Icon(Icons.play_circle_outline),
                                         iconSize: 30,
@@ -555,13 +543,7 @@ class ScreenPlaylist extends StatelessWidget {
                                 children: [
                                   InkWell(
                                     onTap: (() {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: ((context) =>
-                                              AssetPlayerWidget()),
-                                        ),
-                                      );
+                                      
                                     }),
                                     child: Container(
                                       width: 160,
@@ -622,13 +604,7 @@ class ScreenPlaylist extends StatelessWidget {
                                     top: 28,
                                     child: IconButton(
                                       onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: ((context) =>
-                                                AssetPlayerWidget()),
-                                          ),
-                                        );
+                                        
                                       },
                                       icon: Icon(Icons.play_circle_outline),
                                       iconSize: 30,
