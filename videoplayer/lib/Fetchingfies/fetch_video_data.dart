@@ -22,9 +22,7 @@ onSuccess(List<String> data) {
       i--;
     }
   }
-
-
-   loadFolderList();
+  loadFolderList();
   getVideoWithInfo();
 
   log("------------------------${fetchedVideosPath.length}-----------------------");
@@ -32,7 +30,7 @@ onSuccess(List<String> data) {
 
 }
 
-//first called from splash screen
+//---------------------------first called from splash screen---------------------------------------//
 
 Future splashFetch() async {
   log('object');
@@ -45,18 +43,19 @@ Future splashFetch() async {
     splashFetch();
   }
 }
+//--------------------------------------------------------------------------------------------------------//
 
-//request for the permission
+// -----------------------------request the permission----------------------------//
 Directory? dir;
 
 Future<bool> _requestPermission(Permission permission) async {
-  final store = Permission.storage;
-  final access = Permission.accessMediaLocation;
+  const store = Permission.storage;
+  const access = Permission.accessMediaLocation;
   if (await permission.isGranted) {
     await access.isGranted && await access.isGranted;
     print(
         '=============================permission granted =======================');
-    return true;
+    return true;  //----------->First time grandted.
   } else {
     var result = await store.request();
     var oneresult = await access.request();
@@ -68,15 +67,16 @@ Future<bool> _requestPermission(Permission permission) async {
       print(
           '=============================permission status granted =======================');
 
-      return true;
+      return true;//--------------->Second time granted.
     } else {
       print(
           '=============================permission denied =======================');
 
-      return false;
+      return false;//--------------->access denied..
     }
   }
 }
+//------------------------------------------------------------------------------------------------------------//
  
 
 

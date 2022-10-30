@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
  
-import '../../main.dart';
+ 
 import 'fetch_video_data.dart';
 
 final videoInfo = FlutterVideoInfo(); //creating object of infoclass

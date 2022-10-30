@@ -211,6 +211,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                 width: 300,
                                                 height: 170,
                                                 decoration: BoxDecoration(
+                                                  
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                   image: const DecorationImage(
@@ -523,40 +524,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                         ],
                                                       ),
                                                     ),
-                                                    PopupMenuItem(
-                                                      onTap: (() async {
-                                                        await Future.delayed(
-                                                          Duration(seconds: 0),
-                                                        );
-          
-                                                        DialogBox(context);
-                                                      }),
-                                                      value: 2,
-                                                      child: Row(
-                                                        children: [
-                                                          const Icon(
-                                                            Icons.delete,
-                                                            size: 18,
-                                                            color:
-                                                                Colors.deepPurple,
-                                                          ),
-                                                          const SizedBox(
-                                                            width: 8,
-                                                          ),
-                                                          Text(
-                                                            'Delete',
-                                                            style: GoogleFonts
-                                                                .podkova(
-                                                                    fontSize: 15,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    color: Colors
-                                                                        .deepPurple),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
+                                                     
                                                   ]
                                               // ),
           
@@ -602,29 +570,29 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
     );
   }
 
-  void snackBar(BuildContext context) {
-    final snackbar = SnackBar(
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: Colors.red[200],
-      content: Text(
-        'Item deleted Successfully',
-        style: GoogleFonts.podkova(
-          fontSize: 15,
-          fontWeight: FontWeight.w700,
-          color: Colors.purple[900],
-        ),
-      ),
-      action: SnackBarAction(
-        label: 'Undo',
-        textColor: Colors.purple[900],
-        onPressed: () {
-          // Navigator.pop(context);
-        },
-      ),
-    );
-    Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(snackbar);
-  }
+  // void snackBar(BuildContext context) {
+  //   final snackbar = SnackBar(
+  //     behavior: SnackBarBehavior.floating,
+  //     backgroundColor: Colors.red[200],
+  //     content: Text(
+  //       'Item deleted Successfully',
+  //       style: GoogleFonts.podkova(
+  //         fontSize: 15,
+  //         fontWeight: FontWeight.w700,
+  //         color: Colors.purple[900],
+  //       ),
+  //     ),
+  //     action: SnackBarAction(
+  //       label: 'Undo',
+  //       textColor: Colors.purple[900],
+  //       onPressed: () {
+  //         // Navigator.pop(context);
+  //       },
+  //     ),
+  //   );
+  //   Navigator.pop(context);
+  //   ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  // }
 
   void favVideoSanckbar(BuildContext context) {
     final snackbar = SnackBar(
@@ -642,59 +610,59 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
-  void DialogBox(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        title: Text(
-          'Delete ?',
-          style: GoogleFonts.podkova(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: Colors.purple[900]),
-        ),
-        content: Text(
-          'Are you sure !!',
-          style: GoogleFonts.podkova(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: Colors.purple[900],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              'NO',
-              style: GoogleFonts.podkova(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: Colors.purple[900],
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              snackBar(context);
-            },
-            child: Text(
-              'Yes',
-              style: GoogleFonts.podkova(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: Colors.purple[900],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // void DialogBox(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (_) => AlertDialog(
+  //       shape: RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.circular(30),
+  //       ),
+  //       title: Text(
+  //         'Delete ?',
+  //         style: GoogleFonts.podkova(
+  //             fontSize: 15,
+  //             fontWeight: FontWeight.w700,
+  //             color: Colors.purple[900]),
+  //       ),
+  //       content: Text(
+  //         'Are you sure !!',
+  //         style: GoogleFonts.podkova(
+  //           fontSize: 14,
+  //           fontWeight: FontWeight.w500,
+  //           color: Colors.purple[900],
+  //         ),
+  //       ),
+  //       actions: [
+  //         TextButton(
+  //           onPressed: () {
+  //             Navigator.pop(context);
+  //           },
+  //           child: Text(
+  //             'NO',
+  //             style: GoogleFonts.podkova(
+  //               fontSize: 15,
+  //               fontWeight: FontWeight.w700,
+  //               color: Colors.purple[900],
+  //             ),
+  //           ),
+  //         ),
+  //         TextButton(
+  //           onPressed: () {
+  //             snackBar(context);
+  //           },
+  //           child: Text(
+  //             'Yes',
+  //             style: GoogleFonts.podkova(
+  //               fontSize: 15,
+  //               fontWeight: FontWeight.w700,
+  //               color: Colors.purple[900],
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   void playlistbottomsheet(BuildContext context) {
     showModalBottomSheet(

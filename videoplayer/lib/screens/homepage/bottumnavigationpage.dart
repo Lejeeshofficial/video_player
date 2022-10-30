@@ -18,10 +18,10 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
   List pages = [
     ScreenHome(),
-    ScreenAllvideos(),
-    FavScreen(),
-    ScreenPlaylist(),
-    ScreenSearch()
+    const ScreenAllvideos(),
+    const FavScreen(),
+    const ScreenPlaylist(),
+    const ScreenSearch()
   ];
 
   @override

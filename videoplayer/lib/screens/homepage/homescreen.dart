@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_list.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
 
-import 'package:videoplayer/screens/homepage/foldervideos.dart';
+import 'package:videoplayer/screens/homepage/homescreenvideos.dart';
 import 'package:videoplayer/screens/homepage/settingscreen.dart';
 
 class ScreenHome extends StatefulWidget {
@@ -205,15 +205,18 @@ class _ScreenHomeState extends State<ScreenHome> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
-                                    value[index].split('/').last,
-                                    overflow: TextOverflow.ellipsis,
-                                    softWrap: true,
-
-                                    style: GoogleFonts.podkova(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      color: Colors.purple[900],
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width*.7,
+                                    child: Text(
+                                      value[index].split('/').last,
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                  
+                                      style: GoogleFonts.podkova(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.purple[900],
+                                      ),
                                     ),
                                   ),
                                 ],
