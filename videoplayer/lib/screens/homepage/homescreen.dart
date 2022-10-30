@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_manager/file_manager.dart';
@@ -28,8 +29,6 @@ class ScreenHome extends StatefulWidget {
 
 class _ScreenHomeState extends State<ScreenHome> {
   @override
-   
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,14 +166,15 @@ class _ScreenHomeState extends State<ScreenHome> {
                     // scrollDirection: Axis.vertical,
                     itemCount: value.length,
                     itemBuilder: (context, index) {
+                     
                       return InkWell(
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: ((context) => ScreenFolderVideos(
-                                index:index,
-                                folderPath:value[index].toString(),
-                              )),
+                                    index: index,
+                                    folderPath: value[index].toString(),
+                                  )),
                             ),
                           );
                         },
@@ -191,7 +191,6 @@ class _ScreenHomeState extends State<ScreenHome> {
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Row(
-                                
                                 children: [
                                   CircleAvatar(
                                     radius: 30,
@@ -206,12 +205,13 @@ class _ScreenHomeState extends State<ScreenHome> {
                                     width: 10,
                                   ),
                                   SizedBox(
-                                    width: MediaQuery.of(context).size.width*.7,
+                                    width:
+                                        MediaQuery.of(context).size.width * .7,
                                     child: Text(
-                                      value[index].split('/').last,
+                                      value[index].split('/').last,//--->for example " /storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Video,"here every thing goes and only Whatsapp Video remaine.
+                                                                    //".split('/)" this is String method used to split the string by given patter and make it as "list" and "last" is a String method it is used to get the last String of that list
                                       overflow: TextOverflow.ellipsis,
                                       softWrap: true,
-                                  
                                       style: GoogleFonts.podkova(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
