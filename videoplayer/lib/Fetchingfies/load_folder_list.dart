@@ -3,10 +3,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+ 
 import 'fetch_video_data.dart';
 
-ValueNotifier<List<String>> fetchedFolders = ValueNotifier([]); //folder list
+ValueNotifier<List<String>> fetchedFolders = ValueNotifier([]); //Folders list
 List<String> temp = []; //temp directory for folder funcion
 
 Future loadFolderList() async {

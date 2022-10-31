@@ -11,20 +11,20 @@ class DataManager {
 
   late Timer videoChangeTimer;
 
-  String getNextVideo() {
+  String getNextVideo() { //------>plays next video
     currentPlaying++;
     return url[currentPlaying];
   }
 
-  bool hasNextVideo() {
+  bool hasNextVideo() {//------------>checks the next video is there or not 
     return currentPlaying != url.length - 1;
   }
 
-  bool hasPreviousVideo() {
+  bool hasPreviousVideo() {//------->checks the previous video is there or not
     return currentPlaying != 0;
   }
 
-  skipToNextVideo([Duration? duration]) {
+  skipToNextVideo([Duration? duration]) {//-------->skip to next video
     if (hasNextVideo()) {
       flickManager.handleChangeVideo(
           VideoPlayerController.network(url[currentPlaying + 1]),

@@ -3,32 +3,31 @@ import 'dart:io';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:path/path.dart';
+// import 'package:flutter/src/widgets/container.dart';
+// import 'package:flutter/src/widgets/framework.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:path/path.dart';
 import 'package:video_player/video_player.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
 import 'package:videoplayer/screens/videoplayerpage/datamanager.dart';
-import 'package:videoplayer/screens/videoplayerpage/videoplayerwidgets.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayercontrols.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class AssetPlayerWidget extends StatefulWidget {
-  AssetPlayerWidget({Key? key, required this.index, required this.url})
+  AssetPlayerWidget({Key? key, required this.index, required this.urlpassed})
       : super(key: key);
   int index;
 
-  String url;
+  String urlpassed;
 
   @override
   State<AssetPlayerWidget> createState() => _AssetPlayerWidgetState();
 }
 
 class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
-  VideoPlayerController? controller;
-
   List<String> url = filteredFolderVideos.value;
-  late FlickManager flickManager;
+  late FlickManager
+      flickManager; //------------------>this is the instance of the FlickManager video player package
   late DataManager dataManager;
 
   @override
@@ -36,7 +35,8 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
     super.initState();
     flickManager = FlickManager(
         videoPlayerController: VideoPlayerController.file(
-          File(url[widget.index]),
+          File(url[widget
+              .index]), //------------------------>flickManager got that path of that video various with index
         ),
         onVideoEnd: () {
           dataManager.skipToNextVideo(Duration(seconds: 5));

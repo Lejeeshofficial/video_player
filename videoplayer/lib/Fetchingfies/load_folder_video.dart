@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'fetch_video_data.dart';
 
 ValueNotifier<List<String>> filteredFolderVideos =
-    ValueNotifier([]); //folder click videos
+    ValueNotifier([]); //----------------->each folder videos listed 
     
     
 getFolderVideos(String path) {
-  filteredFolderVideos.value.clear(); //for avoiding repeating elements
+  filteredFolderVideos.value.clear();  
   List<String> matchedVideoPath = [];
 
   List<String> splittedMatchedVideoPath = [];
 
   var splitted = path.split('/');
 
-  for (String singlePath in fetchedVideosPath) {
-    if (singlePath.startsWith(path)) {
-      matchedVideoPath.add(singlePath);
+  for (String eachpath in fetchedVideosPath) {
+    if (eachpath.startsWith(path)) {
+      matchedVideoPath.add(eachpath);
     }
   }
 

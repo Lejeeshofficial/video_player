@@ -1,4 +1,3 @@
- 
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -64,7 +63,8 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
 
             ///------------------listview builder----------------//
             ValueListenableBuilder(
-              valueListenable: filteredFolderVideos,
+              valueListenable:
+                  filteredFolderVideos, //all videos listed in this value notifier
               builder: (context, value1, child) {
                 return value1.isEmpty
                     ? Center(
@@ -76,7 +76,26 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                               fontSize: 22),
                         ),
                       )
-                    : ListView.builder(
+                    //-----------------------videos listing -------------------------------------------------------------//
+                    : ListView.separated(
+                        separatorBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              for (int i = 0; i <= 75; i++)
+                                i.isEven
+                                    ? Container(
+                                        width: 5,
+                                        height: 2,
+                                        color: Colors.blue[900],
+                                      )
+                                    : Container(
+                                        width: 5,
+                                        height: 2,
+                                        color: Colors.white,
+                                      ),
+                            ],
+                          );
+                        },
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: value1.length,
@@ -90,7 +109,7 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                   MaterialPageRoute(
                                     builder: (context) => AssetPlayerWidget(
                                       index: index,
-                                      url: value1[index],
+                                      urlpassed: value1[index],
                                     ),
                                   ),
                                 );
@@ -115,14 +134,15 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                             //     fit: BoxFit.cover),
                                           ),
                                           child: FutureBuilder(
-                                            future:  getThumbnail(value1[index]),
+                                            future: getThumbnail(value1[index]),
                                             builder: (context,
                                                     AsyncSnapshot<String?>
                                                         snapshot) =>
                                                 snapshot.hasData
-                                                    ? Image.file(File(snapshot.data!),
-                                                    fit: BoxFit.cover,
-                                                         )
+                                                    ? Image.file(
+                                                        File(snapshot.data!),
+                                                        fit: BoxFit.cover,
+                                                      )
                                                     : Container(
                                                         width: 100,
                                                         height: 70,
@@ -148,7 +168,10 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             SizedBox(
-                                              width:MediaQuery.of(context).size.width*.5,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .5,
                                               child: Text(
                                                 value1[index]
                                                     .toString()
@@ -190,7 +213,7 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
                                               0, 0, 0, 0),
-                                          child:   PopupMenuButton(
+                                          child: PopupMenuButton(
                                             icon: const Icon(
                                               Icons.more_vert_outlined,
                                               color: Colors.deepPurple,
@@ -295,62 +318,61 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
 
                                     ///-----------------1st doted line small-----------////
 
-                                    Row(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            for (int i = 0; i <= 3; i++)
-                                              i.isEven
-                                                  ? Container(
-                                                      width: 5,
-                                                      height: 2,
-                                                      color: Colors.blue[900],
-                                                    )
-                                                  : Container(
-                                                      width: 5,
-                                                      height: 2,
-                                                      color: Colors.white,
-                                                    ),
-                                          ],
-                                        ),
-                                        // Container(
-                                        //   width: 70,
-                                        //   height: 20,
-                                        //   decoration: BoxDecoration(
-                                        //     borderRadius:
-                                        //         BorderRadius.circular(10),
-                                        //     color: Colors.blue[50],
-                                        //   ),
-                                        //   child: Center(
-                                        //     child: Text(
-                                        //       '22:45',
-                                        //       style: GoogleFonts.podkova(
-                                        //           fontSize: 13,
-                                        //           fontWeight: FontWeight.w500,
-                                        //           color: Colors.black87),
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        ////-----------------Doted LIne---------------------/////
+                                    // Row(
+                                    //   children: [
+                                    //     Row(
+                                    //       children: [
+                                    //         for (int i = 0; i <= 3; i++)
+                                    //           i.isEven
+                                    //               ? Container(
+                                    //                   width: 5,
+                                    //                   height: 2,
+                                    //                   color: Colors.blue[900],
+                                    //                 )
+                                    //               : Container(
+                                    //                   width: 5,
+                                    //                   height: 2,
+                                    //                   color: Colors.white,
+                                    //                 ),
+                                    //       ],
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // Container(
+                                    //   width: 70,
+                                    //   height: 20,
+                                    //   decoration: BoxDecoration(
+                                    //     borderRadius:
+                                    //         BorderRadius.circular(10),
+                                    //     color: Colors.blue[50],
+                                    //   ),
+                                    //   child: Center(
+                                    //     child: Text(
+                                    //       '22:45',
+                                    //       style: GoogleFonts.podkova(
+                                    //           fontSize: 13,
+                                    //           fontWeight: FontWeight.w500,
+                                    //           color: Colors.black87),
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    ////-----------------Doted LIne---------------------/////
 
-                                        Row(
-                                          children: [
-                                            for (int i = 1; i <= 70; i++)
-                                              i.isEven
-                                                  ? Container(
-                                                      width: 5,
-                                                      height: 2,
-                                                      color: Colors.blue[900],
-                                                    )
-                                                  : Container(
-                                                      width: 5,
-                                                      height: 2,
-                                                      color: Colors.white,
-                                                    ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                    // Row(
+                                    //   children: [
+                                    //     for (int i = 1; i <= 70; i++)
+                                    //       i.isEven
+                                    //           ? Container(
+                                    //               width: 5,
+                                    //               height: 2,
+                                    //               color: Colors.blue[900],
+                                    //             )
+                                    //           : Container(
+                                    //               width: 5,
+                                    //               height: 2,
+                                    //               color: Colors.white,
+                                    //             ),
+                                    //   ],
                                   ],
                                 ),
                               ),
@@ -366,17 +388,17 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
     );
   }
 
+//----------------------------------------thumbnail generator-----------------------------------------------------//
   Future<String> getThumbnail(String tumbnail) async {
     final fileName = await VideoThumbnail.thumbnailFile(
       video: tumbnail,
-      
-      
       thumbnailPath: (await getTemporaryDirectory()).path,
       imageFormat: ImageFormat.PNG,
       quality: 100,
     );
     return fileName!;
   }
+  //-------------------------------------------------------------------------------------------------------//
 
   void DialogBoxremove(BuildContext context) {
     showDialog(
@@ -450,7 +472,8 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
     Navigator.pop(context);
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
-   void playlistbottomsheet(BuildContext context) {
+
+  void playlistbottomsheet(BuildContext context) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
@@ -628,6 +651,7 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
       },
     );
   }
+
   void callplaylist(BuildContext context) {
     Navigator.push(
       context,
@@ -637,7 +661,8 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
     );
     snackBarplaylist(context);
   }
-   void snackBarplaylist(BuildContext context) {
+
+  void snackBarplaylist(BuildContext context) {
     final snackbar = SnackBar(
       behavior: SnackBarBehavior.floating,
       backgroundColor: Colors.green[200],
@@ -653,7 +678,8 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
     // Navigator.pop(context);
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
-   void favVideoSanckbar(BuildContext context) {
+
+  void favVideoSanckbar(BuildContext context) {
     final snackbar = SnackBar(
       backgroundColor: Colors.green[200],
       behavior: SnackBarBehavior.floating,

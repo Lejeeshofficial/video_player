@@ -1,4 +1,4 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+// import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:videoplayer/screens/allvideospage/allvideosscreen.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
