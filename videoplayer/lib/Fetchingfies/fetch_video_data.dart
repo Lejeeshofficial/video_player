@@ -29,7 +29,7 @@ onSuccess(List<String> data) {
   }
 
   loadFolderList();
-  // getVideoWithInfo();
+ getVideoWithInfo();
   // print(object)
 
   log("------------------------${fetchedVideosPath}-----------------------");  //------>to get the nubmer of file containint ".mp3 and mkv"

@@ -43,7 +43,7 @@ class VideoPlayerWidget extends StatelessWidget {
                     ? FlickAutoPlayCircularProgress(
                         colors: FlickAutoPlayTimerProgressColors(
                           backgroundColor: Colors.white30,
-                          color: Colors.red,
+                          color: Colors.deepPurple,
                         ),
                       )
                     : FlickAutoHideChild(
@@ -54,7 +54,7 @@ class VideoPlayerWidget extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  dataManager!.skipToNextVideo();
+                                  dataManager.skipTopreviousVideo( ); //skiptoNextvideo
                                 },
                                 child: Icon(
                                   Icons.skip_previous,
@@ -130,7 +130,7 @@ class VideoPlayerWidget extends StatelessWidget {
                       curveRadius: 50,
                       backgroundColor: Colors.white24,
                       bufferedColor: Colors.white38,
-                      playedColor: Colors.red,
+                      playedColor: Colors.deepPurple,
                     ),
                   ),
                 ],

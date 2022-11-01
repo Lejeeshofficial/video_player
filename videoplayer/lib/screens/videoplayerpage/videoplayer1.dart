@@ -104,15 +104,17 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
             child: FlickVideoPlayer(
               flickManager: flickManager,
               preferredDeviceOrientationFullscreen: const [
-                // DeviceOrientation.portraitUp,
+               // DeviceOrientation.portraitUp,
                 DeviceOrientation.landscapeLeft,
-                // DeviceOrientation.landscapeRight,
+ 
+               //  DeviceOrientation.landscapeRight,
               ],
               flickVideoWithControls: FlickVideoWithControls(
+              //  videoFit: BoxFit.cover,
                 controls: VideoPlayerWidget(dataManager: dataManager),
               ),
               flickVideoWithControlsFullscreen: FlickVideoWithControls(
-                videoFit: BoxFit.cover,
+               // videoFit: BoxFit.cover,
                 controls: VideoPlayerWidget(dataManager: dataManager),
               ),
             ),
