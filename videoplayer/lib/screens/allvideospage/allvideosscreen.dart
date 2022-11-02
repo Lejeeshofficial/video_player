@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
+import 'package:hive_flutter/adapters.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
+import 'package:videoplayer/Fetchingfies/video_with_info.dart';
+import 'package:videoplayer/db/models/databasemodels.dart';
+import 'package:videoplayer/main.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
 import 'package:videoplayer/screens/homepage/settingscreen.dart';
 import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
- 
 
 class ScreenAllvideos extends StatefulWidget {
   const ScreenAllvideos({super.key});
@@ -127,11 +130,10 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
         ],
       ),
       body: SafeArea(
-
         child: CupertinoScrollbar(
           child: SingleChildScrollView(
             child: Column(
-             // mainAxisSize: MainAxisSize.min,
+              // mainAxisSize: MainAxisSize.min,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -159,9 +161,9 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                           ),
                         ],
                       ),
-          
+
                       ///-----------------------Recently viewed_---------------///
-          
+
                       Row(
                         children: [
                           SizedBox(
@@ -195,7 +197,8 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                               itemCount: 3,
                               itemBuilder: (context, index) {
                                 return Padding(
-                                  padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(5, 0, 10, 0),
                                   child: Container(
                                     child: Column(
                                       crossAxisAlignment:
@@ -204,14 +207,11 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                         Stack(
                                           children: [
                                             InkWell(
-                                              onTap: (() {
-                                               
-                                              }),
+                                              onTap: (() {}),
                                               child: Container(
                                                 width: 300,
                                                 height: 170,
                                                 decoration: BoxDecoration(
-                                                  
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                   image: const DecorationImage(
@@ -267,8 +267,8 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                       children: [
                                                         Text(
                                                           'Remove',
-                                                          style:
-                                                              GoogleFonts.podkova(
+                                                          style: GoogleFonts
+                                                              .podkova(
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                             fontSize: 18,
@@ -282,8 +282,8 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                         Icon(
                                                           Icons.delete,
                                                           size: 20,
-                                                          color:
-                                                              Colors.purple[900],
+                                                          color: Colors
+                                                              .purple[900],
                                                         ),
                                                       ],
                                                     ),
@@ -299,9 +299,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                 // top: 28,
                                                 child: Center(
                                                   child: IconButton(
-                                                    onPressed: () {
-                                                      
-                                                    },
+                                                    onPressed: () {},
                                                     icon: Icon(Icons
                                                         .play_circle_outline),
                                                     iconSize: 30,
@@ -389,177 +387,212 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                 const SizedBox(
                   height: 10,
                 ),
-          
+
                 //-----------------------------next-------------------///
                 Column(
                   children: [
-                 
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics( ),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 4 / 3,
-          
-                        // childAspectRatio: 4 / 3,
-          
-                        // maxCrossAxisExtent: 200,
-                      ),
-                      itemCount: 8,
-                      itemBuilder: ((context, index) {
-                        return GridTile(
-                          child: Column(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    children: [
-                                      GestureDetector(
-                                        onTap: (() { 
-                                        }),
-                                        child: Container(
-                                          width: 160,
-                                          height: 110,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            image: const DecorationImage(
-                                                image: AssetImage(
-                                                    'lib/assets/image1.png'),
-                                                fit: BoxFit.cover),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 4,
-                                        left: 120,
-                                        child:
-          
-                                            ///------------------pop up menu-------------///
-          
-                                            PopupMenuButton(
-                                          icon: const Icon(
-                                            Icons.more_vert_outlined,
-                                            color: Colors.white,
-                                          ),
-                                          itemBuilder: ((context) => [
-                                                    PopupMenuItem(
-                                                      onTap: () async {
-                                                        final navigator =
-                                                            Navigator.of(context);
-                                                        await Future.delayed(
-                                                            Duration(seconds: 0));
-                                                        navigator.push(
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                FavScreen(),
-                                                          ),
-                                                        );
-                                                        favVideoSanckbar(context);
-                                                      },
-                                                      value: 0,
-                                                      child: Row(
-                                                        children: [
-                                                          const Icon(
-                                                            Icons
-                                                                .favorite_border_outlined,
-                                                            size: 18,
-                                                            color:
-                                                                Colors.deepPurple,
-                                                          ),
-                                                          const SizedBox(
-                                                            width: 8,
-                                                          ),
-                                                          Text(
-                                                            'Add To Favourites',
-                                                            style: GoogleFonts
-                                                                .podkova(
-                                                                    fontSize: 15,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    color: Colors
-                                                                        .deepPurple),
-                                                          )
-                                                        ],
+                    ValueListenableBuilder(
+                      valueListenable:
+                          videoDB.listenable(), //---->database listener
+                      builder: (context, videolist, child) {
+                        return videolist.isEmpty
+                            ? Text('NO Videos')
+                            : GridView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 4 / 3,
+
+                                  // childAspectRatio: 4 / 3,
+
+                                  // maxCrossAxisExtent: 200,
+                                ),
+                                itemCount:
+                                    videolist.values.length, //----->video count
+                                itemBuilder: ((context, index) {
+                                  VideoplayerModel? videovariable =
+                                      videoDB.getAt(index);
+                                  return GridTile(
+                                    child: Column(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Stack(
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: (() {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            AssetPlayerWidget(
+                                                          index: index,
+                                                          urlpassed:
+                                                              fetchedVideosPath
+                                                                  .toString(),
+                                                        ),
                                                       ),
+                                                    );
+                                                  }),
+                                                  child: Container(
+                                                    width: 160,
+                                                    height: 110,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      image: const DecorationImage(
+                                                          image: AssetImage(
+                                                              'lib/assets/image1.png'),
+                                                          fit: BoxFit.cover),
                                                     ),
-                                                    PopupMenuItem(
-                                                      onTap: (() async {
-                                                        final navigator =
-                                                            Navigator.of(context);
-                                                        await Future.delayed(
-                                                          Duration(seconds: 0),
-                                                        );
-                                                        playlistbottomsheet(
-                                                            context);
-                                                      }),
-                                                      value: 1,
-                                                      child: Row(
-                                                        children: [
-                                                          const Icon(
-                                                            Icons
-                                                                .playlist_add_check_circle_outlined,
-                                                            size: 18,
-                                                            color:
-                                                                Colors.deepPurple,
-                                                          ),
-                                                          const SizedBox(
-                                                            width: 8,
-                                                          ),
-                                                          Text(
-                                                            'Add To Playlist',
-                                                            style: GoogleFonts
-                                                                .podkova(
-                                                                    fontSize: 15,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    color: Colors
-                                                                        .deepPurple),
-                                                          )
-                                                        ],
-                                                      ),
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 4,
+                                                  left: 120,
+                                                  child:
+
+                                                      ///------------------pop up menu-------------///
+
+                                                      PopupMenuButton(
+                                                    icon: const Icon(
+                                                      Icons.more_vert_outlined,
+                                                      color: Colors.white,
                                                     ),
-                                                     
-                                                  ]
-                                              // ),
-          
-                                              ),
-                                          color: Colors.grey[50],
-                                          offset: Offset(-0, 0),
+                                                    itemBuilder: ((context) => [
+                                                              PopupMenuItem(
+                                                                onTap:
+                                                                    () async {
+                                                                  final navigator =
+                                                                      Navigator.of(
+                                                                          context);
+                                                                  await Future.delayed(
+                                                                      Duration(
+                                                                          seconds:
+                                                                              0));
+                                                                  navigator
+                                                                      .push(
+                                                                    MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              FavScreen(),
+                                                                    ),
+                                                                  );
+                                                                  favVideoSanckbar(
+                                                                      context);
+                                                                },
+                                                                value: 0,
+                                                                child: Row(
+                                                                  children: [
+                                                                    const Icon(
+                                                                      Icons
+                                                                          .favorite_border_outlined,
+                                                                      size: 18,
+                                                                      color: Colors
+                                                                          .deepPurple,
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 8,
+                                                                    ),
+                                                                    Text(
+                                                                      'Add To Favourites',
+                                                                      style: GoogleFonts.podkova(
+                                                                          fontSize:
+                                                                              15,
+                                                                          fontWeight: FontWeight
+                                                                              .w700,
+                                                                          color:
+                                                                              Colors.deepPurple),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              PopupMenuItem(
+                                                                onTap:
+                                                                    (() async {
+                                                                  final navigator =
+                                                                      Navigator.of(
+                                                                          context);
+                                                                  await Future
+                                                                      .delayed(
+                                                                    Duration(
+                                                                        seconds:
+                                                                            0),
+                                                                  );
+                                                                  playlistbottomsheet(
+                                                                      context);
+                                                                }),
+                                                                value: 1,
+                                                                child: Row(
+                                                                  children: [
+                                                                    const Icon(
+                                                                      Icons
+                                                                          .playlist_add_check_circle_outlined,
+                                                                      size: 18,
+                                                                      color: Colors
+                                                                          .deepPurple,
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 8,
+                                                                    ),
+                                                                    Text(
+                                                                      'Add To Playlist',
+                                                                      style: GoogleFonts.podkova(
+                                                                          fontSize:
+                                                                              15,
+                                                                          fontWeight: FontWeight
+                                                                              .w700,
+                                                                          color:
+                                                                              Colors.deepPurple),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ]
+                                                        // ),
+
+                                                        ),
+                                                    color: Colors.grey[50],
+                                                    offset: Offset(-0, 0),
+                                                  ),
+
+                                                  //---------------------------------------------/
+                                                ),
+                                              ],
+                                            ),
+                                            Text(
+                                               videovariable!.videoName.toString(),
+                                               overflow: TextOverflow.ellipsis,
+                                              style: GoogleFonts.podkova(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.blue[900]),
+                                            ),
+                                            // Text(
+                                            //   '18:25',
+                                            //   style: GoogleFonts.podkova(
+                                            //       fontSize: 12,
+                                            //       fontWeight: FontWeight.w500,
+                                            //       color: Colors.grey),
+                                            // ),
+                                          ],
                                         ),
-          
-                                        //---------------------------------------------/
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    'Special Agent.OSO',
-                                    style: GoogleFonts.podkova(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.blue[900]),
-                                  ),
-                                  Text(
-                                    '18:25',
-                                    style: GoogleFonts.podkova(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      }),
-                    ),],
-                  ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              );
+                      },
+                    ),
+                  ],
+                ),
                 // ),
-          
+
                 ///-------------------////-------------------------------------//
               ],
             ),
