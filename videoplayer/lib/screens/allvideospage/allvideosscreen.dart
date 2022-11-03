@@ -1,11 +1,15 @@
 import 'dart:developer';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:google_fonts/google_fonts.dart';
+//import 'package:simple_gradient_text/simple_graart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
@@ -324,33 +328,65 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                             Stack(
                                               children: [
                                                 GestureDetector(
-                                                  onTap: (() {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            AssetPlayerWidget(
-                                                          index: index,
-                                                          urlpassed:
-                                                              fetchedVideosPath,
+                                                    onTap: (() {
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              AssetPlayerWidget(
+                                                            index: index,
+                                                            urlpassed:
+                                                                fetchedVideosPath,
+                                                          ),
                                                         ),
+                                                      );
+                                                    }),
+                                                    child: Container(
+                                                      width: 160,
+                                                      height: 110,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
                                                       ),
-                                                    );
-                                                  }),
-                                                  child: Container(
-                                                    width: 160,
-                                                    height: 110,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      image: const DecorationImage(
-                                                          image: AssetImage(
-                                                              'lib/assets/image1.png'),
-                                                          fit: BoxFit.cover),
-                                                    ),
-                                                  ),
-                                                ),
+                                                      child: FutureBuilder(
+                                                        future:
+                                                            getHiveThumbnail(
+                                                                videovariable!,
+                                                                index),
+                                                        builder: ((context,
+                                                            snapshot) {
+                                                          return snapshot
+                                                                  .hasData
+                                                              ? Container(
+                                                                  width: 100,
+                                                                  height: 70,
+                                                                  child: Image
+                                                                      .file(
+                                                                    File(videovariable
+                                                                        .thumbnail),
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                )
+                                                              : Container(
+                                                                  width: 100,
+                                                                  height: 70,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    image: const DecorationImage(
+                                                                        image: AssetImage(
+                                                                            'lib/assets/play button.jpg'),
+                                                                        fit: BoxFit
+                                                                            .cover),
+                                                                  ),
+                                                                );
+                                                        }),
+                                                      ),
+                                                    )),
                                                 Positioned(
                                                   top: 4,
                                                   left: 120,
@@ -493,5 +529,21 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
         ),
       ),
     );
+  }
+
+  Future<String> getHiveThumbnail(VideoplayerModel video, int index) async {
+    if (video.thumbnail.isNotEmpty) {
+      return '';
+    } else {
+      final fileName = await VideoThumbnail.thumbnailFile(
+        video: video.videoPath.toString(),
+        thumbnailPath: (await getTemporaryDirectory()).path,
+        imageFormat: ImageFormat.PNG,
+        quality: 100,
+      );
+      video.thumbnail = fileName.toString();
+      videoDB.putAt(index, video);
+      return fileName!;
+    }
   }
 }

@@ -132,9 +132,13 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                                     AsyncSnapshot<String?>
                                                         snapshot) =>
                                                 snapshot.hasData
-                                                    ? Image.file(
-                                                        File(snapshot.data!),
-                                                        fit: BoxFit.cover,
+                                                    ? Container(
+                                                        width: 100,
+                                                        height: 70,
+                                                        child: Image.file(
+                                                          File(snapshot.data!),
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       )
                                                     : Container(
                                                         width: 100,

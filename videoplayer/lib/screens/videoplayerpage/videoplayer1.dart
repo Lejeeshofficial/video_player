@@ -25,7 +25,7 @@ class AssetPlayerWidget extends StatefulWidget {
 }
 
 class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
-  List<String> url = filteredFolderVideos.value;
+  //List<String> url = filteredFolderVideos.value;
   late FlickManager
       flickManager; //------------------>this is the instance of the FlickManager video player package
   late DataManager dataManager;
@@ -35,14 +35,15 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
     super.initState();
     flickManager = FlickManager(
         videoPlayerController: VideoPlayerController.file(
-          File(url[widget
-              .index]), //------------------------>flickManager got that path of that video various with index
+          File(widget.urlpassed[widget
+              .index]), //---------------1--------->flickManager got that path of that video various with index
         ),
         onVideoEnd: () {
           dataManager.skipToNextVideo(Duration(seconds: 5));
         });
 
-    dataManager = DataManager(flickManager: flickManager, url: url);
+    dataManager =
+        DataManager(flickManager: flickManager, url: widget.urlpassed);
   }
 
   @override
@@ -58,37 +59,7 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return
-        // appBar: AppBar(
-        //   flexibleSpace: Container(
-        //     decoration: const BoxDecoration(
-        //       gradient: LinearGradient(
-        //         colors: [
-        //           Color(0xFF240E8B),
-        //           Color(0xFF787FF6),
-        //         ],
-        //         begin: Alignment.topLeft,
-        //         end: Alignment.topRight,
-        //         stops: [0.1, 1],
-        //       ),
-        //     ),
-        //   ),
-        //   title: Row(
-        //     children: [
-        //       // const SizedBox(
-        //       //   width: 80,
-        //       // ),
-        //       Text(
-        //         'Videos',
-        //         style: GoogleFonts.podkova(
-        //             color: Colors.white,
-        //             fontSize: 20,
-        //             fontWeight: FontWeight.bold),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        VisibilityDetector(
+    return VisibilityDetector(
       key: ObjectKey(flickManager),
       onVisibilityChanged: (visibility) {
         if (visibility.visibleFraction == 0 && this.mounted) {

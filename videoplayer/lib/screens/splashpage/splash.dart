@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
+import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
 
 class ScreenSplash extends StatefulWidget {
@@ -13,7 +14,9 @@ class _ScreenSplashState extends State<ScreenSplash> {
   @override
   void initState() {
     splashFetch();
+
     nextpage();
+
     // TODO: implement initState
     super.initState();
   }

@@ -1,7 +1,7 @@
 //----------------videoPlayer Model-----------------//
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
- 
+
 part 'databasemodels.g.dart';
 
 @HiveType(typeId: 1)
@@ -13,7 +13,7 @@ class VideoplayerModel {
   @HiveField(2)
   final String folderPath;
   @HiveField(3)
-  final String thumbnail;
+  String thumbnail;
   @HiveField(4)
   bool isFav;
 
