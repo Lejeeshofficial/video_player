@@ -53,7 +53,7 @@ class _ScreenHomeState extends State<ScreenHome> {
         ),
 
         title: Text(
-          'LXC',
+          'V-Player',
           style: GoogleFonts.podkova(
               color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
         ),
@@ -166,7 +166,6 @@ class _ScreenHomeState extends State<ScreenHome> {
                     // scrollDirection: Axis.vertical,
                     itemCount: value.length,
                     itemBuilder: (context, index) {
-                     
                       return InkWell(
                         onTap: () {
                           Navigator.of(context).push(
@@ -208,8 +207,10 @@ class _ScreenHomeState extends State<ScreenHome> {
                                     width:
                                         MediaQuery.of(context).size.width * .7,
                                     child: Text(
-                                      value[index].split('/').last,//--->for example " /storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Video,"here every thing goes and only Whatsapp Video remaine.
-                                                                    //".split('/)" this is String method used to split the string by given patter and make it as "list" and "last" is a String method it is used to get the last String of that list
+                                      value[index]
+                                          .split('/')
+                                          .last, //--->for example " /storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Video,"here every thing goes and only Whatsapp Video remaine.
+                                      //".split('/)" this is String method used to split the string by given patter and make it as "list" and "last" is a String method it is used to get the last String of that list
                                       overflow: TextOverflow.ellipsis,
                                       softWrap: true,
                                       style: GoogleFonts.podkova(

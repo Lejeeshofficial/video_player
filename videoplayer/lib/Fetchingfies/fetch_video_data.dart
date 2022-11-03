@@ -12,27 +12,40 @@ bool hasMoreData = true;
 
 List<String> fetchedVideosPath = []; //all videos path loaded first time
 ValueNotifier<List<String>> favVideos = ValueNotifier([]);
+//---------------------------------------------------------//
+ValueNotifier<List<String>> fetchedallvideos = ValueNotifier([]);
+
+// void allvideosadding(value) {
+//   for (int j = 0; j < value.length; j++) {
+//     fetchedallvideos.value.add(value);
+//   }
+// }
 
 //------------onSuccess function--------------------------------------------//
 onSuccess(List<String> data) {
   //---->this function calling form the function "searchInStorage " not bellow ...
 
-  fetchedVideosPath =data; // fetchedVideosPath this is what we get from that method channel filterd by ".mp3 and .mkv" 
+  fetchedVideosPath =
+      data; // fetchedVideosPath this is what we get from that method channel filterd by ".mp3 and .mkv"
 
-   
+//--------------------------------------------------------//
+  // allvideosadding(data);
+//-------------------------------------------------------//
+
   for (int i = 0; i < fetchedVideosPath.length; i++) {
     if (fetchedVideosPath[i].startsWith('/storage/emulated/1/Android/data')) {
-      
       fetchedVideosPath.remove(fetchedVideosPath[i]);
       i--;
     }
   }
 
   loadFolderList();
- getVideoWithInfo();
+  getVideoWithInfo();
+
+  // allvideosadding(data);
   // print(object)
 
-  log("------------------------${fetchedVideosPath}-----------------------");  //------>to get the nubmer of file containint ".mp3 and mkv"
+  log("------------------------${fetchedVideosPath}-----------------------"); //------>to get the nubmer of file containint ".mp3 and mkv"
 }
 //----------------------------------------------------------------------------//
 

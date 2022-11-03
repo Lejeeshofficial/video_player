@@ -109,7 +109,7 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                   MaterialPageRoute(
                                     builder: (context) => AssetPlayerWidget(
                                       index: index,
-                                      urlpassed: value1[index],
+                                      urlpassed: value1,
                                     ),
                                   ),
                                 );

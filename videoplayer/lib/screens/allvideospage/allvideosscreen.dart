@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -8,6 +10,7 @@ import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
+import 'package:videoplayer/screens/allvideospage/popup.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
 import 'package:videoplayer/screens/homepage/settingscreen.dart';
 import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
@@ -39,95 +42,11 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                 stops: [0.1, 1.0]),
           ),
         ),
-        // backgroundColor:const Color(0xFF6E012A),
-        leading: const Icon(
-          Icons.ondemand_video_outlined,
-          size: 40,
-        ),
-
         title: Text(
-          'LXC',
+          'videos',
           style: GoogleFonts.podkova(
               color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
         ),
-        actions: [
-          PopupMenuButton(
-            itemBuilder: ((context) => [
-                  PopupMenuItem(
-                    onTap: (() async {
-                      await Future.delayed(const Duration(seconds: 0));
-                      setState(() {
-                        // BottomNavigationScreen();
-                        print('object');
-                      });
-                    }),
-                    value: 1,
-                    // child: InkWell(
-                    //   onTap: () {
-                    //     setState(() {
-                    //       ScreenHome1();
-                    //     });
-                    //   },
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.refresh,
-                          size: 18,
-                          color: Colors.deepPurple,
-                        ),
-                        const SizedBox(
-                          width: 08,
-                        ),
-                        Text(
-                          'Refresh',
-                          style: GoogleFonts.podkova(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.deepPurple),
-                        )
-                      ],
-                    ),
-                    // ),
-                  ),
-                  PopupMenuItem(
-                    onTap: () async {
-                      final navigator = Navigator.of(context);
-                      await Future.delayed(
-                        Duration(seconds: 0),
-                      );
-                      navigator.push(
-                        MaterialPageRoute(
-                          builder: (_) => ScreenSetting(),
-                        ),
-                      );
-                    },
-                    value: 1,
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.settings,
-                          size: 18,
-                          color: Colors.deepPurple,
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          'Setting',
-                          style: GoogleFonts.podkova(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.deepPurple),
-                        ),
-                      ],
-                    ),
-                  ),
-                ]),
-            color: Colors.grey[100],
-            offset: Offset(-21, 19),
-            // elevation: 200,
-          ),
-        ],
       ),
       body: SafeArea(
         child: CupertinoScrollbar(
@@ -310,25 +229,9 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                             ),
                                           ],
                                         ),
-                                        // Text(
-                                        //   'Prince and Queen',
-                                        //   style: GoogleFonts.podkova(
-                                        //     fontSize: 14,
-                                        //     fontWeight: FontWeight.w500,
-                                        //     color: Colors.blue[900],
-                                        //   ),
-                                        // ),
                                         const SizedBox(
                                           height: 2,
                                         ),
-                                        // Text(
-                                        //   '14:41',
-                                        //   style: GoogleFonts.podkova(
-                                        //     fontSize: 12,
-                                        //     fontWeight: FontWeight.w500,
-                                        //     color: Colors.grey[900],
-                                        //   ),
-                                        // ),
                                       ],
                                     ),
                                   ),
@@ -396,7 +299,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                           videoDB.listenable(), //---->database listener
                       builder: (context, videolist, child) {
                         return videolist.isEmpty
-                            ? Text('NO Videos')
+                            ? const Text('NO Videos')
                             : GridView.builder(
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
@@ -404,14 +307,11 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   childAspectRatio: 4 / 3,
-
-                                  // childAspectRatio: 4 / 3,
-
-                                  // maxCrossAxisExtent: 200,
                                 ),
                                 itemCount:
                                     videolist.values.length, //----->video count
                                 itemBuilder: ((context, index) {
+                                  log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${videolist.values.length}");
                                   VideoplayerModel? videovariable =
                                       videoDB.getAt(index);
                                   return GridTile(
@@ -432,8 +332,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                             AssetPlayerWidget(
                                                           index: index,
                                                           urlpassed:
-                                                              fetchedVideosPath
-                                                                  .toString(),
+                                                              fetchedVideosPath,
                                                         ),
                                                       ),
                                                     );
@@ -566,20 +465,14 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                               ],
                                             ),
                                             Text(
-                                               videovariable!.videoName.toString(),
-                                               overflow: TextOverflow.ellipsis,
+                                              videovariable!.videoName
+                                                  .toString(),
+                                              overflow: TextOverflow.ellipsis,
                                               style: GoogleFonts.podkova(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w500,
                                                   color: Colors.blue[900]),
                                             ),
-                                            // Text(
-                                            //   '18:25',
-                                            //   style: GoogleFonts.podkova(
-                                            //       fontSize: 12,
-                                            //       fontWeight: FontWeight.w500,
-                                            //       color: Colors.grey),
-                                            // ),
                                           ],
                                         ),
                                       ],
@@ -600,378 +493,5 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
         ),
       ),
     );
-  }
-
-  // void snackBar(BuildContext context) {
-  //   final snackbar = SnackBar(
-  //     behavior: SnackBarBehavior.floating,
-  //     backgroundColor: Colors.red[200],
-  //     content: Text(
-  //       'Item deleted Successfully',
-  //       style: GoogleFonts.podkova(
-  //         fontSize: 15,
-  //         fontWeight: FontWeight.w700,
-  //         color: Colors.purple[900],
-  //       ),
-  //     ),
-  //     action: SnackBarAction(
-  //       label: 'Undo',
-  //       textColor: Colors.purple[900],
-  //       onPressed: () {
-  //         // Navigator.pop(context);
-  //       },
-  //     ),
-  //   );
-  //   Navigator.pop(context);
-  //   ScaffoldMessenger.of(context).showSnackBar(snackbar);
-  // }
-
-  void favVideoSanckbar(BuildContext context) {
-    final snackbar = SnackBar(
-      backgroundColor: Colors.green[200],
-      behavior: SnackBarBehavior.floating,
-      content: Text(
-        'Item added to Favourites',
-        style: GoogleFonts.podkova(
-          fontSize: 15,
-          fontWeight: FontWeight.w700,
-          color: Colors.purple[900],
-        ),
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackbar);
-  }
-
-  // void DialogBox(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (_) => AlertDialog(
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.circular(30),
-  //       ),
-  //       title: Text(
-  //         'Delete ?',
-  //         style: GoogleFonts.podkova(
-  //             fontSize: 15,
-  //             fontWeight: FontWeight.w700,
-  //             color: Colors.purple[900]),
-  //       ),
-  //       content: Text(
-  //         'Are you sure !!',
-  //         style: GoogleFonts.podkova(
-  //           fontSize: 14,
-  //           fontWeight: FontWeight.w500,
-  //           color: Colors.purple[900],
-  //         ),
-  //       ),
-  //       actions: [
-  //         TextButton(
-  //           onPressed: () {
-  //             Navigator.pop(context);
-  //           },
-  //           child: Text(
-  //             'NO',
-  //             style: GoogleFonts.podkova(
-  //               fontSize: 15,
-  //               fontWeight: FontWeight.w700,
-  //               color: Colors.purple[900],
-  //             ),
-  //           ),
-  //         ),
-  //         TextButton(
-  //           onPressed: () {
-  //             snackBar(context);
-  //           },
-  //           child: Text(
-  //             'Yes',
-  //             style: GoogleFonts.podkova(
-  //               fontSize: 15,
-  //               fontWeight: FontWeight.w700,
-  //               color: Colors.purple[900],
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  void playlistbottomsheet(BuildContext context) {
-    showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
-      backgroundColor: Colors.pink[50],
-      context: context,
-      builder: (context) {
-        return Container(
-          height: MediaQuery.of(context).size.height * .35,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        size: 25,
-                        color: Colors.purple[900],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 72,
-                    ),
-                    Text(
-                      'Add to Playlist',
-                      style: GoogleFonts.podkova(
-                        fontSize: 20,
-                        color: Colors.purple[900],
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.playlist_add_circle_outlined,
-                      size: 30,
-                      color: Colors.purple[900],
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      'Weekend Fav',
-                      style: GoogleFonts.podkova(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Colors.purple[900],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 140,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        callplaylist(context);
-                        await Future.delayed(
-                          Duration(seconds: 0),
-                        );
-
-                        // Navigator.pop(context);
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: ((context) => ScreenPlaylist()),
-                        //   ),
-                        // );
-                        // snackBarplaylist(context);
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.purple[900],
-                        ),
-                      ),
-                      child: Text(
-                        'Add',
-                        style: GoogleFonts.podkova(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.playlist_add_circle_outlined,
-                      size: 30,
-                      color: Colors.purple[900],
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      'Party Mix',
-                      style: GoogleFonts.podkova(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Colors.purple[900],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 167,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        callplaylist(context);
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.purple[900],
-                        ),
-                      ),
-                      child: Text(
-                        'Add',
-                        style: GoogleFonts.podkova(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton.icon(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.purple[900],
-                        ),
-                        shadowColor: MaterialStateProperty.all(Colors.purple),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ScreenPlaylist()),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.add,
-                        size: 25,
-                      ),
-                      label: Text(
-                        'Create a playlist',
-                        style: GoogleFonts.podkova(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void snackBarplaylist(BuildContext context) {
-    final snackbar = SnackBar(
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: Colors.green[200],
-      content: Text(
-        'Item added successfully',
-        style: GoogleFonts.podkova(
-          fontSize: 15,
-          fontWeight: FontWeight.w700,
-          color: Colors.purple[900],
-        ),
-      ),
-    );
-    // Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(snackbar);
-  }
-
-  void callplaylist(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: ((context) => ScreenPlaylist()),
-      ),
-    );
-    snackBarplaylist(context);
-  }
-
-  void DialogBoxremove(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        title: Text(
-          'Remove ?',
-          style: GoogleFonts.podkova(
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
-            color: Colors.purple[900],
-          ),
-        ),
-        content: Text(
-          'Are you sure !!',
-          style: GoogleFonts.podkova(
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
-            color: Colors.purple[900],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              'No',
-              style: GoogleFonts.podkova(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: Colors.purple[900],
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              snackBarremove(context);
-            },
-            child: Text(
-              'Yes',
-              style: GoogleFonts.podkova(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: Colors.purple[900],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-    // Navigator.pop(context);
-  }
-
-  void snackBarremove(BuildContext context) {
-    final snackbar = SnackBar(
-      backgroundColor: Colors.purple[100],
-      behavior: SnackBarBehavior.floating,
-      content: Text(
-        'Item is removed successfully',
-        style: GoogleFonts.podkova(
-          fontSize: 15,
-          fontWeight: FontWeight.w700,
-          color: Colors.purple[900],
-        ),
-      ),
-    );
-    Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 }
