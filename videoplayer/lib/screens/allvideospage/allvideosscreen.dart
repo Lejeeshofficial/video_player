@@ -322,6 +322,12 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                               ? Container(
                                                                   width: 100,
                                                                   height: 70,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20),
+                                                                  ),
                                                                   child: Image
                                                                       .file(
                                                                     File(videovariable
@@ -352,7 +358,9 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                   top: 4,
                                                   left: 120,
                                                   child: PopupmenuBotton2(
-                                                      context), // second popup menu botton
+                                                      context: context,
+                                                      Path: videovariable
+                                                          .videoPath), // second popup menu botton to add fav and playlist
                                                 ),
                                               ],
                                             ),

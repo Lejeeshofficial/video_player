@@ -6,11 +6,11 @@ import 'package:videoplayer/screens/favpage/widgets.dart';
 
 import '../favpage/favscreen.dart';
 
-Widget PopupmenuBotton2({required context, required Path}) {
+Widget PopupmenuBottonhome({required context, required Path}) {
   return PopupMenuButton(
     icon: const Icon(
       Icons.more_vert_outlined,
-      color: Colors.white,
+      color: Colors.deepPurple,
     ),
     onSelected: (value) {
       if (value == 'fav') {

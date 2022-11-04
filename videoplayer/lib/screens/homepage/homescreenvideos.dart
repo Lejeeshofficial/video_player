@@ -10,8 +10,11 @@ import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu2.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
+import 'package:videoplayer/screens/favpage/favpopupmenu.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
 import 'package:videoplayer/screens/homepage/popupmenu3.dart';
+import 'package:videoplayer/screens/homepage/popupmenuhome.dart';
+import 'package:videoplayer/screens/homepage/thumbnail.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 
@@ -126,8 +129,8 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                           width: 100,
                                           height: 70,
                                           decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
+                                            borderRadius: BorderRadius.circular(
+                                                10), //-------------------------------..
                                           ),
                                           child: FutureBuilder(
                                             future: getThumbnail(value1[index]),
@@ -190,7 +193,9 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
                                               0, 0, 0, 0),
-                                          child: PopupmenuBotton3(context),
+                                          child: PopupmenuBottonhome(
+                                              context: context,
+                                              Path: value1[index]),
                                         ),
                                       ],
                                     ),
@@ -210,16 +215,5 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
         ),
       ),
     );
-  }
-
-//----------------------------------------thumbnail generator-----------------------------------------------------//
-  Future<String> getThumbnail(String tumbnail) async {
-    final fileName = await VideoThumbnail.thumbnailFile(
-      video: tumbnail,
-      thumbnailPath: (await getTemporaryDirectory()).path,
-      imageFormat: ImageFormat.PNG,
-      quality: 100,
-    );
-    return fileName!;
   }
 }
