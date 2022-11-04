@@ -7,8 +7,11 @@ import 'package:path/path.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
-import 'package:videoplayer/screens/allvideospage/popup.dart';
+import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
+import 'package:videoplayer/screens/allvideospage/popupmenu2.dart';
+import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
+import 'package:videoplayer/screens/homepage/popupmenu3.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 
@@ -187,101 +190,7 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
                                               0, 0, 0, 0),
-                                          child: PopupMenuButton(
-                                            icon: const Icon(
-                                              Icons.more_vert_outlined,
-                                              color: Colors.deepPurple,
-                                            ),
-                                            itemBuilder: ((context) => [
-                                                      PopupMenuItem(
-                                                        onTap: () async {
-                                                          final navigator =
-                                                              Navigator.of(
-                                                                  context);
-                                                          await Future.delayed(
-                                                              Duration(
-                                                                  seconds: 0));
-                                                          navigator.push(
-                                                            MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      FavScreen(),
-                                                            ),
-                                                          );
-                                                          favVideoSanckbar(
-                                                              context);
-                                                        },
-                                                        value: 0,
-                                                        child: Row(
-                                                          children: [
-                                                            const Icon(
-                                                              Icons
-                                                                  .favorite_border_outlined,
-                                                              size: 18,
-                                                              color: Colors
-                                                                  .deepPurple,
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 8,
-                                                            ),
-                                                            Text(
-                                                              'Add To Favourites',
-                                                              style: GoogleFonts.podkova(
-                                                                  fontSize: 15,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  color: Colors
-                                                                      .deepPurple),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      PopupMenuItem(
-                                                        onTap: (() async {
-                                                          final navigator =
-                                                              Navigator.of(
-                                                                  context);
-                                                          await Future.delayed(
-                                                            Duration(
-                                                                seconds: 0),
-                                                          );
-                                                          playlistbottomsheet(
-                                                              context);
-                                                        }),
-                                                        value: 1,
-                                                        child: Row(
-                                                          children: [
-                                                            const Icon(
-                                                              Icons
-                                                                  .playlist_add_check_circle_outlined,
-                                                              size: 18,
-                                                              color: Colors
-                                                                  .deepPurple,
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 8,
-                                                            ),
-                                                            Text(
-                                                              'Add To Playlist',
-                                                              style: GoogleFonts.podkova(
-                                                                  fontSize: 15,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  color: Colors
-                                                                      .deepPurple),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ]
-                                                // ),
-
-                                                ),
-                                            color: Colors.grey[50],
-                                            offset: Offset(-0, 0),
-                                          ),
+                                          child: PopupmenuBotton3(context),
                                         ),
                                       ],
                                     ),

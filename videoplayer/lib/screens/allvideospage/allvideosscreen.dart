@@ -14,7 +14,10 @@ import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
-import 'package:videoplayer/screens/allvideospage/popup.dart';
+import 'package:videoplayer/screens/allvideospage/hivethumbnail.dart';
+import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
+import 'package:videoplayer/screens/allvideospage/popupmenu2.dart';
+import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
 import 'package:videoplayer/screens/homepage/settingscreen.dart';
 import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
@@ -172,54 +175,13 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                             Positioned(
                                               right: 0,
                                               top: 0,
-                                              child: PopupMenuButton(
-                                                icon: const Icon(
-                                                  Icons.more_vert_outlined,
-                                                  size: 23,
-                                                  color: Colors.white,
-                                                ),
-                                                itemBuilder: (context) => [
-                                                  PopupMenuItem(
-                                                    onTap: () async {
-                                                      await Future.delayed(
-                                                        Duration(seconds: 0),
-                                                      );
-                                                      DialogBoxremove(context);
-                                                    },
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          'Remove',
-                                                          style: GoogleFonts
-                                                              .podkova(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 18,
-                                                            color: Colors
-                                                                .purple[900],
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Icon(
-                                                          Icons.delete,
-                                                          size: 20,
-                                                          color: Colors
-                                                              .purple[900],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                              child: popupmenu(
+                                                  context), // popup menu button
                                             ),
                                             Container(
                                               child: Positioned(
                                                 width: 300,
                                                 height: 170,
-                                                // left: 55,
-                                                // top: 28,
                                                 child: Center(
                                                   child: IconButton(
                                                     onPressed: () {},
@@ -350,10 +312,9 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                                 .circular(10),
                                                       ),
                                                       child: FutureBuilder(
-                                                        future:
-                                                            getHiveThumbnail(
-                                                                videovariable!,
-                                                                index),
+                                                        future: getHiveThumbnail(
+                                                            videovariable!,
+                                                            index), //------------->hivethumbnail calling
                                                         builder: ((context,
                                                             snapshot) {
                                                           return snapshot
@@ -390,118 +351,13 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                 Positioned(
                                                   top: 4,
                                                   left: 120,
-                                                  child:
-
-                                                      ///------------------pop up menu-------------///
-
-                                                      PopupMenuButton(
-                                                    icon: const Icon(
-                                                      Icons.more_vert_outlined,
-                                                      color: Colors.white,
-                                                    ),
-                                                    itemBuilder: ((context) => [
-                                                              PopupMenuItem(
-                                                                onTap:
-                                                                    () async {
-                                                                  final navigator =
-                                                                      Navigator.of(
-                                                                          context);
-                                                                  await Future.delayed(
-                                                                      Duration(
-                                                                          seconds:
-                                                                              0));
-                                                                  navigator
-                                                                      .push(
-                                                                    MaterialPageRoute(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              FavScreen(),
-                                                                    ),
-                                                                  );
-                                                                  favVideoSanckbar(
-                                                                      context);
-                                                                },
-                                                                value: 0,
-                                                                child: Row(
-                                                                  children: [
-                                                                    const Icon(
-                                                                      Icons
-                                                                          .favorite_border_outlined,
-                                                                      size: 18,
-                                                                      color: Colors
-                                                                          .deepPurple,
-                                                                    ),
-                                                                    const SizedBox(
-                                                                      width: 8,
-                                                                    ),
-                                                                    Text(
-                                                                      'Add To Favourites',
-                                                                      style: GoogleFonts.podkova(
-                                                                          fontSize:
-                                                                              15,
-                                                                          fontWeight: FontWeight
-                                                                              .w700,
-                                                                          color:
-                                                                              Colors.deepPurple),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              PopupMenuItem(
-                                                                onTap:
-                                                                    (() async {
-                                                                  final navigator =
-                                                                      Navigator.of(
-                                                                          context);
-                                                                  await Future
-                                                                      .delayed(
-                                                                    Duration(
-                                                                        seconds:
-                                                                            0),
-                                                                  );
-                                                                  playlistbottomsheet(
-                                                                      context);
-                                                                }),
-                                                                value: 1,
-                                                                child: Row(
-                                                                  children: [
-                                                                    const Icon(
-                                                                      Icons
-                                                                          .playlist_add_check_circle_outlined,
-                                                                      size: 18,
-                                                                      color: Colors
-                                                                          .deepPurple,
-                                                                    ),
-                                                                    const SizedBox(
-                                                                      width: 8,
-                                                                    ),
-                                                                    Text(
-                                                                      'Add To Playlist',
-                                                                      style: GoogleFonts.podkova(
-                                                                          fontSize:
-                                                                              15,
-                                                                          fontWeight: FontWeight
-                                                                              .w700,
-                                                                          color:
-                                                                              Colors.deepPurple),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ]
-                                                        // ),
-
-                                                        ),
-                                                    color: Colors.grey[50],
-                                                    offset: Offset(-0, 0),
-                                                  ),
-
-                                                  //---------------------------------------------/
+                                                  child: PopupmenuBotton2(
+                                                      context), // second popup menu botton
                                                 ),
                                               ],
                                             ),
                                             Text(
-                                              videovariable!.videoName
+                                              videovariable.videoName
                                                   .toString(),
                                               overflow: TextOverflow.ellipsis,
                                               style: GoogleFonts.podkova(
@@ -520,30 +376,11 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                     ),
                   ],
                 ),
-                // ),
-
-                ///-------------------////-------------------------------------//
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  Future<String> getHiveThumbnail(VideoplayerModel video, int index) async {
-    if (video.thumbnail.isNotEmpty) {
-      return '';
-    } else {
-      final fileName = await VideoThumbnail.thumbnailFile(
-        video: video.videoPath.toString(),
-        thumbnailPath: (await getTemporaryDirectory()).path,
-        imageFormat: ImageFormat.PNG,
-        quality: 100,
-      );
-      video.thumbnail = fileName.toString();
-      videoDB.putAt(index, video);
-      return fileName!;
-    }
   }
 }

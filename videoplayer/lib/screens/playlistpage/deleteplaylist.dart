@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:videoplayer/screens/allvideospage/popup.dart';
+import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 
 void DialogBoxDelete(BuildContext context) {
   showDialog(

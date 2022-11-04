@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:videoplayer/screens/allvideospage/popup.dart';
+import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 
