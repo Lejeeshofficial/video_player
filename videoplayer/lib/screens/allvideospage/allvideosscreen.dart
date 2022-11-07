@@ -20,6 +20,7 @@ import 'package:videoplayer/screens/allvideospage/popupmenu2.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
 import 'package:videoplayer/screens/homepage/settingscreen.dart';
+import 'package:videoplayer/screens/homepage/thumbnail.dart';
 import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
@@ -175,8 +176,8 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                             Positioned(
                                               right: 0,
                                               top: 0,
-                                              child: popupmenu(
-                                                  context), // popup menu button
+                                              child: popupmenu(context,
+                                                  index), // popup menu button
                                             ),
                                             Container(
                                               child: Positioned(
@@ -315,6 +316,9 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                         future: getHiveThumbnail(
                                                             videovariable!,
                                                             index), //------------->hivethumbnail calling
+                                                        // future: getThumbnail(
+                                                        //     videovariable!
+                                                        //         .videoPath),
                                                         builder: ((context,
                                                             snapshot) {
                                                           return snapshot

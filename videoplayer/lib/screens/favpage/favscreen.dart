@@ -80,107 +80,120 @@ class FavScreen extends StatelessWidget {
       body: Container(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-          child: Column(
-            children: [
-              GradientText(
-                'My Favourites..',
-                style: GoogleFonts.podkova(
-                    fontSize: 20, fontWeight: FontWeight.w700),
-                colors: const [
-                  Color(0xFF240E8B),
-                  Color(0xFF787FF6),
-                ],
-              ),
+          child: Container(
+            width: double.infinity,
+            child: Column(
+              children: [
+                GradientText(
+                  'My Favourites..',
+                  style: GoogleFonts.podkova(
+                      fontSize: 20, fontWeight: FontWeight.w700),
+                  colors: const [
+                    Color(0xFF240E8B),
+                    Color(0xFF787FF6),
+                  ],
+                ),
 
-              //----------------listview--------------//
-              Expanded(
-                child: ValueListenableBuilder(
-                    valueListenable: favvideoDB
-                        .listenable(), //importing package ' package:hive_flutter/hive_flutter.dart'
-                    builder: (context, videolist, child) {
-                      return videolist.isEmpty
-                          ? const Text('No Videos')
-                          : ListView.builder(
-                              itemCount: videolist.values.length,
-                              itemBuilder: ((context, index) {
-                                FavVideoModel? videovariable =
-                                    favvideoDB.getAt(index);
-                                return InkWell(
-                                  onTap: () {
-                                    List<String> result;
-                                    result = getList(videolist.values.toList());
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => AssetPlayerWidget(
-                                            index: index, urlpassed: result),
-                                      ),
-                                    );
-                                  },
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                                    child: ListTile(
-                                      leading: Container(
-                                        width: 120,
-                                        height: 70,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                //----------------listview--------------//
+                Expanded(
+                  child: ValueListenableBuilder(
+                      valueListenable: favvideoDB
+                          .listenable(), //importing package ' package:hive_flutter/hive_flutter.dart'
+                      builder: (context, videolist, child) {
+                        return videolist.isEmpty
+                            ? Center(
+                                child: Text(
+                                'No Videos',
+                                style: GoogleFonts.podkova(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ))
+                            : ListView.builder(
+                                itemCount: videolist.values.length,
+                                itemBuilder: ((context, index) {
+                                  FavVideoModel? videovariable =
+                                      favvideoDB.getAt(index);
+                                  return InkWell(
+                                    onTap: () {
+                                      List<String> result;
+                                      result =
+                                          getList(videolist.values.toList());
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              AssetPlayerWidget(
+                                                  index: index,
+                                                  urlpassed: result),
                                         ),
-                                        child: FutureBuilder(
-                                          future: getThumbnail(
-                                            videovariable!.favVideoPath
-                                                .toString(),
+                                      );
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 15, 0, 0),
+                                      child: ListTile(
+                                        leading: Container(
+                                          width: 120,
+                                          height: 70,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
-                                          builder: (context, snapshot) =>
-                                              snapshot.hasData
-                                                  ? Container(
-                                                      width: 120,
-                                                      height: 70,
-                                                      child: Image.file(
-                                                        File(snapshot.data!),
-                                                        fit: BoxFit.cover,
+                                          child: FutureBuilder(
+                                            future: getThumbnail(
+                                              videovariable!.favVideoPath
+                                                  .toString(),
+                                            ),
+                                            builder: (context, snapshot) =>
+                                                snapshot.hasData
+                                                    ? Container(
+                                                        width: 120,
+                                                        height: 70,
+                                                        child: Image.file(
+                                                          File(snapshot.data!),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      )
+                                                    : Container(
+                                                        width: 120,
+                                                        height: 80,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          image: const DecorationImage(
+                                                              image: AssetImage(
+                                                                  'assets/play button.jpg'),
+                                                              fit:
+                                                                  BoxFit.cover),
+                                                        ),
                                                       ),
-                                                    )
-                                                  : Container(
-                                                      width: 120,
-                                                      height: 80,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        image: const DecorationImage(
-                                                            image: AssetImage(
-                                                                'assets/play button.jpg'),
-                                                            fit: BoxFit.cover),
-                                                      ),
-                                                    ),
+                                          ),
                                         ),
-                                      ),
-                                      title: Text(
-                                        videovariable.favVideoPath
-                                            .toString()
-                                            .split('/')
-                                            .last,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.podkova(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.blue[900],
+                                        title: Text(
+                                          videovariable.favVideoPath
+                                              .toString()
+                                              .split('/')
+                                              .last,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.podkova(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.blue[900],
+                                          ),
                                         ),
-                                      ),
-                                      trailing: favpopupmenu(index: index),
+                                        trailing: favpopupmenu(index: index),
 
-                                      ///-----------------1st doted line small-----------////
+                                        ///-----------------1st doted line small-----------////
+                                      ),
                                     ),
-                                  ),
-                                );
-                              }),
-                            );
-                    }),
-              ),
-            ],
+                                  );
+                                }),
+                              );
+                      }),
+                ),
+              ],
+            ),
           ),
         ),
       ),

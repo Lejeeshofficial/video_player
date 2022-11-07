@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 
+import '../../main.dart';
+
 void favVideoSanckbar(BuildContext context) {
   final snackbar = SnackBar(
     backgroundColor: Colors.green[200],
@@ -216,7 +218,7 @@ void callplaylist(BuildContext context) {
   snackBarplaylist(context);
 }
 
-void DialogBoxremove(BuildContext context) {
+void DialogBoxremove(BuildContext context, index) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -255,6 +257,7 @@ void DialogBoxremove(BuildContext context) {
         ),
         TextButton(
           onPressed: () {
+            favvideoDB.deleteAt(index);
             snackBarremove(context);
           },
           child: Text(

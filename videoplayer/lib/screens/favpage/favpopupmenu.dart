@@ -5,9 +5,6 @@ import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 
 favpopupmenu({required index}) {
   return PopupMenuButton(
-    onSelected: (value) {
-      favvideoDB.deleteAt(index);
-    },
     icon: const Icon(
       Icons.more_vert_outlined,
       color: Colors.deepPurple,
@@ -15,14 +12,14 @@ favpopupmenu({required index}) {
     iconSize: 23,
     itemBuilder: (context) => [
       PopupMenuItem(
-        //  onTap:  ,
-        // () async {
-        //   await Future.delayed(
-        //     Duration(seconds: 0),
-        //   );
-        //   DialogBoxremove(context);
-        //   //
-        // },
+        onTap: () async {
+          await Future.delayed(
+            Duration(seconds: 0),
+          );
+          DialogBoxremove(context, index);
+
+          //
+        },
         child: Row(
           children: [
             Text(

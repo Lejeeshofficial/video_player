@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 
-Widget popupmenu(BuildContext context) {
+Widget popupmenu(BuildContext context, index) {
   return PopupMenuButton(
     icon: const Icon(
       Icons.more_vert_outlined,
@@ -16,7 +16,7 @@ Widget popupmenu(BuildContext context) {
           await Future.delayed(
             Duration(seconds: 0),
           );
-          DialogBoxremove(context);
+          DialogBoxremove(context, index);
         },
         child: Row(
           children: [

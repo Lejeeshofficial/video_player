@@ -134,7 +134,7 @@ class ScreenWeekendFav extends StatelessWidget {
                                           await Future.delayed(
                                             Duration(seconds: 0),
                                           );
-                                          DialogBoxremove(context);
+                                          DialogBoxremove(context, index);
                                         },
                                         child: Row(
                                           children: [

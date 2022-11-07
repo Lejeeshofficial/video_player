@@ -22,7 +22,7 @@ getfavStatus({required path}) {
   if (result.isEmpty) {
     var favobj = FavVideoModel(favVideoPath: path);
     favvideoDB.add(favobj);
-    log(result.toString());
+    //log(result.toString());
   } else {
     boolfav = true;
   }
