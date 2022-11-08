@@ -161,11 +161,14 @@ class FavScreen extends StatelessWidget {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(10),
-                                                          image: const DecorationImage(
-                                                              image: AssetImage(
-                                                                  'assets/play button.jpg'),
-                                                              fit:
-                                                                  BoxFit.cover),
+                                                          image:
+                                                              const DecorationImage(
+                                                                  image:
+                                                                      AssetImage(
+                                                                    'lib/assets/play button.jpg',
+                                                                  ),
+                                                                  fit: BoxFit
+                                                                      .cover),
                                                         ),
                                                       ),
                                           ),

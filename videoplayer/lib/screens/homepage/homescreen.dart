@@ -64,8 +64,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                     onTap: (() async {
                       await Future.delayed(const Duration(seconds: 0));
                       setState(() {
-                        // BottomNavigationScreen();
-                        print('object');
+                        log('refreshing..');
                       });
                     }),
                     value: 1,
