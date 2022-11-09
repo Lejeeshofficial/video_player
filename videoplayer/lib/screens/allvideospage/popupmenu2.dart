@@ -6,7 +6,7 @@ import 'package:videoplayer/screens/favpage/widgets.dart';
 
 import '../favpage/favscreen.dart';
 
-Widget PopupmenuBotton2({required context, required Path}) {
+Widget PopupmenuBotton2({required context, required path}) {
   return PopupMenuButton(
     icon: const Icon(
       Icons.more_vert_outlined,
@@ -18,7 +18,7 @@ Widget PopupmenuBotton2({required context, required Path}) {
         favVideoSanckbar(context);
       }
       if (value == 'playlist') {
-        playlistbottomsheet(context);
+        playlistbottomsheet(context, path);
       }
     },
     itemBuilder: ((context) => [

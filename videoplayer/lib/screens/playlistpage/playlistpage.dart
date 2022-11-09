@@ -165,79 +165,79 @@ class ScreenPlaylist extends StatelessWidget {
                     Container(
                       height: 122,
                       child: ListView.builder(
-                          itemCount: 4,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                child: Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      //SizedBox(width: 10,),
-                                      Stack(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {},
-                                            child: Container(
-                                              width: 160,
-                                              height: 90,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                image: const DecorationImage(
-                                                  image: AssetImage(
-                                                      'lib/assets/image1.png'),
-                                                ),
+                        itemCount: 4,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                              child: Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    //SizedBox(width: 10,),
+                                    Stack(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Container(
+                                            width: 160,
+                                            height: 90,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              image: const DecorationImage(
+                                                image: AssetImage(
+                                                    'lib/assets/image1.png'),
                                               ),
                                             ),
                                           ),
-                                          Positioned(
-                                            left: 120,
-                                            top: 0,
-                                            child: popupmenu(context,
-                                                index), //----->remove icon
-                                          ),
-                                          Positioned(
-                                            left: 55,
-                                            top: 28,
-                                            child: IconButton(
-                                              onPressed: () {},
-                                              icon: const Icon(
-                                                  Icons.play_circle_outline),
-                                              iconSize: 30,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                        'Special Agent.OSO',
-                                        style: GoogleFonts.podkova(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.blue[900],
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      Text(
-                                        '22:25',
-                                        style: GoogleFonts.podkova(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.grey[900],
+                                        Positioned(
+                                          left: 120,
+                                          top: 0,
+                                          child: popupmenu(context,
+                                              index), //----->remove icon
                                         ),
+                                        Positioned(
+                                          left: 55,
+                                          top: 28,
+                                          child: IconButton(
+                                            onPressed: () {},
+                                            icon: const Icon(
+                                                Icons.play_circle_outline),
+                                            iconSize: 30,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      'Special Agent.OSO',
+                                      style: GoogleFonts.podkova(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.blue[900],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(
+                                      '22:25',
+                                      style: GoogleFonts.podkova(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey[900],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            );
-                          }),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     const SizedBox(
                       width: 10,

@@ -5,7 +5,7 @@ import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 
 import '../favpage/favscreen.dart';
 
-Widget PopupmenuBotton3(BuildContext context) {
+Widget PopupmenuBotton3(BuildContext context, path) {
   return PopupMenuButton(
     icon: const Icon(
       Icons.more_vert_outlined,
@@ -50,7 +50,7 @@ Widget PopupmenuBotton3(BuildContext context) {
                   await Future.delayed(
                     Duration(seconds: 0),
                   );
-                  playlistbottomsheet(context);
+                  playlistbottomsheet(context, path);
                 }),
                 value: 1,
                 child: Row(
