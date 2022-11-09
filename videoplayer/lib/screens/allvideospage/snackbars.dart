@@ -79,7 +79,7 @@ void playlistbottomsheet(BuildContext context) {
                               BorderSide(color: Colors.purple, width: 10),
                         ),
                         label: Text(
-                          'Playlist name',
+                          'Enter Playlist name',
                           style: GoogleFonts.podkova(
                               color: Colors.purple,
                               fontSize: 15,
@@ -98,13 +98,13 @@ void playlistbottomsheet(BuildContext context) {
                       ),
                       child: ElevatedButton.icon(
                         style: ButtonStyle(
-                          //side:MaterialStateProperty.all(BorderSide(style:BorderStyle.solid))),
                           backgroundColor: MaterialStateProperty.all(
                             Colors.purple[900],
                           ),
                           shadowColor: MaterialStateProperty.all(Colors.purple),
                         ),
                         onPressed: () {
+                          playlistadded(context);
                           // Navigator.push(
                           //   context,
                           //   MaterialPageRoute(
@@ -116,7 +116,7 @@ void playlistbottomsheet(BuildContext context) {
                           size: 25,
                         ),
                         label: Text(
-                          'Create a playlist',
+                          'Create a new playlist',
                           style: GoogleFonts.podkova(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -295,5 +295,21 @@ void snackBarremove(BuildContext context) {
     ),
   );
   Navigator.pop(context);
+  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+}
+
+void playlistadded(BuildContext context) {
+  final snackbar = SnackBar(
+    backgroundColor: Colors.green[200],
+    behavior: SnackBarBehavior.floating,
+    content: Text(
+      'Play list created successfully',
+      style: GoogleFonts.podkova(
+        fontSize: 15,
+        fontWeight: FontWeight.w700,
+        color: Colors.purple[900],
+      ),
+    ),
+  );
   ScaffoldMessenger.of(context).showSnackBar(snackbar);
 }
