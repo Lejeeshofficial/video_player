@@ -17,7 +17,9 @@ Widget PopupmenuBotton2({required context, required Path}) {
         getfavStatus(path: Path);
         favVideoSanckbar(context);
       }
-      if (value == 'playlist') {}
+      if (value == 'playlist') {
+        playlistbottomsheet(context);
+      }
     },
     itemBuilder: ((context) => [
               PopupMenuItem(

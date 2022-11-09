@@ -291,76 +291,92 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                             Stack(
                                               children: [
                                                 GestureDetector(
-                                                    onTap: (() {
-                                                      Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              AssetPlayerWidget(
-                                                            index: index,
-                                                            urlpassed:
-                                                                fetchedVideosPath,
-                                                          ),
+                                                  onTap: (() {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            AssetPlayerWidget(
+                                                          index: index,
+                                                          urlpassed:
+                                                              fetchedVideosPath,
                                                         ),
-                                                      );
-                                                    }),
-                                                    child: Container(
-                                                      width: 160,
-                                                      height: 110,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
                                                       ),
-                                                      child: FutureBuilder(
-                                                        future: getHiveThumbnail(
-                                                            videovariable!,
-                                                            index), //------------->hivethumbnail calling
-                                                        // future: getThumbnail(
-                                                        //     videovariable!
-                                                        //         .videoPath),
-                                                        builder: ((context,
-                                                            snapshot) {
-                                                          return snapshot
-                                                                  .hasData
-                                                              ? Container(
-                                                                  width: 100,
-                                                                  height: 70,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            20),
-                                                                  ),
-                                                                  child: Image
-                                                                      .file(
-                                                                    File(videovariable
-                                                                        .thumbnail),
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  ),
-                                                                )
-                                                              : Container(
-                                                                  width: 100,
-                                                                  height: 70,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10),
-                                                                    image: const DecorationImage(
-                                                                        image: AssetImage(
-                                                                            'lib/assets/play button.jpg'),
-                                                                        fit: BoxFit
-                                                                            .cover),
-                                                                  ),
-                                                                );
-                                                        }),
+                                                    );
+                                                  }),
+                                                  child: Stack(
+                                                    children: [
+                                                      Container(
+                                                        width: 160,
+                                                        height: 110,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                        ),
+                                                        child: FutureBuilder(
+                                                          future: getHiveThumbnail(
+                                                              videovariable!,
+                                                              index), //------------->hivethumbnail calling
+                                                          // future: getThumbnail(
+                                                          //     videovariable!
+                                                          //         .videoPath),
+                                                          builder: ((context,
+                                                              snapshot) {
+                                                            return snapshot
+                                                                    .hasData
+                                                                ? Container(
+                                                                    width: 100,
+                                                                    height: 70,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              20),
+                                                                    ),
+                                                                    child: Image
+                                                                        .file(
+                                                                      File(videovariable
+                                                                          .thumbnail),
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    width: 100,
+                                                                    height: 70,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10),
+                                                                      image: const DecorationImage(
+                                                                          image: AssetImage(
+                                                                              'lib/assets/play button.jpg'),
+                                                                          fit: BoxFit
+                                                                              .cover),
+                                                                    ),
+                                                                  );
+                                                          }),
+                                                        ),
                                                       ),
-                                                    )),
+                                                      const Positioned(
+                                                        left: 65,
+                                                        top: 40,
+                                                        child: Icon(
+                                                          Icons
+                                                              .play_circle_outline,
+                                                          color: Colors.white,
+                                                          size: 30,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                                 Positioned(
-                                                  top: 4,
-                                                  left: 120,
+                                                  top: -5,
+                                                  right: -10,
                                                   child: PopupmenuBotton2(
                                                       context: context,
                                                       Path: videovariable

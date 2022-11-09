@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
+import 'package:videoplayer/screens/playlistpage/popupremove.dart';
 
 import '../../main.dart';
 
@@ -23,169 +24,175 @@ void favVideoSanckbar(BuildContext context) {
 
 void playlistbottomsheet(BuildContext context) {
   showModalBottomSheet(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30),
+    // elevation: 70,
+    isScrollControlled: true,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(15.0),
+      ),
     ),
-    backgroundColor: Colors.pink[50],
     context: context,
     builder: (context) {
-      return Container(
-        height: MediaQuery.of(context).size.height * .35,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: 25,
-                      color: Colors.purple[900],
+      return DraggableScrollableSheet(
+        expand: false,
+        builder: (BuildContext context, ScrollController scrollController) {
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                            Icons.arrow_back,
+                            size: 25,
+                            color: Colors.purple[900],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 72,
+                        ),
+                        Text(
+                          'Add to Playlist',
+                          style: GoogleFonts.podkova(
+                            fontSize: 20,
+                            color: Colors.purple[900],
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    width: 72,
-                  ),
-                  Text(
-                    'Add to Playlist',
-                    style: GoogleFonts.podkova(
-                      fontSize: 20,
-                      color: Colors.purple[900],
-                      fontWeight: FontWeight.w700,
+                    const SizedBox(
+                      height: 15,
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.playlist_add_circle_outlined,
-                    size: 30,
-                    color: Colors.purple[900],
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    'Weekend Fav',
-                    style: GoogleFonts.podkova(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18,
-                      color: Colors.purple[900],
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 10),
+                        ),
+                        label: Text(
+                          'Playlist name',
+                          style: GoogleFonts.podkova(
+                              color: Colors.purple,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 140,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      callplaylist(context);
-                      await Future.delayed(
-                        Duration(seconds: 0),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * .80,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: ElevatedButton.icon(
+                        style: ButtonStyle(
+                          //side:MaterialStateProperty.all(BorderSide(style:BorderStyle.solid))),
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.purple[900],
+                          ),
+                          shadowColor: MaterialStateProperty.all(Colors.purple),
+                        ),
+                        onPressed: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => ScreenPlaylist()),
+                          // );
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          size: 25,
+                        ),
+                        label: Text(
+                          'Create a playlist',
+                          style: GoogleFonts.podkova(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                  ]),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: AlwaysScrollableScrollPhysics(),
+                    controller: scrollController,
+                    itemCount: 2,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.playlist_add_circle_outlined,
+                              size: 30,
+                              color: Colors.purple[900],
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              'Weekend Fav',
+                              style: GoogleFonts.podkova(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+                                color: Colors.purple[900],
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 85,
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                callplaylist(context);
+                                await Future.delayed(
+                                  Duration(seconds: 0),
+                                );
+                              },
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                  Colors.purple[900],
+                                ),
+                              ),
+                              child: Text(
+                                'Add',
+                                style: GoogleFonts.podkova(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            popupmenueditandremove(context),
+                            //---------------------->
+                          ],
+                        ),
                       );
                     },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                        Colors.purple[900],
-                      ),
-                    ),
-                    child: Text(
-                      'Add',
-                      style: GoogleFonts.podkova(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
-                    ),
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.playlist_add_circle_outlined,
-                    size: 30,
-                    color: Colors.purple[900],
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    'Party Mix',
-                    style: GoogleFonts.podkova(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18,
-                      color: Colors.purple[900],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 167,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      callplaylist(context);
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                        Colors.purple[900],
-                      ),
-                    ),
-                    child: Text(
-                      'Add',
-                      style: GoogleFonts.podkova(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton.icon(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                        Colors.purple[900],
-                      ),
-                      shadowColor: MaterialStateProperty.all(Colors.purple),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ScreenPlaylist()),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.add,
-                      size: 25,
-                    ),
-                    label: Text(
-                      'Create a playlist',
-                      style: GoogleFonts.podkova(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+                )
+              ],
+            ),
+          );
+        },
       );
     },
   );
@@ -272,7 +279,6 @@ void DialogBoxremove(BuildContext context, index) {
       ],
     ),
   );
-  // Navigator.pop(context);
 }
 
 void snackBarremove(BuildContext context) {

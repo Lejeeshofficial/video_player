@@ -125,43 +125,58 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                     ),
                                     Row(
                                       children: [
-                                        Container(
-                                          width: 100,
-                                          height: 70,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                10), //-------------------------------..
-                                          ),
-                                          child: FutureBuilder(
-                                            future: getThumbnail(value1[index]),
-                                            builder: (context,
-                                                    AsyncSnapshot<String?>
-                                                        snapshot) =>
-                                                snapshot.hasData
-                                                    ? Container(
-                                                        width: 100,
-                                                        height: 70,
-                                                        child: Image.file(
-                                                          File(snapshot.data!),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      )
-                                                    : Container(
-                                                        width: 100,
-                                                        height: 70,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          image: const DecorationImage(
-                                                              image: AssetImage(
-                                                                  'lib/assets/play button.jpg'),
-                                                              fit:
-                                                                  BoxFit.cover),
-                                                        ),
-                                                      ),
-                                          ),
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              width: 100,
+                                              height: 70,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(
+                                                    10), //-------------------------------..
+                                              ),
+                                              child: FutureBuilder(
+                                                future:
+                                                    getThumbnail(value1[index]),
+                                                builder: (context,
+                                                        AsyncSnapshot<String?>
+                                                            snapshot) =>
+                                                    snapshot.hasData
+                                                        ? Container(
+                                                            width: 100,
+                                                            height: 70,
+                                                            child: Image.file(
+                                                              File(snapshot
+                                                                  .data!),
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          )
+                                                        : Container(
+                                                            width: 100,
+                                                            height: 70,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              image: const DecorationImage(
+                                                                  image: AssetImage(
+                                                                      'lib/assets/play button.jpg'),
+                                                                  fit: BoxFit
+                                                                      .cover),
+                                                            ),
+                                                          ),
+                                              ),
+                                            ),
+                                            const Positioned(
+                                              left: 40,
+                                              top: 25,
+                                              child: Icon(
+                                                Icons.play_circle_outline,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         const SizedBox(
                                           width: 10,

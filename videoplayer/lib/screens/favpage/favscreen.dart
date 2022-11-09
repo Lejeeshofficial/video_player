@@ -133,7 +133,8 @@ class FavScreen extends StatelessWidget {
                                       child: ListTile(
                                         leading: Container(
                                           width: 120,
-                                          height: 70,
+                                          height:
+                                              120, //---------------------->70
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -145,17 +146,33 @@ class FavScreen extends StatelessWidget {
                                             ),
                                             builder: (context, snapshot) =>
                                                 snapshot.hasData
-                                                    ? Container(
-                                                        width: 120,
-                                                        height: 70,
-                                                        child: Image.file(
-                                                          File(snapshot.data!),
-                                                          fit: BoxFit.cover,
-                                                        ),
+                                                    ? Stack(
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            height:
+                                                                100, //-------------------->80
+                                                            child: Image.file(
+                                                              File(snapshot
+                                                                  .data!),
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                          const Positioned(
+                                                              child: Center(
+                                                            child: Icon(
+                                                              Icons
+                                                                  .play_circle_outline,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                          ))
+                                                        ],
                                                       )
                                                     : Container(
                                                         width: 120,
-                                                        height: 80,
+                                                        height:
+                                                            120, //--------------------->80
                                                         decoration:
                                                             BoxDecoration(
                                                           borderRadius:
@@ -186,8 +203,6 @@ class FavScreen extends StatelessWidget {
                                           ),
                                         ),
                                         trailing: favpopupmenu(index: index),
-
-                                        ///-----------------1st doted line small-----------////
                                       ),
                                     ),
                                   );
