@@ -6,31 +6,29 @@ import 'package:videoplayer/screens/favpage/widgets.dart';
 
 import '../favpage/favscreen.dart';
 
-Widget PopupmenuBottonhome({required context, required Path}) {
+Widget PopupmenuBottonhome({required context, required path, required index}) {
   return PopupMenuButton(
     icon: const Icon(
       Icons.more_vert_outlined,
-      color: Colors.deepPurple,
+      color: Colors.purple,
     ),
-    onSelected: (value) {
-      if (value == 'fav') {
-        // getfavStatus(path: Path);
-        favVideoSanckbar(context);
-      }
-      if (value == 'playlist') {}
-    },
+    // onSelected: (value) {
+    //   // if (value == 'fav') {
+    //   //   getfavStatus(path: Path);
+    //   // //  favVideoSanckbar(context);
+    //   // }
+    //   // if (value == 'playlist') {
+    //   //   playlistbottomsheet(context, path);
+    //   // }
+    // },
     itemBuilder: ((context) => [
               PopupMenuItem(
-                // onTap: () async {
-                //   final navigator = Navigator.of(context);
-                //   await Future.delayed(Duration(seconds: 0));
-                //   navigator.push(
-                //     MaterialPageRoute(
-                //       builder: (context) => FavScreen(),
-                //     ),
-                //   );
-                //   favVideoSanckbar(context);
-                // },
+                onTap: () async {
+                  final navigator = Navigator.of(context);
+                  await Future.delayed(Duration(seconds: 0));
+                  // getfavStatus(path: path);
+                  // favVideoSanckbar(context);
+                },
                 value: 'fav',
                 child: Row(
                   children: [
@@ -42,24 +40,37 @@ Widget PopupmenuBottonhome({required context, required Path}) {
                     const SizedBox(
                       width: 8,
                     ),
-                    Text(
-                      'Add To Favourites',
-                      style: GoogleFonts.podkova(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.deepPurple),
-                    )
+                    getfavStatusname(
+                        path: path,
+                        context: context,
+                        indexee:
+                            index), //------->it dicides the 'text' and its 'snack bar'
+                    // boolfav == true
+                    //     ? Text(
+                    //         'Remove From Favourites',
+                    //         style: GoogleFonts.podkova(
+                    //             fontSize: 15,
+                    //             fontWeight: FontWeight.w700,
+                    //             color: Colors.deepPurple),
+                    //       )
+                    //     : Text(
+                    //         'Add To Favourites',
+                    //         style: GoogleFonts.podkova(
+                    //             fontSize: 15,
+                    //             fontWeight: FontWeight.w700,
+                    //             color: Colors.deepPurple),
+                    //       )
                   ],
                 ),
               ),
               PopupMenuItem(
-                // onTap: (() async {
-                //   final navigator = Navigator.of(context);
-                //   await Future.delayed(
-                //     Duration(seconds: 0),
-                //   );
-                //   playlistbottomsheet(context);
-                // }),
+                onTap: (() async {
+                  final navigator = Navigator.of(context);
+                  await Future.delayed(
+                    Duration(seconds: 0),
+                  );
+                  playlistbottomsheet(context, path);
+                }),
                 value: 'playlist',
                 child: Row(
                   children: [
