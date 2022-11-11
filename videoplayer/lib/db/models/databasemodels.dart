@@ -16,6 +16,8 @@ class VideoplayerModel {
   String thumbnail;
   @HiveField(4)
   bool isFav;
+  @HiveField(5)
+  int? id;
 
   VideoplayerModel({
     required this.videoPath,
@@ -23,6 +25,7 @@ class VideoplayerModel {
     required this.folderPath,
     required this.thumbnail,
     required this.isFav,
+    this.id,
   });
 }
 
@@ -31,9 +34,12 @@ class VideoplayerModel {
 class FavVideoModel {
   @HiveField(0)
   final String favVideoPath;
+  @HiveField(1)
+  var id;
 
   FavVideoModel({
     required this.favVideoPath,
+    this.id,
   });
 }
 

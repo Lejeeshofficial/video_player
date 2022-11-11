@@ -378,9 +378,11 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                   top: -5,
                                                   right: -10,
                                                   child: PopupmenuBotton2(
-                                                      context: context,
-                                                      path: videovariable
-                                                          .videoPath), // second popup menu botton to add fav and playlist
+                                                    context: context,
+                                                    path:
+                                                        videovariable.videoPath,
+                                                    index: index,
+                                                  ), // second popup menu botton to add fav and playlist
                                                 ),
                                               ],
                                             ),

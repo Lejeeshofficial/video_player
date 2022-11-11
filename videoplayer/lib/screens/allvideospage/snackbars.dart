@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
+import 'package:videoplayer/screens/allvideospage/playlistpopuplist.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/playlistpage/popupremove.dart';
-
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../main.dart';
 
 void favVideoSanckbar(BuildContext context) {
@@ -153,63 +154,26 @@ void playlistbottomsheet(BuildContext context, path) {
                     ]),
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: AlwaysScrollableScrollPhysics(),
-                      controller: scrollController,
-                      itemCount: 2,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.playlist_add_circle_outlined,
-                                size: 30,
-                                color: Colors.purple[900],
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Weekend Fav',
-                                style: GoogleFonts.podkova(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
-                                  color: Colors.purple[900],
+                    child: ValueListenableBuilder(
+                      valueListenable: playlistnameDB.listenable(),
+                      builder: (context, playlistname, child) =>
+                          playlistnameDB.isEmpty
+                              ? Text('NO playlists')
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: AlwaysScrollableScrollPhysics(),
+                                  controller: scrollController,
+                                  itemCount: playlistnameDB.values.length,
+                                  itemBuilder: (context, index) {
+                                    PlaylistNameModel? playlistobj =
+                                        playlistnameDB.getAt(index);
+                                    return Playlistpopuplist(
+                                      foldername: playlistobj!,
+                                      videopath: path,
+                                      index: index,
+                                    );
+                                  },
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 85,
-                              ),
-                              ElevatedButton(
-                                onPressed: () async {
-                                  callplaylist(context);
-                                  await Future.delayed(
-                                    Duration(seconds: 0),
-                                  );
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                    Colors.purple[900],
-                                  ),
-                                ),
-                                child: Text(
-                                  'Add',
-                                  style: GoogleFonts.podkova(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              popupmenueditandremove(context),
-                              //---------------------->
-                            ],
-                          ),
-                        );
-                      },
                     ),
                   )
                 ],

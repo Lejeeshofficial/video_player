@@ -22,13 +22,14 @@ class VideoplayerModelAdapter extends TypeAdapter<VideoplayerModel> {
       folderPath: fields[2] as String,
       thumbnail: fields[3] as String,
       isFav: fields[4] as bool,
+      id: fields[5] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, VideoplayerModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.videoPath)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class VideoplayerModelAdapter extends TypeAdapter<VideoplayerModel> {
       ..writeByte(3)
       ..write(obj.thumbnail)
       ..writeByte(4)
-      ..write(obj.isFav);
+      ..write(obj.isFav)
+      ..writeByte(5)
+      ..write(obj.id);
   }
 
   @override
@@ -64,15 +67,18 @@ class FavVideoModelAdapter extends TypeAdapter<FavVideoModel> {
     };
     return FavVideoModel(
       favVideoPath: fields[0] as String,
+      id: fields[1] as dynamic,
     );
   }
 
   @override
   void write(BinaryWriter writer, FavVideoModel obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.favVideoPath);
+      ..write(obj.favVideoPath)
+      ..writeByte(1)
+      ..write(obj.id);
   }
 
   @override
