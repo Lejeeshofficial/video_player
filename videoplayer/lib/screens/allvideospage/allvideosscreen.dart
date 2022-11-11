@@ -309,12 +309,11 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                       Container(
                                                         width: 160,
                                                         height: 110,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                        ),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        30)),
                                                         child: FutureBuilder(
                                                           future: getHiveThumbnail(
                                                               videovariable!,
@@ -333,7 +332,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                                         BoxDecoration(
                                                                       borderRadius:
                                                                           BorderRadius.circular(
-                                                                              20),
+                                                                              50), //20
                                                                     ),
                                                                     child: Image
                                                                         .file(
@@ -350,7 +349,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                                         BoxDecoration(
                                                                       borderRadius:
                                                                           BorderRadius.circular(
-                                                                              10),
+                                                                              20),
                                                                       image: const DecorationImage(
                                                                           image: AssetImage(
                                                                               'lib/assets/play button.jpg'),

@@ -78,7 +78,7 @@ class Playlistpopuplist extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          popupmenueditandremove(context),
+          popupmenueditandremove(context, index),
           //---------------------->
         ],
       ),

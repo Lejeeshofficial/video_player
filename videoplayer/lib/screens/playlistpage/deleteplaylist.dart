@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:videoplayer/main.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 
-void DialogBoxDelete(BuildContext context) {
+void DialogBoxDelete(BuildContext context, index) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -42,6 +43,7 @@ void DialogBoxDelete(BuildContext context) {
         ),
         TextButton(
           onPressed: () {
+            playlistnameDB.deleteAt(index);
             snackBarremove(context);
           },
           child: Text(

@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:videoplayer/main.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 import 'package:videoplayer/screens/playlistpage/deleteplaylist.dart';
+import 'package:videoplayer/screens/playlistpage/editplaylist.dart';
 
 void popupmenuremove(BuildContext context, index) {
   PopupMenuButton(
@@ -44,7 +48,7 @@ void popupmenuremove(BuildContext context, index) {
   );
 }
 
-Widget popupmenueditandremove(BuildContext context) {
+Widget popupmenueditandremove(context, index) {
   return PopupMenuButton(
     icon: const Icon(
       Icons.more_vert_outlined,
@@ -55,6 +59,7 @@ Widget popupmenueditandremove(BuildContext context) {
           PopupMenuItem(
             onTap: (() async {
               await Future.delayed(const Duration(seconds: 0));
+              editplaylistname(context: context, index: index);
             }),
             value: 1,
             // child: InkWell(
@@ -90,7 +95,8 @@ Widget popupmenueditandremove(BuildContext context) {
               await Future.delayed(
                 Duration(seconds: 0),
               );
-              DialogBoxDelete(context);
+
+              DialogBoxDelete(context, index);
             },
             value: 1,
             child: Row(
