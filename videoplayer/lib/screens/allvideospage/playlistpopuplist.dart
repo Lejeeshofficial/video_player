@@ -26,19 +26,22 @@ class Playlistpopuplist extends StatelessWidget {
         children: [
           Icon(
             Icons.playlist_add_circle_outlined,
-            size: 30,
+            size: 40,
             color: Colors.purple[900],
           ),
           const SizedBox(
             width: 20,
           ),
-          Text(
-            foldername.addPlaylist,
-            overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.podkova(
-              fontWeight: FontWeight.w700,
-              fontSize: 18,
-              color: Colors.purple[900],
+          SizedBox(
+            width: 102,
+            child: Text(
+              foldername.addPlaylist,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.podkova(
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
+                color: Colors.purple[900],
+              ),
             ),
           ),
           const SizedBox(

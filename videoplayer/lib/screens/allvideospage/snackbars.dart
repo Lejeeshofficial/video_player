@@ -158,7 +158,14 @@ void playlistbottomsheet(BuildContext context, path) {
                       valueListenable: playlistnameDB.listenable(),
                       builder: (context, playlistname, child) =>
                           playlistnameDB.isEmpty
-                              ? Text('NO playlists')
+                              ? Center(
+                                  child: Text(
+                                    'No playlists',
+                                    style: GoogleFonts.podkova(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )
                               : ListView.builder(
                                   shrinkWrap: true,
                                   physics: AlwaysScrollableScrollPhysics(),
