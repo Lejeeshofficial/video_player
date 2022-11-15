@@ -3,12 +3,15 @@ import 'dart:io';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path/path.dart';
 // import 'package:flutter/src/widgets/container.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:path/path.dart';
 import 'package:video_player/video_player.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
+import 'package:videoplayer/db/models/databasemodels.dart';
+import 'package:videoplayer/screens/recently/recentlistfun.dart';
 import 'package:videoplayer/screens/videoplayerpage/datamanager.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayercontrols.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -33,6 +36,10 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
   @override
   void initState() {
     super.initState();
+    var index = widget.index;
+    var urls = widget.urlpassed;
+    RecentListModel obj = RecentListModel(recentPath: urls[index]);
+    getRecentStatus(path: urls[index]);
     flickManager = FlickManager(
         videoPlayerController: VideoPlayerController.file(
           File(widget.urlpassed[widget

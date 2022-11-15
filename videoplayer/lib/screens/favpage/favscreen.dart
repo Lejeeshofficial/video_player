@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
+import 'package:videoplayer/screens/allvideospage/allvideosscreen.dart';
 import 'package:videoplayer/screens/allvideospage/hivethumbnail.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 import 'package:videoplayer/screens/favpage/favpopupmenu.dart';
@@ -64,7 +65,7 @@ class FavScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BottomNavigationScreen(),
+                  builder: (context) => ScreenAllvideos(),
                 ),
               );
             },

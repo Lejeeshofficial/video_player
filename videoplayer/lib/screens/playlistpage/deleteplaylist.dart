@@ -43,8 +43,9 @@ void DialogBoxDelete(BuildContext context, index) {
         ),
         TextButton(
           onPressed: () {
+            //  playlistvideoDB.clear();
             playlistnameDB.deleteAt(index);
-            // playlistvideoDB.deleteAt(index);
+
             snackBarremove(context);
           },
           child: Text(

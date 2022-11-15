@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
+import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 
 editplaylistname({required context, required index}) {
   final textcontroller = TextEditingController();
+
   return showDialog(
     context: context,
     builder: ((context) {
@@ -20,6 +23,9 @@ editplaylistname({required context, required index}) {
         content: TextFormField(
           controller: textcontroller,
           decoration: const InputDecoration(
+            hintText: 'Updated name',
+            hintStyle:
+                const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             border: OutlineInputBorder(),
           ),
         ),
@@ -28,7 +34,9 @@ editplaylistname({required context, required index}) {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 icon: const Icon(
                   Icons.delete_forever,
                   color: Colors.red,

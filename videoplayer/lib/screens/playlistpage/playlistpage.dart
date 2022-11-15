@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
+import 'package:videoplayer/screens/allvideospage/allvideosscreen.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
 import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
@@ -65,7 +66,7 @@ class ScreenPlaylist extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BottomNavigationScreen(),
+                  builder: (context) => ScreenAllvideos(),
                 ),
               );
             },
@@ -82,10 +83,12 @@ class ScreenPlaylist extends StatelessWidget {
         valueListenable: playlistnameDB.listenable(),
         builder: (context, value, child) {
           return playlistnameDB.isEmpty
-              ? Text(
-                  'No Playlist created',
-                  style: GoogleFonts.podkova(
-                      fontSize: 14, fontWeight: FontWeight.bold),
+              ? Center(
+                  child: Text(
+                    'No Playlist created',
+                    style: GoogleFonts.podkova(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 )
               : Container(
                   child: Padding(
@@ -156,20 +159,14 @@ class ScreenPlaylist extends StatelessWidget {
                               Row(
                                 children: [
                                   const SizedBox(
-                                    width: 343,
+                                    width: 290,
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: ((context) =>
-                                              ScreenWeekendFav()),
-                                        ),
-                                      );
+                                      playlistvideoDB.clear();
                                     },
                                     child: GradientText(
-                                      'All',
+                                      'Clear All',
                                       style: GoogleFonts.podkova(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w500),

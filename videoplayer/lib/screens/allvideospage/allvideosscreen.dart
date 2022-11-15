@@ -23,6 +23,7 @@ import 'package:videoplayer/screens/homepage/settingscreen.dart';
 import 'package:videoplayer/screens/homepage/thumbnail.dart';
 import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
+import 'package:videoplayer/screens/recently/recently.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 
 class ScreenAllvideos extends StatefulWidget {
@@ -63,171 +64,11 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
               // mainAxisSize: MainAxisSize.min,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(0),
-                      shape: BoxShape.rectangle),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                            child: GradientText(
-                              colors: const [
-                                Color(0xFF240E8B),
-                                Color(0xFF787FF6),
-                              ],
-                              'Recently Played...',
-                              style: GoogleFonts.podkova(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black87),
-                            ),
-                          ),
-                        ],
-                      ),
+                recentlistDB.isEmpty
+                    ? SizedBox()
+                    : recentlypart(
+                        context), //---------------calling recently tabs
 
-                      ///-----------------------Recently viewed_---------------///
-
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * .94,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ScreenPartyMix()),
-                              );
-                            },
-                            child: Icon(
-                              Icons.arrow_forward_sharp,
-                              size: 20,
-                              color: Colors.purple[900],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * .21,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 3,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(5, 0, 10, 0),
-                                  child: Container(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Stack(
-                                          children: [
-                                            InkWell(
-                                              onTap: (() {}),
-                                              child: Container(
-                                                width: 300,
-                                                height: 170,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  image: const DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: AssetImage(
-                                                        'lib/assets/party2.jpeg'),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                              top: 10,
-                                              left: 10,
-                                              child: Text(
-                                                'Prince and Queen',
-                                                style: GoogleFonts.podkova(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                              top: 25,
-                                              left: 10,
-                                              child: Text(
-                                                'Sam Joseph',
-                                                style: GoogleFonts.podkova(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                              right: 0,
-                                              top: 0,
-                                              child: popupmenu(context,
-                                                  index), // popup menu button
-                                            ),
-                                            Container(
-                                              child: Positioned(
-                                                width: 300,
-                                                height: 170,
-                                                child: Center(
-                                                  child: IconButton(
-                                                    onPressed: () {},
-                                                    icon: Icon(Icons
-                                                        .play_circle_outline),
-                                                    iconSize: 30,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 2,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(1, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            for (int i = 0; i <= 77; i++)
-                              Container(
-                                width: 5,
-                                height: 2,
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                              )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 10,
                 ),
