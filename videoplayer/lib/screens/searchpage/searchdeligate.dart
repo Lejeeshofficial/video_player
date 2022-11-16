@@ -61,7 +61,7 @@ class SearchVideos extends SearchDelegate<VideoData> {
             )
             .toList();
     return Scaffold(
-        backgroundColor: Colors.purple[200],
+        backgroundColor: Colors.black,
         body: mylist.isEmpty
             ? Center(
                 child: Text(
@@ -97,7 +97,9 @@ class SearchVideos extends SearchDelegate<VideoData> {
                   );
                 }),
                 separatorBuilder: ((context, index) {
-                  return Divider();
+                  return Divider(
+                    color: Colors.white,
+                  );
                 }),
                 itemCount: mylist.length));
   }

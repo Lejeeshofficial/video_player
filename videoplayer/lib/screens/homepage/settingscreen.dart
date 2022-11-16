@@ -44,92 +44,61 @@ class _ScreenSettingState extends State<ScreenSetting> {
               Row(
                 children: [
                   const Icon(
-                    Icons.notifications_active_outlined,
-                    size: 25,
-                    color: Colors.deepPurple,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Notifications',
-                    style: GoogleFonts.podkova(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.purple[900]),
-                  ),
-                  const SizedBox(
-                    width: 150,
-                  ),
-                  Switch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    },
-                    activeColor: Colors.purple[900],
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Icon(
                     Icons.lock_outlined,
-                    size: 25,
+                    size: 30,
                     color: Colors.deepPurple,
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 15,
                   ),
                   Text(
                     'Privacy and Policy',
                     style: GoogleFonts.podkova(
-                        fontSize: 20,
+                        fontSize: 23,
                         fontWeight: FontWeight.w700,
                         color: Colors.purple[900]),
                   ),
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Row(
                 children: [
                   const Icon(
                     Icons.notes_outlined,
-                    size: 25,
+                    size: 30,
                     color: Colors.deepPurple,
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 15,
                   ),
                   Text(
                     'Terms and conditions',
                     style: GoogleFonts.podkova(
-                        fontSize: 20,
+                        fontSize: 23,
                         fontWeight: FontWeight.w700,
                         color: Colors.purple[900]),
                   ),
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Row(
                 children: [
                   const Icon(
                     Icons.adb_outlined,
-                    size: 25,
+                    size: 30,
                     color: Colors.deepPurple,
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 15,
                   ),
                   Text(
                     'About',
                     style: GoogleFonts.podkova(
-                        fontSize: 20,
+                        fontSize: 23,
                         fontWeight: FontWeight.w700,
                         color: Colors.purple[900]),
                   ),

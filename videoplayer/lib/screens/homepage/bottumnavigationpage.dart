@@ -21,7 +21,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     const ScreenAllvideos(),
     const FavScreen(),
     const ScreenPlaylist(),
-    const ScreenSearch()
+    //const ScreenSearch()
   ];
 
   @override
@@ -77,12 +77,12 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                   // color: Colors.white,
                 ),
                 label: 'Playlist'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.search_outlined,
-                  //color: Colors.white,
-                ),
-                label: 'Search'),
+            // BottomNavigationBarItem(
+            //     icon: Icon(
+            //       Icons.search_outlined,
+            //       //color: Colors.white,
+            //     ),
+            //     label: 'Search'),
           ],
         ),
       ),
