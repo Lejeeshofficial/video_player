@@ -24,6 +24,7 @@ import 'package:videoplayer/screens/homepage/thumbnail.dart';
 import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/recently/recently.dart';
+import 'package:videoplayer/screens/searchpage/searchdeligate.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 
 class ScreenAllvideos extends StatefulWidget {
@@ -36,6 +37,10 @@ class ScreenAllvideos extends StatefulWidget {
 class _ScreenAllvideos extends State<ScreenAllvideos> {
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      recentlistDB.isEmpty ? SizedBox() : recentlypart(context);
+    });
+
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -56,6 +61,17 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
           style: GoogleFonts.podkova(
               color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: SearchVideos());
+            },
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: CupertinoScrollbar(
@@ -64,10 +80,8 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
               // mainAxisSize: MainAxisSize.min,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                recentlistDB.isEmpty
-                    ? SizedBox()
-                    : recentlypart(
-                        context), //---------------calling recently tabs
+                //---------------calling recently tabs
+                recentlistDB.isEmpty ? SizedBox() : recentlypart(context),
 
                 SizedBox(
                   height: 10,
@@ -84,7 +98,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                             borderRadius: BorderRadius.circular(20)),
                         child: Center(
                           child: Text(
-                            'All Videos',
+                            'All Videos (${videoDB.length})',
                             style: GoogleFonts.podkova(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,

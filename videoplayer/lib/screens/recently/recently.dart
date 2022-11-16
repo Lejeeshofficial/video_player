@@ -31,7 +31,7 @@ Widget recentlypart(context) {
                   Color(0xFF240E8B),
                   Color(0xFF787FF6),
                 ],
-                'Recently Played...',
+                'Recently Played (${recentlistDB.length})',
                 style: GoogleFonts.podkova(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
@@ -55,7 +55,9 @@ Widget recentlypart(context) {
               child: Text(
                 'Clear All',
                 style: GoogleFonts.podkova(
-                    fontSize: 20, fontWeight: FontWeight.bold),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple),
               ),
             ),
           ],
