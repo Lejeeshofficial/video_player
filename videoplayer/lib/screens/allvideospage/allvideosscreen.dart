@@ -1,15 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:simple_gradient_text/simple_graart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
@@ -69,6 +65,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
             icon: const Icon(
               Icons.search,
               color: Colors.white,
+              size: 30,
             ),
           ),
         ],

@@ -34,30 +34,27 @@ Widget recentlypart(context) {
                 'Recently Played (${recentlistDB.length})',
                 style: GoogleFonts.podkova(
                     fontSize: 18,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.bold,
                     color: Colors.black87),
               ),
             ),
-          ],
-        ),
-
-        ///-----------------------Recently viewed_---------------///
-
-        Row(
-          children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * .76,
+              width: MediaQuery.of(context).size.width * .35,
             ),
             InkWell(
               onTap: () {
+                // popupmenurecentlistalldelte(context);
                 recentlistDB.clear();
               },
-              child: Text(
-                'Clear All',
-                style: GoogleFonts.podkova(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: Text(
+                  'Clear All',
+                  style: GoogleFonts.podkova(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple),
+                ),
               ),
             ),
           ],
@@ -73,10 +70,12 @@ Widget recentlypart(context) {
               return Container(
                 height: MediaQuery.of(context).size.height * .21,
                 child: ListView.builder(
+                    reverse: true,
                     scrollDirection: Axis.horizontal,
                     itemCount: recentlistDB.length,
                     itemBuilder: (context, index) {
                       RecentListModel? obj = recentlistDB.getAt(index);
+
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
                         child: Container(
@@ -88,6 +87,7 @@ Widget recentlypart(context) {
                                   InkWell(
                                     onTap: (() {
                                       List<String> list = getListrecent();
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
