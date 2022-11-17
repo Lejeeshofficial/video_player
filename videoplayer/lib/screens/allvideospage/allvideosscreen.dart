@@ -10,15 +10,10 @@ import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
+import 'package:videoplayer/screens/allvideospage/dropdownmenusort.dart';
 import 'package:videoplayer/screens/allvideospage/hivethumbnail.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu2.dart';
-import 'package:videoplayer/screens/allvideospage/snackbars.dart';
-import 'package:videoplayer/screens/favpage/favscreen.dart';
-import 'package:videoplayer/screens/homepage/settingscreen.dart';
-import 'package:videoplayer/screens/homepage/thumbnail.dart';
-import 'package:videoplayer/screens/playlistpage/partymixfav.dart';
-import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/recently/recently.dart';
 import 'package:videoplayer/screens/searchpage/searchdeligate.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
@@ -58,6 +53,10 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
               color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
         ),
         actions: [
+          SizedBox(width: 90, child: dropdownmenusort(context)),
+          const SizedBox(
+            width: 5,
+          ),
           IconButton(
             onPressed: () {
               showSearch(context: context, delegate: SearchVideos());
@@ -110,12 +109,12 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                   height: 10,
                 ),
 
-                //-----------------------------next-------------------///
+                //  -----------------------------next-------------------///
                 Column(
                   children: [
                     ValueListenableBuilder(
                       valueListenable:
-                          videoDB.listenable(), //---->database listener
+                          fetchedVideosWithInfo, //---->database listener
                       builder: (context, videolist, child) {
                         return videolist.isEmpty
                             ? const Text('NO Videos')
@@ -127,10 +126,9 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                   crossAxisCount: 2,
                                   childAspectRatio: 4 / 3,
                                 ),
-                                itemCount:
-                                    videolist.values.length, //----->video count
+                                itemCount: videolist.length, //----->video count
                                 itemBuilder: ((context, index) {
-                                  log(">>>>>prayag>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${videolist.values.length}");
+                                  log(">>>>>prayag>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${videolist.length}");
                                   VideoplayerModel? videovariable =
                                       videoDB.getAt(index);
                                   return GridTile(
@@ -167,9 +165,13 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                                     .circular(
                                                                         30)),
                                                         child: FutureBuilder(
-                                                          future: getHiveThumbnail(
-                                                              videovariable!,
-                                                              index), //------------->hivethumbnail calling
+                                                          future:
+                                                              getHiveThumbnail(
+                                                                  videovariable!,
+                                                                  index),
+                                                          //  getHiveThumbnail(
+                                                          //     videovariable!,
+                                                          //     index), //------------->hivethumbnail calling
                                                           // future: getThumbnail(
                                                           //     videovariable!
                                                           //         .videoPath),
@@ -233,6 +235,19 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                     path:
                                                         videovariable.videoPath,
                                                     index: index,
+                                                  ), // second popup menu botton to add fav and playlist
+                                                ),
+                                                Positioned(
+                                                  right: 5,
+                                                  bottom: 5,
+                                                  child: Text(
+                                                    formatTime(videolist[index]
+                                                        .duration),
+                                                    style: const TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white),
                                                   ), // second popup menu botton to add fav and playlist
                                                 ),
                                               ],

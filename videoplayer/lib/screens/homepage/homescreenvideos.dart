@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
+import 'package:videoplayer/screens/allvideospage/dropdownmenusort.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu2.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
@@ -203,6 +204,19 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                                 ),
                                               ),
                                             ),
+                                            //  Positioned(
+                                            //       right: 5,
+                                            //       bottom: 5,
+                                            //       child: Text(
+                                            //         formatTime(videolist[index].Duration
+                                            //             ),
+                                            //         style: const TextStyle(
+                                            //             fontSize: 15,
+                                            //             fontWeight:
+                                            //                 FontWeight.bold,
+                                            //             color: Colors.white),
+                                            //       ), // second popup menu botton to add fav and playlist
+                                            //     ),
                                           ],
                                         ),
                                         Padding(
