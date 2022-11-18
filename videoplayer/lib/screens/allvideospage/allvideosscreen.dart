@@ -10,13 +10,17 @@ import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
-import 'package:videoplayer/screens/allvideospage/dropdownmenusort.dart';
+import 'package:videoplayer/screens/allvideospage/dropdowndummi.dart';
+import 'package:videoplayer/screens/allvideospage/sortfunctions.dart';
 import 'package:videoplayer/screens/allvideospage/hivethumbnail.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu2.dart';
+import 'package:videoplayer/screens/homepage/thumbnail.dart';
 import 'package:videoplayer/screens/recently/recently.dart';
 import 'package:videoplayer/screens/searchpage/searchdeligate.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayer2.dart';
+import 'package:videoplayer/screens/videoplayerpage/videoplayer3lastoption.dart';
 
 class ScreenAllvideos extends StatefulWidget {
   const ScreenAllvideos({super.key});
@@ -53,7 +57,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
               color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
         ),
         actions: [
-          SizedBox(width: 90, child: dropdownmenusort(context)),
+          SizedBox(child: SortDropdown()),
           const SizedBox(
             width: 5,
           ),
@@ -115,7 +119,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                     ValueListenableBuilder(
                       valueListenable:
                           fetchedVideosWithInfo, //---->database listener
-                      builder: (context, videolist, child) {
+                      builder: (context, List<dynamic> videolist, child) {
                         return videolist.isEmpty
                             ? const Text('NO Videos')
                             : GridView.builder(
@@ -128,9 +132,9 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                 ),
                                 itemCount: videolist.length, //----->video count
                                 itemBuilder: ((context, index) {
-                                  log(">>>>>prayag>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${videolist.length}");
-                                  VideoplayerModel? videovariable =
-                                      videoDB.getAt(index);
+                                  log(">>>>>===>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${videolist.length}");
+                                  // VideoplayerModel? videovariable =
+                                  //     videoDB.getAt(index);
                                   return GridTile(
                                     child: Column(
                                       children: [
@@ -145,13 +149,21 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            AssetPlayerWidget(
-                                                          index: index,
-                                                          urlpassed:
-                                                              fetchedVideosPath,
-                                                        ),
-                                                      ),
+                                                          builder: (context) =>
+                                                              VideoPlay(
+                                                                  videoLink:
+                                                                      videolist[
+                                                                              index]
+                                                                          .path)
+                                                          //     AssetPlayerWidget2(
+                                                          //   index: index,
+                                                          //   list:
+                                                          //       fetchedVideosPath,
+                                                          //   urlpassed:
+                                                          //       videolist[index]
+                                                          //           .path,
+                                                          // ),
+                                                          ),
                                                     );
                                                   }),
                                                   child: Stack(
@@ -165,11 +177,17 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                                     .circular(
                                                                         30)),
                                                         child: FutureBuilder(
-                                                          future:
-                                                              getHiveThumbnail(
-                                                                  videovariable!,
-                                                                  index),
-                                                          //  getHiveThumbnail(
+                                                          // future:
+                                                          // getHiveThumbnail(
+                                                          //     videolist[
+                                                          //             index]
+                                                          //         .path!,
+                                                          //     index),
+                                                          // getThumbnail(
+                                                          //     videolist[
+                                                          //             index]
+                                                          //         .toString()),
+                                                          // getHiveThumbnail(
                                                           //     videovariable!,
                                                           //     index), //------------->hivethumbnail calling
                                                           // future: getThumbnail(
@@ -188,13 +206,15 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                                           BorderRadius.circular(
                                                                               50), //20
                                                                     ),
-                                                                    child: Image
-                                                                        .file(
-                                                                      File(videovariable
-                                                                          .thumbnail),
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
+                                                                    // child: Image
+                                                                    //     .file(
+                                                                    //   // File(snapshot
+                                                                    //   //     .data!),
+                                                                    //   File(videovariable
+                                                                    //       .thumbnail),
+                                                                    //   fit: BoxFit
+                                                                    //       .cover,
+                                                                    // ),
                                                                   )
                                                                 : Container(
                                                                     width: 100,
@@ -227,16 +247,16 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                     ],
                                                   ),
                                                 ),
-                                                Positioned(
-                                                  top: -5,
-                                                  right: -10,
-                                                  child: PopupmenuBotton2(
-                                                    context: context,
-                                                    path:
-                                                        videovariable.videoPath,
-                                                    index: index,
-                                                  ), // second popup menu botton to add fav and playlist
-                                                ),
+                                                // Positioned(
+                                                //   top: -5,
+                                                //   right: -10,
+                                                //   child: PopupmenuBotton2(
+                                                //     context: context,
+                                                //     path:
+                                                //         videovariable.videoPath,
+                                                //     index: index,
+                                                //   ), // second popup menu botton to add fav and playlist
+                                                // ),
                                                 Positioned(
                                                   right: 5,
                                                   bottom: 5,
@@ -252,15 +272,25 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                 ),
                                               ],
                                             ),
-                                            Text(
-                                              videovariable.videoName
-                                                  .toString(),
-                                              overflow: TextOverflow.ellipsis,
-                                              style: GoogleFonts.podkova(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.blue[900]),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .45,
+                                              child: Text(
+                                                videolist[index]
+                                                    .title
+                                                    .toString(),
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                    color: Colors.deepPurple),
+                                              ),
                                             ),
+
+                                            // Text(
+                                            //   videovariable.videoName
+                                            //       .toString(),
+                                            //   overflow: TextOverflow.ellipsis,
                                           ],
                                         ),
                                       ],

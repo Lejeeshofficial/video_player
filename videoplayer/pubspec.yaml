@@ -31,6 +31,7 @@ environment:
 dependencies:
   audio_video_progress_bar: ^0.11.0
   bloc: ^8.1.0
+  flutter_bloc: ^8.0.1
   build_runner: ^2.3.2
   file_manager: ^1.0.1
   file_picker: ^5.2.1
@@ -47,6 +48,8 @@ dependencies:
   simple_gradient_text: ^1.2.4
   video_thumbnail: ^0.5.0
   visibility_detector: ^0.3.3
+  better_player: ^0.0.83
+  wakelock: ^0.6.1+2
 
 dev_dependencies:
   flutter_lints: ^2.0.0

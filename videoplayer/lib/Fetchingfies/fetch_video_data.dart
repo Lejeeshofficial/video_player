@@ -13,11 +13,11 @@ bool hasMoreData = true;
 List<String> fetchedVideosPath = []; //all videos path loaded first time
 ValueNotifier<List<String>> favVideos = ValueNotifier([]);
 //---------------------------------------------------------//
-ValueNotifier<List<String>> fetchedallvideos = ValueNotifier([]);
+List<String> fetchedallvideos = [];
 
 // void allvideosadding(value) {
 //   for (int j = 0; j < value.length; j++) {
-//     fetchedallvideos.value.add(value);
+//     fetchedallvideos.add(value);
 //   }
 // }
 

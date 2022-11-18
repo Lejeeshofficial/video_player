@@ -16,21 +16,22 @@ import 'package:videoplayer/screens/videoplayerpage/datamanager.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayercontrols.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class AssetPlayerWidget extends StatefulWidget {
-  AssetPlayerWidget({
+class AssetPlayerWidget2 extends StatefulWidget {
+  AssetPlayerWidget2({
     Key? key,
+    required this.list,
     required this.index,
     required this.urlpassed,
   }) : super(key: key);
   int index;
-
+  var list;
   dynamic urlpassed;
 
   @override
-  State<AssetPlayerWidget> createState() => _AssetPlayerWidgetState();
+  State<AssetPlayerWidget2> createState() => _AssetPlayerWidgetState();
 }
 
-class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
+class _AssetPlayerWidgetState extends State<AssetPlayerWidget2> {
   //List<String> url = filteredFolderVideos.value;
   late FlickManager
       flickManager; //------------------>this is the instance of the FlickManager video player package
@@ -40,9 +41,10 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
   void initState() {
     super.initState();
     var index = widget.index;
-    var urls = widget.urlpassed;
-    RecentListModel obj = RecentListModel(recentPath: urls[index]);
-    getRecentStatus(path: urls[index]);
+    var videopath = widget.urlpassed;
+    var urls = widget.list;
+    RecentListModel obj = RecentListModel(recentPath: videopath);
+    getRecentStatus(path: videopath);
     flickManager = FlickManager(
         videoPlayerController: VideoPlayerController.file(
           File(urls[

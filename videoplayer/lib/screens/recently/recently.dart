@@ -8,7 +8,7 @@ import 'package:path/path.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
-import 'package:videoplayer/screens/allvideospage/dropdownmenusort.dart';
+import 'package:videoplayer/screens/allvideospage/sortfunctions.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
 import 'package:videoplayer/screens/homepage/thumbnail.dart';
 import 'package:videoplayer/screens/playlistpage/partymixfav.dart';

@@ -3,7 +3,7 @@ import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
 import 'package:path_provider/path_provider.dart';
 
-Future<String> getHiveThumbnail(VideoplayerModel video, int index) async {
+Future<String> getHiveThumbnail(dynamic video, int index) async {
   if (video.thumbnail.isNotEmpty) {
     return '';
   } else {
