@@ -75,7 +75,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
 
   nextpage() async {
     await Future.delayed(
-      const Duration(seconds: 15),
+      const Duration(seconds: 6),
     );
     Navigator.pushReplacement(
       context,

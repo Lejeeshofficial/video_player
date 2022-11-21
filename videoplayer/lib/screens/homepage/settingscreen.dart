@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:videoplayer/screens/homepage/about.dart';
 import 'package:videoplayer/screens/homepage/termsandcondition.dart';
 
 class ScreenSetting extends StatefulWidget {
@@ -39,27 +40,32 @@ class _ScreenSettingState extends State<ScreenSetting> {
       ),
       body: Container(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
           child: Column(
             children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.lock_outlined,
-                    size: 30,
-                    color: Colors.deepPurple,
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Text(
-                    'Privacy and Policy',
-                    style: GoogleFonts.podkova(
-                        fontSize: 23,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.purple[900]),
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  TermsAndCondition(context);
+                },
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.lock_outlined,
+                      size: 30,
+                      color: Colors.deepPurple,
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'Privacy and Policy',
+                      style: GoogleFonts.podkova(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.purple[900]),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 20,
@@ -94,7 +100,7 @@ class _ScreenSettingState extends State<ScreenSetting> {
               InkWell(
                 onTap: () async {
                   await Share.share(
-                      'Download My Application V-Player using this link - https://play.google.com/store/apps/details?id=in.brototype.BrotoPlayer');
+                      'Download My Application V-Player using this link -');
                 },
                 child: Row(
                   children: [
@@ -119,24 +125,29 @@ class _ScreenSettingState extends State<ScreenSetting> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.adb_outlined,
-                    size: 30,
-                    color: Colors.deepPurple,
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Text(
-                    'About',
-                    style: GoogleFonts.podkova(
-                        fontSize: 23,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.purple[900]),
-                  ),
-                ],
+              InkWell(
+                onTap: (() {
+                  about(context);
+                }),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.adb_outlined,
+                      size: 30,
+                      color: Colors.deepPurple,
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'About',
+                      style: GoogleFonts.podkova(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.purple[900]),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 470,
@@ -150,7 +161,7 @@ class _ScreenSettingState extends State<ScreenSetting> {
                 ),
               ),
               Text(
-                '2:3:4',
+                '1:0:0',
                 style: GoogleFonts.podkova(
                   fontSize: 15,
                   fontWeight: FontWeight.w100,
