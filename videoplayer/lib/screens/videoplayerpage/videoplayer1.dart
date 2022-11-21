@@ -41,8 +41,12 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
     super.initState();
     var index = widget.index;
     var urls = widget.urlpassed;
-    RecentListModel obj = RecentListModel(recentPath: urls[index]);
-    getRecentStatus(path: urls[index]);
+    setState(() {
+      RecentListModel obj = RecentListModel(recentPath: urls[index]);
+      getRecentStatus(path: urls[index]);
+    });
+    // RecentListModel obj = RecentListModel(recentPath: urls[index]);
+    // getRecentStatus(path: urls[index]);
     flickManager = FlickManager(
         videoPlayerController: VideoPlayerController.file(
           File(urls[

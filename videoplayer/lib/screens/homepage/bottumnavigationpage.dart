@@ -1,4 +1,5 @@
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:videoplayer/screens/allvideospage/allvideosscreen.dart';
 import 'package:videoplayer/screens/favpage/favscreen.dart';
@@ -26,8 +27,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final items = <Widget>[
+      Icon(Icons.home),
+      Icon(Icons.video_library_sharp),
+      Icon(Icons.favorite_border_outlined),
+      Icon(Icons.playlist_add_check_circle_outlined)
+    ];
     return Scaffold(
-      // backgroundColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -42,49 +49,63 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             stops: [0, 1],
           ),
         ),
-        child: BottomNavigationBar(
+        child: CurvedNavigationBar(
+          animationDuration: Duration(milliseconds: 700),
+          color: Color(0xFFEFEFEF),
           backgroundColor: Colors.transparent,
-          selectedItemColor: Colors.deepOrange,
-          unselectedItemColor: Colors.white,
-          currentIndex: currentselectedindex,
-          type: BottomNavigationBarType.fixed,
-          onTap: (value) {
+          // buttonBackgroundColor: Colors.white,
+          items: items,
+          height: 55,
+          index: currentselectedindex,
+          onTap: (index) {
             setState(() {
-              currentselectedindex = value;
+              currentselectedindex = index;
             });
           },
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                ),
-                label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.video_library,
-                  // color: Colors.white,
-                ),
-                label: 'Videos'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.favorite_border_outlined,
-                  // color: Colors.white,
-                ),
-                label: 'Favourites'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.playlist_add_check_circle_outlined,
-                  // color: Colors.white,
-                ),
-                label: 'Playlist'),
-            // BottomNavigationBarItem(
-            //     icon: Icon(
-            //       Icons.search_outlined,
-            //       //color: Colors.white,
-            //     ),
-            //     label: 'Search'),
-          ],
         ),
+        // BottomNavigationBar(
+        //   backgroundColor: Colors.transparent,
+        //   selectedItemColor: Colors.deepOrange,
+        //   unselectedItemColor: Colors.white,
+        //   currentIndex: currentselectedindex,
+        //   type: BottomNavigationBarType.fixed,
+        //   onTap: (value) {
+        //     setState(() {
+        //       currentselectedindex = value;
+        //     });
+        //   },
+        //   items: const [
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           Icons.home,
+        //         ),
+        //         label: 'Home'),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           Icons.video_library,
+        //           // color: Colors.white,
+        //         ),
+        //         label: 'Videos'),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           Icons.favorite_border_outlined,
+        //           // color: Colors.white,
+        //         ),
+        //         label: 'Favourites'),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           Icons.playlist_add_check_circle_outlined,
+        //           // color: Colors.white,
+        //         ),
+        //         label: 'Playlist'),
+        //     // BottomNavigationBarItem(
+        //     //     icon: Icon(
+        //     //       Icons.search_outlined,
+        //     //       //color: Colors.white,
+        //     //     ),
+        //     //     label: 'Search'),
+        //   ],
+        // ),
       ),
       body: pages[currentselectedindex],
     );

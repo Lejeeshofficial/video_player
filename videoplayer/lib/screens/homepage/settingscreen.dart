@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:share_plus/share_plus.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:videoplayer/screens/homepage/termsandcondition.dart';
 
 class ScreenSetting extends StatefulWidget {
   ScreenSetting({super.key});
@@ -63,24 +64,57 @@ class _ScreenSettingState extends State<ScreenSetting> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.notes_outlined,
-                    size: 30,
-                    color: Colors.deepPurple,
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Text(
-                    'Terms and conditions',
-                    style: GoogleFonts.podkova(
-                        fontSize: 23,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.purple[900]),
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  TermsAndCondition(context);
+                },
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.notes_outlined,
+                      size: 30,
+                      color: Colors.deepPurple,
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'Terms and conditions',
+                      style: GoogleFonts.podkova(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.purple[900]),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () async {
+                  await Share.share(
+                      'Download My Application V-Player using this link - https://play.google.com/store/apps/details?id=in.brototype.BrotoPlayer');
+                },
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.share,
+                      size: 30,
+                      color: Colors.deepPurple,
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'Share',
+                      style: GoogleFonts.podkova(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.purple[900]),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 20,

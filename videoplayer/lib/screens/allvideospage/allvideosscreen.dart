@@ -16,6 +16,7 @@ import 'package:videoplayer/screens/allvideospage/hivethumbnail.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu2.dart';
 import 'package:videoplayer/screens/homepage/thumbnail.dart';
+import 'package:videoplayer/screens/recently/recentfile.dart';
 import 'package:videoplayer/screens/recently/recently.dart';
 import 'package:videoplayer/screens/searchpage/searchdeligate.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
@@ -33,7 +34,8 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
   @override
   Widget build(BuildContext context) {
     setState(() {
-      recentlistDB.isEmpty ? SizedBox() : recentlypart(context);
+      // recentlistDB.isEmpty ? SizedBox() : recentlypart(context);
+      recentlistDB.isEmpty ? SizedBox() : Recentfile();
     });
 
     return Scaffold(
@@ -81,7 +83,8 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //---------------calling recently tabs
-                recentlistDB.isEmpty ? SizedBox() : recentlypart(context),
+                // recentlistDB.isEmpty ? SizedBox() : recentlypart(context),
+                recentlistDB.isEmpty ? SizedBox() : Recentfile(),
 
                 SizedBox(
                   height: 10,
@@ -98,7 +101,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                             borderRadius: BorderRadius.circular(20)),
                         child: Center(
                           child: Text(
-                            'All Videos (${videoDB.length})',
+                            'All Videos  ',
                             style: GoogleFonts.podkova(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
@@ -149,21 +152,21 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              VideoPlay(
-                                                                  videoLink:
-                                                                      videolist[
-                                                                              index]
-                                                                          .path)
-                                                          //     AssetPlayerWidget2(
-                                                          //   index: index,
-                                                          //   list:
-                                                          //       fetchedVideosPath,
-                                                          //   urlpassed:
-                                                          //       videolist[index]
-                                                          //           .path,
-                                                          // ),
-                                                          ),
+                                                        builder: (context) =>
+                                                            // VideoPlay(
+                                                            //     videoLink:
+                                                            //         videolist[
+                                                            //                 index]
+                                                            //             .path)
+                                                            AssetPlayerWidget2(
+                                                          index: index,
+                                                          list:
+                                                              fetchedVideosPath,
+                                                          urlpassed:
+                                                              videolist[index]
+                                                                  .path,
+                                                        ),
+                                                      ),
                                                     );
                                                   }),
                                                   child: Stack(
@@ -177,22 +180,24 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                                     .circular(
                                                                         30)),
                                                         child: FutureBuilder(
-                                                          // future:
-                                                          // getHiveThumbnail(
-                                                          //     videolist[
-                                                          //             index]
-                                                          //         .path!,
-                                                          //     index),
-                                                          // getThumbnail(
-                                                          //     videolist[
-                                                          //             index]
-                                                          //         .toString()),
-                                                          // getHiveThumbnail(
-                                                          //     videovariable!,
-                                                          //     index), //------------->hivethumbnail calling
-                                                          // future: getThumbnail(
-                                                          //     videovariable!
-                                                          //         .videoPath),
+                                                          future:
+                                                              // getHiveThumbnail(
+                                                              //     videolist[
+                                                              //             index]
+                                                              //         .path!,
+                                                              //     index),
+                                                              // getThumbnail(
+                                                              //     videolist[
+                                                              //             index]
+                                                              //         .toString()),
+                                                              // getHiveThumbnail(
+                                                              //     videovariable!,
+                                                              //     index), //------------->hivethumbnail calling
+                                                              // future:
+                                                              getThumbnail(
+                                                                  videolist[
+                                                                          index]
+                                                                      .path),
                                                           builder: ((context,
                                                               snapshot) {
                                                             return snapshot
@@ -206,15 +211,15 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                                           BorderRadius.circular(
                                                                               50), //20
                                                                     ),
-                                                                    // child: Image
-                                                                    //     .file(
-                                                                    //   // File(snapshot
-                                                                    //   //     .data!),
-                                                                    //   File(videovariable
-                                                                    //       .thumbnail),
-                                                                    //   fit: BoxFit
-                                                                    //       .cover,
-                                                                    // ),
+                                                                    child: Image
+                                                                        .file(
+                                                                      File(snapshot
+                                                                          .data!),
+                                                                      // File(videovariable
+                                                                      //     .thumbnail),
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
                                                                   )
                                                                 : Container(
                                                                     width: 100,
@@ -247,16 +252,17 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                                                     ],
                                                   ),
                                                 ),
-                                                // Positioned(
-                                                //   top: -5,
-                                                //   right: -10,
-                                                //   child: PopupmenuBotton2(
-                                                //     context: context,
-                                                //     path:
-                                                //         videovariable.videoPath,
-                                                //     index: index,
-                                                //   ), // second popup menu botton to add fav and playlist
-                                                // ),
+                                                Positioned(
+                                                  top: -5,
+                                                  right: -10,
+                                                  child: PopupmenuBotton2(
+                                                    context: context,
+                                                    // path: videovariable!
+                                                    //     .videoPath,
+                                                    path: videolist[index].path,
+                                                    index: index,
+                                                  ), // second popup menu botton to add fav and playlist
+                                                ),
                                                 Positioned(
                                                   right: 5,
                                                   bottom: 5,

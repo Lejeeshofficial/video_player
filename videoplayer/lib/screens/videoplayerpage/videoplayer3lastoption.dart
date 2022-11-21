@@ -21,10 +21,10 @@ class _VideoPlayState extends State<VideoPlay> {
 
   @override
   void initState() {
-    var recent = RecentListModel(
-      recentPath: widget.videoLink,
-    );
-    getRecentStatus(path: widget.videoLink);
+    // var recent = RecentListModel(
+    //   recentPath: widget.videoLink,
+    // );
+    // getRecentStatus(path: widget.videoLink);
     BetterPlayerConfiguration betterPlayerConfiguration =
         const BetterPlayerConfiguration(
       autoPlay: true,

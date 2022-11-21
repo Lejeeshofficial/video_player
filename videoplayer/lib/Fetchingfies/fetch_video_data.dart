@@ -52,8 +52,9 @@ onSuccess(List<String> data) {
 //---------------------------first called from splash screen---------------------------------------//
 
 Future splashFetch() async {
-  log('object');
+  log('lejeesh k');
   if (await _requestPermission(Permission.storage)) {
+    // log('lejeesh 2nd');
     SearchFilesInStorage.searchInStorage([
       //----->function call of searchInStorage with 3 parameters,
       '.mp4',

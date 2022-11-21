@@ -40,15 +40,15 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget2> {
   @override
   void initState() {
     super.initState();
-    var index = widget.index;
-    var videopath = widget.urlpassed;
-    var urls = widget.list;
+    int index = widget.index;
+    String videopath = widget.urlpassed;
+    List<String> urls = widget.list;
     RecentListModel obj = RecentListModel(recentPath: videopath);
     getRecentStatus(path: videopath);
     flickManager = FlickManager(
         videoPlayerController: VideoPlayerController.file(
-          File(urls[
-              index]), //---------------1--------->flickManager got that path of that video various with index
+          File(
+              videopath), //---------------1--------->flickManager got that path of that video various with index
         ),
         onVideoEnd: () {
           dataManager.skipToNextVideo(Duration(seconds: 5));

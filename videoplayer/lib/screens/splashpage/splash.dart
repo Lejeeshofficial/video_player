@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
@@ -12,11 +13,10 @@ class ScreenSplash extends StatefulWidget {
 
 class _ScreenSplashState extends State<ScreenSplash> {
   @override
+  @override
   void initState() {
-    splashFetch();
-
     nextpage();
-
+    splashFetch();
     // TODO: implement initState
     super.initState();
   }
@@ -35,14 +35,39 @@ class _ScreenSplashState extends State<ScreenSplash> {
             stops: [0.1, 0.9],
             tileMode: TileMode.clamp),
       ),
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Center(
-          child: Icon(
-            Icons.ondemand_video_outlined,
-            size: 69,
-            color: Colors.white,
-          ),
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: const Image(
+                    image: AssetImage(
+                      'lib/assets/icon_2-removebg.png',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'V-PLAYER',
+                  style: GoogleFonts.podkova(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                )
+              ]),
         ),
       ),
     );
@@ -50,7 +75,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
 
   nextpage() async {
     await Future.delayed(
-      const Duration(seconds: 10),
+      const Duration(seconds: 15),
     );
     Navigator.pushReplacement(
       context,

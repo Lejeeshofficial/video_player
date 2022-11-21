@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_list.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_video.dart';
+import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
 
 import 'package:videoplayer/screens/homepage/homescreenvideos.dart';
 import 'package:videoplayer/screens/homepage/settingscreen.dart';
@@ -52,10 +53,12 @@ class _ScreenHomeState extends State<ScreenHome> {
           size: 40,
         ),
 
-        title: Text(
-          'V-Player',
-          style: GoogleFonts.podkova(
-              color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
+        title: Center(
+          child: Text(
+            'V-Player',
+            style: GoogleFonts.podkova(
+                color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
+          ),
         ),
         actions: [
           PopupMenuButton(
@@ -64,7 +67,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                     onTap: (() async {
                       await Future.delayed(const Duration(seconds: 0));
                       setState(() {
-                        log('refreshing..');
+                        BottomNavigationScreen();
                       });
                     }),
                     value: 1,
@@ -141,10 +144,10 @@ class _ScreenHomeState extends State<ScreenHome> {
             Container(
               width: MediaQuery.of(context).size.width,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.fromLTRB(20, 20, 0, 5),
                     child: Text(
                       'Folders',
                       style: GoogleFonts.podkova(
@@ -184,7 +187,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                             decoration: BoxDecoration(
                               border: Border.all(
                                   width: 2, color: Colors.deepPurple),
-                              borderRadius: BorderRadius.circular(3),
+                              borderRadius: BorderRadius.circular(40),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
@@ -194,8 +197,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                                     radius: 30,
                                     backgroundColor: Colors.blue[100],
                                     child: const Icon(
-                                      Icons.folder_copy_outlined,
-                                      size: 23,
+                                      Icons.folder,
+                                      size: 27,
                                       color: Colors.deepPurple,
                                     ),
                                   ),

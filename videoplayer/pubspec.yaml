@@ -30,9 +30,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   audio_video_progress_bar: ^0.11.0
-  bloc: ^8.1.0
-  flutter_bloc: ^8.0.1
-  build_runner: ^2.3.2
+  
+  
   file_manager: ^1.0.1
   file_picker: ^5.2.1
   flick_video_player: ^0.5.0
@@ -50,13 +49,24 @@ dependencies:
   visibility_detector: ^0.3.3
   better_player: ^0.0.83
   wakelock: ^0.6.1+2
+  path_provider: ^2.0.11 
+  curved_navigation_bar: ^1.0.3
+  share_plus: ^6.3.0
+
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
   hive_generator: ^2.0.0
-  path_provider: ^2.0.11
+  build_runner: ^2.3.2
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons:
+  android: true
+  ios : true
+  image_path : "lib/assets/icon_2-removebg.png"
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -69,6 +79,8 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - lib/assets/icon_2-removebg.png
+    - lib/assets/logo_image-removebg-preview.png
     - lib/assets/image1.png
     - lib/assets/climbing-2609319_960_720.webp
     - lib/assets/deadpool.png

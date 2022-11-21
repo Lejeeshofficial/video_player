@@ -45,6 +45,7 @@ Widget recentlypart(context) {
             InkWell(
               onTap: () {
                 // popupmenurecentlistalldelte(context);
+
                 recentlistDB.clear();
               },
               child: Padding(

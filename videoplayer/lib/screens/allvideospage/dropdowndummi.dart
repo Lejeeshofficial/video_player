@@ -1,9 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:videoplayer/application/videos_bloc.dart';
 import 'package:videoplayer/screens/allvideospage/sortfunctions.dart';
-import 'package:flutter_bloc/src/bloc_builder.dart';
-import 'package:flutter_bloc/src/bloc_builder.dart';
 
 class SortDropdown extends StatefulWidget {
   SortDropdown({Key? key}) : super(key: key);
@@ -33,6 +33,7 @@ class _SortDropdownState extends State<SortDropdown> {
       elevation: 16,
       style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       onChanged: (newValue) {
+        log(newValue!);
         switch (newValue) {
           case "A to Z":
             sortAlphabetical();
@@ -47,7 +48,7 @@ class _SortDropdownState extends State<SortDropdown> {
           //   sortBySize();
         }
         setState(() {
-          dropdownValue = newValue!;
+          dropdownValue = newValue;
         });
       },
       items: items.map((String value) {

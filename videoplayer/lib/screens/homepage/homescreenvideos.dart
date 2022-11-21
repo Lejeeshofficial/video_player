@@ -208,7 +208,7 @@ class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
                                             //       right: 5,
                                             //       bottom: 5,
                                             //       child: Text(
-                                            //         formatTime(videolist[index].Duration
+                                            //         formatTime(value1[index].Duration
                                             //             ),
                                             //         style: const TextStyle(
                                             //             fontSize: 15,

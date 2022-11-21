@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
+import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/main.dart';
 import 'package:videoplayer/screens/allvideospage/snackbars.dart';
@@ -35,7 +36,7 @@ getList(List<FavVideoModel> objList) {
 Widget getfavStatusname({required path, required context, required indexee}) {
   List<FavVideoModel> favList = favvideoDB.values.toList();
   List<VideoplayerModel> allsongs = videoDB.values.toList();
-
+  dynamic var1 = fetchedVideosWithInfo.value;
   List<FavVideoModel> result =
       favList.where((checking) => checking.favVideoPath == path).toList();
 
@@ -57,22 +58,24 @@ Widget getfavStatusname({required path, required context, required indexee}) {
       ),
     );
   } else {
+    var favobj = FavVideoModel(favVideoPath: path);
     return InkWell(
-      onTap: () async {
-        if (favvideoDB.length < 1) {
-          favvideoDB.clear();
-          //setstate((){});
-        } else {
-          int currentindex = favList.indexWhere(
-              (element) => element.favVideoPath == allsongs[indexee].videoPath);
-          //  await favvideoDB.deleteAt(currentindex);
-          DialogBoxremove(context, currentindex);
-        }
+      // onTap: () async {
+      //   if (favvideoDB.length < 1) {
+      //     favvideoDB.clear();
+      //   } else {
+      // favvideoDB.delete(favobj);
+      // int currentindex = favList.indexWhere(
+      //     (element) => element.favVideoPath == var1[indexee].videoPath);
+      // //  await favvideoDB.deleteAt(currentindex);
+      // DialogBoxremove(context, currentindex);
+      //  / }
 
-        // DialogBoxremove(context, index);
-      },
+      // DialogBoxremove(context, index);
+      // },
       child: Text(
-        'Remove From Favourites',
+        'It is already in favourites',
+        overflow: TextOverflow.ellipsis,
         style: GoogleFonts.podkova(
             fontSize: 15,
             fontWeight: FontWeight.w700,

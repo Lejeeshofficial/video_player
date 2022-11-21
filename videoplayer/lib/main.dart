@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
 import 'package:videoplayer/screens/splashpage/splash.dart';
 
@@ -31,9 +32,14 @@ Future<void> main(List<String> args) async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,6 +48,4 @@ class MyApp extends StatelessWidget {
       home: ScreenSplash(),
     );
   }
-  // my did something in this for test purpose this is my second comit in the
-// windows 11 just for test...
 }
