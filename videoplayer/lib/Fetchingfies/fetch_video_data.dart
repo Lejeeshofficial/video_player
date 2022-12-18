@@ -54,7 +54,7 @@ onSuccess(List<String> data) {
 Future splashFetch() async {
   log('lejeesh k');
   if (await _requestPermission(Permission.storage)) {
-    // log('lejeesh 2nd');
+    print('lejeesh 2nd');
     SearchFilesInStorage.searchInStorage([
       //----->function call of searchInStorage with 3 parameters,
       '.mp4',
@@ -70,10 +70,10 @@ Future splashFetch() async {
 Directory? dir;
 
 Future<bool> _requestPermission(Permission permission) async {
-  final store = Permission.storage;
-  final access = Permission.accessMediaLocation;
+  const store = Permission.storage; //final---->const
+  const access = Permission.accessMediaLocation; //same..
   if (await permission.isGranted) {
-    await access.isGranted && await access.isGranted;
+    await access.isGranted && await access.isGranted; //access---->Store
     log('=============================permission granted =======================');
     return true; //----------->First time grandted.
   } else {

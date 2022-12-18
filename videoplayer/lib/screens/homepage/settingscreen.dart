@@ -4,14 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/screens/homepage/about.dart';
 import 'package:videoplayer/screens/homepage/termsandcondition.dart';
 
-class ScreenSetting extends StatefulWidget {
+class ScreenSetting extends StatelessWidget {
   ScreenSetting({super.key});
 
-  @override
-  State<ScreenSetting> createState() => _ScreenSettingState();
-}
-
-class _ScreenSettingState extends State<ScreenSetting> {
   bool isSwitched = true;
 
   @override

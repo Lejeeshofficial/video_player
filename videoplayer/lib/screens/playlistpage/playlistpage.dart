@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -63,12 +64,15 @@ class ScreenPlaylist extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ScreenAllvideos(),
-                ),
+              Get.to(
+                () => ScreenAllvideos(),
               );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => ScreenAllvideos(),
+              //   ),
+              // );
             },
             icon: const Icon(Icons.add_circle_outline_rounded),
             iconSize: 30,

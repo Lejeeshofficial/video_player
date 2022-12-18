@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
+import 'package:videoplayer/getx/videocotroller.dart';
 import 'package:videoplayer/screens/splashpage/splash.dart';
 
 late Box<VideoplayerModel> videoDB;
@@ -10,6 +12,8 @@ late Box<PlaylistNameModel> playlistnameDB;
 late Box<PlaylistVideoModel> playlistvideoDB;
 late Box<RecentListModel> recentlistDB;
 late Box<ImageStoreModel> imageDB;
+
+final videocontroller = Get.put(VideoController());
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -32,17 +36,12 @@ Future<void> main(List<String> args) async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       home: ScreenSplash(),

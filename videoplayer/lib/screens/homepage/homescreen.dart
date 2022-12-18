@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:file_manager/file_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:videoplayer/Fetchingfies/load_folder_list.dart';
@@ -12,7 +13,7 @@ import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
 import 'package:videoplayer/screens/homepage/homescreenvideos.dart';
 import 'package:videoplayer/screens/homepage/settingscreen.dart';
 
-class ScreenHome extends StatefulWidget {
+class ScreenHome extends StatelessWidget {
   ScreenHome({super.key});
 
   // var files;
@@ -24,11 +25,6 @@ class ScreenHome extends StatefulWidget {
   //   var fm =await FileManager(root:  root);
   // }
 
-  @override
-  State<ScreenHome> createState() => _ScreenHomeState();
-}
-
-class _ScreenHomeState extends State<ScreenHome> {
   @override
   @override
   Widget build(BuildContext context) {
@@ -66,9 +62,9 @@ class _ScreenHomeState extends State<ScreenHome> {
                   PopupMenuItem(
                     onTap: (() async {
                       await Future.delayed(const Duration(seconds: 0));
-                      setState(() {
-                        BottomNavigationScreen();
-                      });
+                      // setState(() {
+                      //   BottomNavigationScreen();
+                      // });
                     }),
                     value: 1,
                     // child: InkWell(
@@ -104,11 +100,13 @@ class _ScreenHomeState extends State<ScreenHome> {
                       await Future.delayed(
                         Duration(seconds: 0),
                       );
-                      navigator.push(
-                        MaterialPageRoute(
-                          builder: (_) => ScreenSetting(),
-                        ),
-                      );
+
+                      Get.to(() => ScreenSetting());
+                      // navigator.push(
+                      //   MaterialPageRoute(
+                      //     builder: (_) => ScreenSetting(),
+                      //   ),
+                      // );
                     },
                     value: 1,
                     child: Row(
@@ -170,14 +168,18 @@ class _ScreenHomeState extends State<ScreenHome> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: ((context) => ScreenFolderVideos(
-                                    index: index,
-                                    folderPath: value[index].toString(),
-                                  )),
-                            ),
-                          );
+                          Get.to(() => ScreenFolderVideos(
+                                index: index,
+                                folderPath: value[index].toString(),
+                              ));
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //     builder: ((context) => ScreenFolderVideos(
+                          //           index: index,
+                          //           folderPath: value[index].toString(),
+                          //         )),
+                          //   ),
+                          // );
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),

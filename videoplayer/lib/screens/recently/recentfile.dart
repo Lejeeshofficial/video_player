@@ -3,24 +3,23 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
+import 'package:videoplayer/getx/videocotroller.dart';
 import 'package:videoplayer/main.dart';
 import 'package:videoplayer/screens/allvideospage/popupmenu.dart';
 import 'package:videoplayer/screens/homepage/thumbnail.dart';
 import 'package:videoplayer/screens/recently/recentlistfun.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 
-class Recentfile extends StatefulWidget {
-  const Recentfile({super.key});
+class Recentfile extends StatelessWidget {
+  Recentfile({super.key});
 
-  @override
-  State<Recentfile> createState() => _RecentfileState();
-}
+  final recentcontroller = Get.put(VideoController());
 
-class _RecentfileState extends State<Recentfile> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,7 +52,7 @@ class _RecentfileState extends State<Recentfile> {
                 onTap: () {
                   // popupmenurecentlistalldelte(context);
 
-                  recentlistDB.clear();
+                  // recentlistDB.clear();
                 },
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -79,6 +78,7 @@ class _RecentfileState extends State<Recentfile> {
                 return Container(
                   height: MediaQuery.of(context).size.height * .21,
                   child: ListView.builder(
+                      controller: ScrollController(),
                       reverse: true,
                       scrollDirection: Axis.horizontal,
                       itemCount: recentlistDB.length,

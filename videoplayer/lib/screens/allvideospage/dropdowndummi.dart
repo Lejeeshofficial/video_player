@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import 'package:videoplayer/application/videos_bloc.dart';
 import 'package:videoplayer/screens/allvideospage/sortfunctions.dart';
 
 class SortDropdown extends StatefulWidget {
@@ -41,11 +40,6 @@ class _SortDropdownState extends State<SortDropdown> {
           case "Duration":
             sortByDuration();
             break;
-          // case "Date":
-          //   sortByDate();
-          //   break;
-          // case "FileSize":
-          //   sortBySize();
         }
         setState(() {
           dropdownValue = newValue;

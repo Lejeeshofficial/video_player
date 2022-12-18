@@ -3,12 +3,14 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:simple_gradient_text/simple_graart';
 import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
 import 'package:videoplayer/Fetchingfies/video_with_info.dart';
 import 'package:videoplayer/db/models/databasemodels.dart';
+import 'package:videoplayer/getx/videocotroller.dart';
 import 'package:videoplayer/main.dart';
 import 'package:videoplayer/screens/allvideospage/dropdowndummi.dart';
 import 'package:videoplayer/screens/allvideospage/sortfunctions.dart';
@@ -23,20 +25,19 @@ import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer2.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer3lastoption.dart';
 
-class ScreenAllvideos extends StatefulWidget {
-  const ScreenAllvideos({super.key});
+final ScrollController _scrollController = ScrollController();
 
-  @override
-  State<ScreenAllvideos> createState() => _ScreenAllvideos();
-}
+class ScreenAllvideos extends StatelessWidget {
+  //final videocontroller = Get.put(VideoController());
+  ScreenAllvideos({super.key});
 
-class _ScreenAllvideos extends State<ScreenAllvideos> {
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      // recentlistDB.isEmpty ? SizedBox() : recentlypart(context);
-      recentlistDB.isEmpty ? SizedBox() : Recentfile();
-    });
+    // setState(() {
+    //   // recentlistDB.isEmpty ? SizedBox() : recentlypart(context);
+    //   recentlistDB.isEmpty ? const SizedBox() : const Recentfile();
+    // });
+    // recentlistDB.isEmpty ? const SizedBox() : const Recentfile();
 
     return Scaffold(
       appBar: AppBar(
@@ -79,14 +80,10 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
         child: CupertinoScrollbar(
           child: SingleChildScrollView(
             child: Column(
-              // mainAxisSize: MainAxisSize.min,
-              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //---------------calling recently tabs
-                // recentlistDB.isEmpty ? SizedBox() : recentlypart(context),
-                recentlistDB.isEmpty ? SizedBox() : Recentfile(),
+                recentlistDB.isEmpty ? const SizedBox() : Recentfile(),
 
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -97,7 +94,7 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                         width: 150,
                         height: 25,
                         decoration: BoxDecoration(
-                            color: Color(0xFF787FF6),
+                            color: const Color(0xFF787FF6),
                             borderRadius: BorderRadius.circular(20)),
                         child: Center(
                           child: Text(
@@ -117,196 +114,179 @@ class _ScreenAllvideos extends State<ScreenAllvideos> {
                 ),
 
                 //  -----------------------------next-------------------///
-                Column(
-                  children: [
-                    ValueListenableBuilder(
-                      valueListenable:
-                          fetchedVideosWithInfo, //---->database listener
-                      builder: (context, List<dynamic> videolist, child) {
-                        return videolist.isEmpty
-                            ? const Text('NO Videos')
-                            : GridView.builder(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 4 / 3,
-                                ),
-                                itemCount: videolist.length, //----->video count
-                                itemBuilder: ((context, index) {
-                                  log(">>>>>===>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${videolist.length}");
-                                  // VideoplayerModel? videovariable =
-                                  //     videoDB.getAt(index);
-                                  return GridTile(
-                                    child: Column(
+                ValueListenableBuilder(
+                  valueListenable:
+                      fetchedVideosWithInfo, //---->database listener
+                  builder: (context, List<dynamic> videolist, child) {
+                    return videolist.isEmpty
+                        ? const Text('NO Videos')
+                        : GridView.builder(
+                            controller: _scrollController,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 4 / 3,
+                            ),
+                            itemCount: videolist.length, //----->video count
+                            itemBuilder: ((context, index) {
+                              log(">>>>>===>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${videolist.length}");
+                              // VideoplayerModel? videovariable =
+                              //     videoDB.getAt(index);
+                              return GridTile(
+                                child: Column(
+                                  children: [
+                                    Stack(
                                       children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Stack(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: (() {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            // VideoPlay(
-                                                            //     videoLink:
-                                                            //         videolist[
-                                                            //                 index]
-                                                            //             .path)
-                                                            AssetPlayerWidget2(
-                                                          index: index,
-                                                          list:
-                                                              fetchedVideosPath,
-                                                          urlpassed:
-                                                              videolist[index]
-                                                                  .path,
-                                                        ),
-                                                      ),
-                                                    );
+                                        GestureDetector(
+                                          onTap: (() {
+                                            Get.to(() => AssetPlayerWidget2(
+                                                  index: index,
+                                                  list: fetchedVideosPath,
+                                                  urlpassed:
+                                                      videolist[index].path,
+                                                ));
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         // VideoPlay(
+                                            //         //     videoLink:
+                                            //         //         videolist[
+                                            //         //                 index]
+                                            //         //             .path)
+                                            //         AssetPlayerWidget2(
+                                            //       index: index,
+                                            //       list:
+                                            //           fetchedVideosPath,
+                                            //       urlpassed:
+                                            //           videolist[index]
+                                            //               .path,
+                                            //     ),
+                                            //   ),
+                                            // );
+                                          }),
+                                          child: Stack(
+                                            children: [
+                                              Container(
+                                                width: 160,
+                                                height: 110,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30)),
+                                                child: FutureBuilder(
+                                                  future:
+                                                      // getHiveThumbnail(
+                                                      //     videolist[
+                                                      //             index]
+                                                      //         .path!,
+                                                      //     index),
+                                                      // getThumbnail(
+                                                      //     videolist[
+                                                      //             index]
+                                                      //         .toString()),
+                                                      // getHiveThumbnail(
+                                                      //     videovariable!,
+                                                      //     index), //------------->hivethumbnail calling
+                                                      // future:
+                                                      getThumbnail(
+                                                          videolist[index]
+                                                              .path),
+                                                  builder:
+                                                      ((context, snapshot) {
+                                                    return snapshot.hasData
+                                                        ? Container(
+                                                            width: 100,
+                                                            height: 70,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50), //20
+                                                            ),
+                                                            child: Image.file(
+                                                              File(snapshot
+                                                                  .data!),
+                                                              // File(videovariable
+                                                              //     .thumbnail),
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          )
+                                                        : Container(
+                                                            width: 100,
+                                                            height: 70,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20),
+                                                              image: const DecorationImage(
+                                                                  image: AssetImage(
+                                                                      'lib/assets/play button.jpg'),
+                                                                  fit: BoxFit
+                                                                      .cover),
+                                                            ),
+                                                          );
                                                   }),
-                                                  child: Stack(
-                                                    children: [
-                                                      Container(
-                                                        width: 160,
-                                                        height: 110,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        30)),
-                                                        child: FutureBuilder(
-                                                          future:
-                                                              // getHiveThumbnail(
-                                                              //     videolist[
-                                                              //             index]
-                                                              //         .path!,
-                                                              //     index),
-                                                              // getThumbnail(
-                                                              //     videolist[
-                                                              //             index]
-                                                              //         .toString()),
-                                                              // getHiveThumbnail(
-                                                              //     videovariable!,
-                                                              //     index), //------------->hivethumbnail calling
-                                                              // future:
-                                                              getThumbnail(
-                                                                  videolist[
-                                                                          index]
-                                                                      .path),
-                                                          builder: ((context,
-                                                              snapshot) {
-                                                            return snapshot
-                                                                    .hasData
-                                                                ? Container(
-                                                                    width: 100,
-                                                                    height: 70,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              50), //20
-                                                                    ),
-                                                                    child: Image
-                                                                        .file(
-                                                                      File(snapshot
-                                                                          .data!),
-                                                                      // File(videovariable
-                                                                      //     .thumbnail),
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  )
-                                                                : Container(
-                                                                    width: 100,
-                                                                    height: 70,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20),
-                                                                      image: const DecorationImage(
-                                                                          image: AssetImage(
-                                                                              'lib/assets/play button.jpg'),
-                                                                          fit: BoxFit
-                                                                              .cover),
-                                                                    ),
-                                                                  );
-                                                          }),
-                                                        ),
-                                                      ),
-                                                      const Positioned(
-                                                        left: 65,
-                                                        top: 40,
-                                                        child: Icon(
-                                                          Icons
-                                                              .play_circle_outline,
-                                                          color: Colors.white,
-                                                          size: 30,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
                                                 ),
-                                                Positioned(
-                                                  top: -5,
-                                                  right: -10,
-                                                  child: PopupmenuBotton2(
-                                                    context: context,
-                                                    // path: videovariable!
-                                                    //     .videoPath,
-                                                    path: videolist[index].path,
-                                                    index: index,
-                                                  ), // second popup menu botton to add fav and playlist
-                                                ),
-                                                Positioned(
-                                                  right: 5,
-                                                  bottom: 5,
-                                                  child: Text(
-                                                    formatTime(videolist[index]
-                                                        .duration),
-                                                    style: const TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white),
-                                                  ), // second popup menu botton to add fav and playlist
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  .45,
-                                              child: Text(
-                                                videolist[index]
-                                                    .title
-                                                    .toString(),
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    color: Colors.deepPurple),
                                               ),
-                                            ),
-
-                                            // Text(
-                                            //   videovariable.videoName
-                                            //       .toString(),
-                                            //   overflow: TextOverflow.ellipsis,
-                                          ],
+                                              const Positioned(
+                                                left: 65,
+                                                top: 40,
+                                                child: Icon(
+                                                  Icons.play_circle_outline,
+                                                  color: Colors.white,
+                                                  size: 30,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: -5,
+                                          right: -10,
+                                          child: PopupmenuBotton2(
+                                            context: context,
+                                            // path: videovariable!
+                                            //     .videoPath,
+                                            path: videolist[index].path,
+                                            index: index,
+                                          ), // second popup menu botton to add fav and playlist
+                                        ),
+                                        Positioned(
+                                          right: 5,
+                                          bottom: 5,
+                                          child: Text(
+                                            formatTime(
+                                                videolist[index].duration),
+                                            style: const TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
+                                          ), // second popup menu botton to add fav and playlist
                                         ),
                                       ],
                                     ),
-                                  );
-                                }),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          .45,
+                                      child: Text(
+                                        videolist[index].title.toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                            color: Colors.deepPurple),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               );
-                      },
-                    ),
-                  ],
+                            }),
+                          );
+                  },
                 ),
               ],
             ),

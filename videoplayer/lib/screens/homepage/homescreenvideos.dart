@@ -19,7 +19,7 @@ import 'package:videoplayer/screens/homepage/thumbnail.dart';
 import 'package:videoplayer/screens/playlistpage/playlistpage.dart';
 import 'package:videoplayer/screens/videoplayerpage/videoplayer1.dart';
 
-class ScreenFolderVideos extends StatefulWidget {
+class ScreenFolderVideos extends StatelessWidget {
   ScreenFolderVideos({Key? key, required this.index, required this.folderPath})
       : super(key: key);
   var folderPath;
@@ -27,19 +27,15 @@ class ScreenFolderVideos extends StatefulWidget {
   int index;
 
   @override
-  State<ScreenFolderVideos> createState() => _ScreenFolderVideosState();
-}
-
-class _ScreenFolderVideosState extends State<ScreenFolderVideos> {
-  @override
-  void initState() {
-    getFolderVideos(widget.folderPath);
-    // TODO: implement initState
-    super.initState();
-  }
+  // void initState() {
+  //   getFolderVideos(widget.folderPath);
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    getFolderVideos(folderPath);
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -62,12 +63,15 @@ class FavScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ScreenAllvideos(),
-                ),
+              Get.to(
+                () => ScreenAllvideos(),
               );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => ScreenAllvideos(),
+              //   ),
+              // );
             },
             iconSize: 30,
             icon: const Icon(Icons.add_circle_outline_rounded),
@@ -118,15 +122,19 @@ class FavScreen extends StatelessWidget {
                                       List<String> result;
                                       result =
                                           getList(videolist.values.toList());
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              AssetPlayerWidget(
-                                                  index: index,
-                                                  urlpassed: result),
-                                        ),
+                                      Get.to(
+                                        () => AssetPlayerWidget(
+                                            index: index, urlpassed: result),
                                       );
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) =>
+                                      //         AssetPlayerWidget(
+                                      //             index: index,
+                                      //             urlpassed: result),
+                                      //   ),
+                                      // );
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.fromLTRB(

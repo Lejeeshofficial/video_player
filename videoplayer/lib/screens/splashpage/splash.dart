@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
-import 'package:videoplayer/Fetchingfies/video_with_info.dart';
+// import 'package:videoplayer/Fetchingfies/fetch_video_data.dart';
+// import 'package:videoplayer/Fetchingfies/video_with_info.dart';
+import 'package:videoplayer/getx/videocotroller.dart';
 import 'package:videoplayer/screens/homepage/bottumnavigationpage.dart';
 
-class ScreenSplash extends StatefulWidget {
-  const ScreenSplash({super.key});
+class ScreenSplash extends StatelessWidget {
+  final videocontroller = Get.put(VideoController());
+  ScreenSplash({super.key});
 
-  @override
-  State<ScreenSplash> createState() => _ScreenSplashState();
-}
-
-class _ScreenSplashState extends State<ScreenSplash> {
-  @override
-  @override
-  void initState() {
+  Future<void> sam() async {
     nextpage();
-    splashFetch();
-    // TODO: implement initState
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    sam();
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -74,14 +68,18 @@ class _ScreenSplashState extends State<ScreenSplash> {
   }
 
   nextpage() async {
+    // splashFetch();
     await Future.delayed(
-      const Duration(seconds: 6),
+      const Duration(seconds: 10),
     );
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => BottomNavigationScreen(),
-      ),
-    );
+
+    Get.to(() => BottomNavigationScreen());
+    // splashFetch();
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => BottomNavigationScreen(),
+    //   ),
+    // );
   }
 }
